@@ -14,6 +14,9 @@ namespace SozialHeap.Models
     
     public partial class User
     {
+        private string p1;
+        private string p2;
+
         public User()
         {
             this.Answers = new HashSet<Answer>();
@@ -23,6 +26,13 @@ namespace SozialHeap.Models
             this.Posts1 = new HashSet<Post>();
             this.Users1 = new HashSet<User>();
             this.Users = new HashSet<User>();
+        }
+
+        public User(string p1, string p2)
+        {
+            // TODO: Complete member initialization
+            this.p1 = p1;
+            this.p2 = p2;
         }
     
         public string userID { get; set; }

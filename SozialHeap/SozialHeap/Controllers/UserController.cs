@@ -26,5 +26,12 @@ namespace Sozialheap.Controllers
         {
             return View();
         }
+
+        public ActionResult UserQuery(string q)
+        {
+            var users = service.GetAllUsers().ToList();
+
+            return Json(users, JsonRequestBehavior.AllowGet);
+        }
     }
 }
