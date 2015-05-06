@@ -1,0 +1,218 @@
+.notimportant
+{
+    color: #ccc;
+}
+
+.end
+{
+  clear: both;
+}
+
+/* main starts*/ 
+
+#main
+{
+  margin-top: 2em;
+}
+
+#main .panel-body
+{
+  padding: 0;
+}
+
+
+/* post start */
+.post
+{
+  padding-right: 60px; 
+  padding-left: 30px; 
+  padding-bottom: 30px; 
+  padding-top: 10px;
+  border-bottom-width: 1px; 
+  border-bottom-color: #ccc;    
+  border-bottom-style: solid; 
+  margin-bottom: 2em;
+}
+
+.post .imgholder
+{
+  float: left;
+}
+
+.post .authorinfo
+{
+  float:left; 
+  margin-left: 1em;
+}
+
+.post .authorscore
+{
+  position: relative; 
+  top: -5px; 
+}
+
+.post .authorscore .badge
+{
+  font-size: 14px;
+}
+
+.post .postinfo
+{
+  float: right; 
+  margin-top:55px; 
+  margin-bottom: 20px;
+}
+
+
+/* post footer starts */
+.post .postfooter .leftbutton
+{
+  float: left; 
+  margin-top: 2em;
+}
+
+.post .postfooter .rightbutton
+{
+  float: right; 
+  margin-top: 2em;
+}
+.post .postfooter .coolpost span
+{
+  font-size: 14px;
+}
+.post .endfooter
+{
+  height: 2em; 
+  margin-bottom: 2em;
+}
+
+/* post footer ends */
+
+/* post responses start */
+.responses
+{
+  padding-left: 15px; 
+  padding-bottom: 15px;
+} 
+/* post responses end */ 
+/* top item start */
+.topitem
+{
+padding-top: 10px;
+padding-bottom: 10px; 
+margin: 0;
+border-bottom-width: 1px; 
+border-bottom-color: #ccc;    
+border-bottom-style: solid; 
+height: 75px;
+}
+
+.topitem:hover
+{
+  background-color: #ddd;
+}
+
+.topitem .imgholder
+{
+  width: 64px; 
+  overflow: hidden; 
+  height: auto; 
+  float: left; 
+  margin-right: 2em;
+  padding-left: 10px;
+}
+
+.topitem .imgholder img
+{
+  width: 54px; 
+  height: auto;
+}
+
+.topitem .textholder
+{
+  margin-left: 1em;
+  padding-right: 10px;
+}
+.topitem .textholder h4
+{
+  margin-bottom: 0; 
+  display: inline;
+}
+.topitem .textholder span
+{
+  color: #ccc;
+}
+
+/* main ends */ 
+
+/* header starts */ 
+
+.title{
+  font-family: 'lineal_simples_stregular';
+  margin: 0;
+  /* margin-left: 2em; */ 
+}
+
+
+#headerButtons, #headerSearch
+{
+  text-align:right;
+}
+
+.headerExtra
+{
+	top: 5px;
+	margin-bottom: 1em;
+} 
+
+.headerExtra .glyphicon
+{
+	margin-top: 0;
+	position: static;
+}
+
+.searchbutton
+{
+	height: 34px;
+}
+
+/* header ends */
+
+/* footer starts */
+footer
+{
+  margin-top: 3em;
+  text-align: right;
+  margin-right: 3em;
+}
+/* profile start */
+.profile
+{
+  border-bottom-width: 0px; 
+}
+
+.profile .authorinfo 
+{
+}
+
+.profile .buttons
+{
+  float: right; 
+  margin-right: 2em; 
+}
+.profile .description
+{
+  float: left; 
+  margin-left: 1em; 
+  margin-top: 1em;
+  margin-bottom: 20px;
+  max-width: 420px;
+}
+.profile .button
+{
+  float: left; 
+  margin-left: 10px; 
+  margin-bottom: 20px; 
+}
+
+/* profile end */
