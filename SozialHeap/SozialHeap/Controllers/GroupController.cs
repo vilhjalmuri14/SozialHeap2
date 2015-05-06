@@ -41,7 +41,7 @@ namespace Sozialheap.Controllers
             else
             {
 
-                v.notifications = 0;
+                v.notifications = 01;
                 v.notificationList = null;
                 v.postList = service.getPosts((int)id);
                 v.group = service.GetGroupById((int)id);
