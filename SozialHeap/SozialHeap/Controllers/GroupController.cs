@@ -30,5 +30,25 @@ namespace Sozialheap.Controllers
         
             return View(model);
         }
+        public ActionResult ViewGroup(int? id)
+        {
+            SingleGroupView v = new SingleGroupView();
+
+            if(id == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                v.notifications = 0;
+                v.notificationList = null;
+                v.postList = service.getPosts((int)id);
+                v.group = service.GetGroupById((int)id);
+
+                return View(v);
+            }
+            
+        }
     }
 }

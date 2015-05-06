@@ -11,16 +11,6 @@ namespace SozialHeap.Controllers
     {
         public ActionResult Index()
         {
-            SozialheapEntities db = new SozialheapEntities();
-
-            var groups = (from item in db.Users
-                          select item).ToList();
-
-            foreach(var item in groups)
-            {
-                var kl = item;
-            }
-
             return View();
         }
 

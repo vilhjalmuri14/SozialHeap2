@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Models\ViewModels\AllGroupView.cs" />
     <Compile Include="Models\ViewModels\FeedView.cs" />
+    <Compile Include="Models\ViewModels\NarrowUser.cs" />
     <Compile Include="Models\ViewModels\PostView.cs" />
     <Compile Include="Models\ViewModels\SingleGroupView.cs" />
     <Compile Include="Models\ViewModels\UserView.cs" />
@@ -300,10 +301,10 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Group\ViewGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Group\" />
     <Folder Include="Views\Question\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
