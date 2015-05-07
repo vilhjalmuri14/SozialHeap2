@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <a href="@Url.Action("ShowerUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User")">
+    <a href="@Url.Action("ViewUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User")">
         <button class="btn" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification" onclick="return false;">42</span></button>
     </a>
 
