@@ -1,14 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <button class="btn" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification">42</span></button>
-    <button class="btn" type="button" id="buttonGroup">Groups</button>
-           
+    <a href="@Url.Action("ShowerUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User")">
+        <button class="btn" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification" onclick="return false;">42</span></button>
+    </a>
+
+        <button class="btn" type="button" id="buttonGroup">Groups</button>
+
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
-    @Html.AntiForgeryToken()
-            
-            <button class="btn glyphicon glyphicon-log-out" id="buttonLogOut" type="button" onclick="javascript:document.getElementById('logoutForm').submit()"></button>
+        @Html.AntiForgeryToken()
+
+        <button class="btn glyphicon glyphicon-log-out" id="buttonLogOut" type="button" onclick="javascript:document.getElementById('logoutForm').submit()"></button>
     }
 }
 else
