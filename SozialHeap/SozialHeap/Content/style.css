@@ -23,7 +23,7 @@ form
 }
 
 /* make links */
-.postquestion, .
+.postquestion, 
 .postgroup,
 .postuser
 {
@@ -322,7 +322,7 @@ height: 75px;
 
         .group .panel-heading
         {
-            background: #4E7182:
+            background: #4E7182;
             border-color: #4E7182;
         }
 
@@ -352,7 +352,7 @@ height: 75px;
 
         .modal-title
         {
-            font-family: "lineal_simples_stregular";
+            font-family: "lineal_simples_stregular", "sans-serif";
             
         }
 
