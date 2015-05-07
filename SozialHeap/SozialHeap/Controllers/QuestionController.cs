@@ -1,6 +1,7 @@
 ﻿using Sozialheap.Models;
 using Sozialheap.Models.ViewModels;
 using Sozialheap.Services;
+using SozialHeap.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,14 @@ namespace Sozialheap.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult LikePost(int id, string username)
+        {
+            service.LikePost(id, username);
+
+            return Json("1", JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult ViewQuestion(int? id)
         {
             if (id != null)
@@ -38,6 +47,20 @@ namespace Sozialheap.Controllers
                 return View("Error");
             }
             return View("Error");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostQuestion([Bind(Include = "groupID,userID,name,body")] Post p)
+        {
+            if(p.body == "" || p.name == "")
+            {
+                // no nulls with body or name
+                p.userID = User.Identity.ToString();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

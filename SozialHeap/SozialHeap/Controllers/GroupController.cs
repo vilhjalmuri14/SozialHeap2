@@ -33,10 +33,10 @@ namespace Sozialheap.Controllers
         public ActionResult ViewGroup(int? id)
         {
             SingleGroupView v = new SingleGroupView();
-
-            if(id == null)
+            
+            if(!id.HasValue)
             {
-                return View();
+                return RedirectToAction("Error");
             }
             else
             {
