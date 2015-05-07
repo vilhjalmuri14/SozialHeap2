@@ -1,7 +1,4 @@
-﻿<link rel="stylesheet" href="css/jquery-ui.css">
-<script src="js/jquery-ui.js"></script>
-<script>
-$(function() {
+﻿$(function() {
     $("#tags").autocomplete({
 
         source: "",
@@ -19,4 +16,3 @@ $(function() {
         }
     });
 });
-</script>​

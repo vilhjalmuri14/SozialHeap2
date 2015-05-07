@@ -1,35 +1,117 @@
 ﻿@model Sozialheap.Models.ViewModels.SingleGroupView
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = Html.DisplayFor(modelItem => Model.group.groupName);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+<div class="row">
+    <!-- group profile starts -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+            <div class="panel-heading">
+                <h3 id="panel-title" class="panel-title">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.notifications)
-        </th>
-        <th></th>
-    </tr>
+                    @Html.DisplayFor(modelItem => Model.group.groupName)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.notifications)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+                </h3>
+            </div>
 
-</table>
+            <div class="panel-body">
+                <div class="end"></div>
+
+                <div class="textholder post profile">
+                    <div class="imgholder">
+                        <img src="~/images/Group.png" />
+                    </div>
+                    <div class="authorinfo">
+                        <h4>Group owner: @Html.DisplayFor(modelItem => Model.group.User.userName)</h4>
+                        <div class="authorscore">
+                            <span class="badge">
+                                <span class="glyphicon glyphicon-console">
+                                </span> @Html.DisplayFor(modelItem => Model.group.User.score)
+                            </span>
+                        </div>
+                        <!-- author score ends -->
+                    </div>
+                    <div class="end"></div>
+
+                    <div class="description">@Html.DisplayFor(modelItem => Model.group.description)</div>
+                    <div class="end"></div>
+
+                    <div class="button">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
+                    </div>
+                    <div class="button">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-default">Followers <span class="badge">@Html.DisplayFor(modelItem => Model.group.Users.Count) </span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="end"></div>
+
+
+        </div>
+    </div>
+
+    <!-- group profile ends -->
+    <!-- Top Question starts -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 id="panel-title" class="panel-title">
+
+                    Recent questions
+
+                </h3>
+            </div>
+            <div class="panel-body">
+                @foreach(var item in Model.postList)
+                { 
+                <div class="topitem postquestion" id="topquestion1">
+                    <div class="imgholder">
+                        <img src="~/images/question.png" />
+                    </div>
+                    <div class="textholder" style="overflow: hidden; height: 60px;">
+                        <h4>@item.name</h4> <span class="notimportant">posted in </span><a href="#">@Model.group.groupName</a><br />
+                        @item.body
+                    </div>
+                </div>
+                <!-- end example -->
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- Top Question ends -->
+    <!-- Top Users starts -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 id="panel-title" class="panel-title">
+
+                    Top Users
+
+                </h3>
+            </div>
+            <div class="panel-body">
+                @foreach (var item in Model.group.Users)
+                { 
+                <div class="userthumb postuser">
+                    <img src="~/images/anonymous_user.png" />
+                    <br /> @item.userName
+                </div>
+                }
+
+            </div>
+        </div>
+
+
+        <!-- Top Users ends -->
+
+    </div>

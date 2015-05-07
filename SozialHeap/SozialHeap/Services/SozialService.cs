@@ -33,7 +33,7 @@ namespace Sozialheap.Services
         {
             var group = (from item in db2.Groups
                          where item.groupID == id
-                         select item).Take(1);
+                         select item).Single<Group>();
             return (Group)group;
         }
 
@@ -134,6 +134,19 @@ namespace Sozialheap.Services
                         select item).Take(1);
 
             return (User)user;
+        }
+
+        /// <summary>
+        /// Returns single user by username
+        /// </summary>
+        /// <param name="username">username of desired user</param>
+        /// <returns>User object</returns>
+        public User GetUserByUsername(string username)
+        {
+            var user = (from item in db2.Users
+                            where item.userName == "username"
+                            select item).SingleOrDefault();
+            return user;
         }
 
         /// <summary>
