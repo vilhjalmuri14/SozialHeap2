@@ -79,7 +79,8 @@
                             <img src="~/images/question.png" />
                         </div>
                         <div class="textholder" style="overflow: hidden; height: 60px;">
-                            <h4>@item.name</h4> <span class="notimportant">posted in </span><a href="#">@Model.group.groupName</a><br />
+                            <h4>@Html.ActionLink(item.name, "ViewQuestion/" + @item.postID, "Question")</h4> <span class="notimportant">posted in </span>
+                            <a href="#">@Model.group.groupName</a><br />
                             @item.body
                         </div>
                     </div>
