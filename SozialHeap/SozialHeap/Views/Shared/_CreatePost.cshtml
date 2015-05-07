@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.groupID = "Kallinn";
+    ViewBag.groupID = "2";
 }
 
 <div class="modal fade" id="createPost" role="dialog">
@@ -9,12 +9,12 @@
                 <h2>Post question</h2>
             </div><!--/.modal-header-->
             <div class="modal-body">
-                <form role="form" action="" method="POST" class="form-horizontal" id="post">
+                <form role="form" action="~/Question/CreateQuestion/" method="POST" class="form-horizontal" id="post">
                     <input type="hidden" name="groupID" value="@ViewBag.groupID" />
                     <div class="form-group">
-                        <label for="title" class="col-sm-2 control-label">Title</label>
+                        <label for="name" class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="title" id="title" type="text" value="">
+                            <input class="form-control" name="name" id="name" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">

@@ -13,11 +13,43 @@ namespace Sozialheap.Controllers
     public class QuestionController : Controller
     {
         SozialService service = new SozialService();
-        public ActionResult CreateQuestion()
+        
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult CreateQuestion([Bind(Include = "groupID, name, body")]Post form)
         {
             var group = service.GetAllGroups();
+            if (form.groupID < 1 || form.name == "" || form.body == "")
+            {
+                ViewBag.Message = "You cannot create Question without a title or question!";
+                return View();
+            }
+            
+            // We have valid input, lets insert
+            form.scoreCounter = 0;
+//            form.PostCategory = 1;
+            form.dateCreated = DateTime.Now;
+            service.CreatePost(form);
 
-            ViewBag.Message = "Just testing :)";
+            return View();
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult CreateAnswer([Bind(Include = "postID, title, body")]Answer form)
+        {
+            var group = service.GetAllGroups();
+            if (form.postID < 1 || form.title == "" || form.body == "")
+            {
+                ViewBag.Message = "You cannot create Answer without a title or body!";
+                return View();
+            }
+
+            // We have valid input, lets insert
+            form.scoreCounter = 0;
+            //            form.PostCategory = 1;
+            form.dateCreated = DateTime.Now;
+            service.CreateAnswer(form);
 
             return View();
         }
