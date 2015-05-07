@@ -4,13 +4,11 @@
 }
 
 <!-- Question starts -->
-<div class="col-sm-2">
-    </div>
 
     <div class="col-sm-6">
         <div class="panel panel-primary">
 
-            <div class="panel-heading">
+            <div class="panel-heading question">
                 <h3 id="panel-title" class="panel-title">
 
                     @Model.currentPost.name
@@ -63,7 +61,7 @@
 
                 <!-- Answer test starts -->
                 <div class="col-sm-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-primary answer">
 
                         <div class="panel-heading">
                             <h3 id="panel-title" class="panel-title">
@@ -94,22 +92,24 @@
 
                                 </div>
                                 <div class="postinfo">
-                                    <span class="notimportant">answer posted:</span> @item.dateCreated
 
                                 </div>
                                 <div class="end">
                                     @item.body
-                                    <div class="postfooter">
-                                        <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @item.User.score </span> </div>
-                                    </div>
-                                    <div class="endfooter">&nbsp;</div>
+
+
                                 </div>
 
                             </div>
+                            <div class="" style="width:100%; padding-right: 30px; padding-left: 30px;  padding-top: 15px;  position: relative; top:-2em;">
+                                <div style="float: left;  display: inline; height: 20px;"> <span class="notimportant">answer posted:</span> @item.dateCreated</div>
+
+
+                            </div><div style="float: right; display: inline; height:20px; margin-top: -30px; margin-right: 30px;"><span class="glyphicon glyphicon-thumbs-up badge"> @item.User.score </span></div>
                         </div>
                     </div>
-                </div>
-                    
+                        </div>
+                 
                 }
 
             </div>
