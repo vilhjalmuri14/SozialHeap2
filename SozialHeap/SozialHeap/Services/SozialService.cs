@@ -80,6 +80,21 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
+        /// Returns post by given id.
+        /// </summary>
+        /// <param name="groupId">id of Post</param>
+        /// <returns>one Post</returns>
+        public Post getPost(int postId)
+        {
+            Post p = (from item in db2.Posts
+                      where item.postID == postId
+                      orderby item.dateCreated
+                      select item).SingleOrDefault();
+
+            return p;
+        }
+
+        /// <summary>
         /// Create a new post
         /// </summary>
         /// <param name="p">Post to insert</param>
@@ -160,6 +175,19 @@ namespace Sozialheap.Services
             }
 
             return nUsers;
+        }
+
+        /// <summary>
+        /// Returns the Answers with the provided id
+        /// </summary>
+        /// <param name="id">id of the desired post</param>
+        /// <returns>list of answers</returns>
+        public List<Answer> GetAnswerById(int id)
+        {
+            var answers = (from item in db2.Answers
+                         where item.postID == id
+                         select item).ToList();
+            return (List<Answer>)answers;
         }
     }
 }

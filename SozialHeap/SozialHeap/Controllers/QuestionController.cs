@@ -1,4 +1,5 @@
 ﻿using Sozialheap.Models;
+using Sozialheap.Models.ViewModels;
 using Sozialheap.Services;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,25 @@ namespace Sozialheap.Controllers
             ViewBag.Message = "Just testing :)";
 
             return View();
+        }
+
+        public ActionResult ViewQuestion(int? id)
+        {
+            if (id != null)
+            {
+                PostView model = new PostView();
+
+                int new_id = id ?? default(int);
+                model.currentPost = service.getPost(new_id);
+               
+                if (model.currentPost != null)
+                {
+                    model.answerList = service.GetAnswerById(model.currentPost.postID);
+                    return View(model);
+                }
+                return View("Error");
+            }
+            return View("Error");
         }
     }
 }

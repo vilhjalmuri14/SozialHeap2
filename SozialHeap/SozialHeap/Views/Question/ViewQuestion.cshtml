@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Sozialheap.Models.ViewModels.PostView
+@{
     ViewBag.Title = "ViewQuestion";
 }
 
@@ -12,7 +13,7 @@
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
-                    Class error
+                    @Model.currentPost.name
 
                 </h3>
             </div>
@@ -24,30 +25,31 @@
                     </div>
                     <div class="authorinfo">
                         <h4>
-                            lommi
+                            @Model.currentPost.User.userName
+
                             <!-- author score starts -->
                             <span class="notimportant">asked:</span>
                         </h4>
                         <div class="authorscore">
                             <span class="badge">
                                 <span class="glyphicon glyphicon-console">
-                                </span> 500
+                                </span> @Model.currentPost.User.score
                             </span>
                         </div>
                         <!-- author score ends -->
 
                     </div>
                     <div class="postinfo">
-                        <span class="notimportant">question posted:</span> 25/12/2015
+                        <span class="notimportant">question posted:</span> @Model.currentPost.dateCreated
 
                     </div>
                     <div class="end">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fringilla justo et diam pretium, eget viverra libero tristique. Vivamus hendrerit accumsan nulla in vehicula. Aliquam sed mauris eget ipsum suscipit semper. Maecenas velit leo, hendrerit id rutrum ac, cursus eu magna. Donec condimentum posuere enim, sed porttitor leo auctor a. Sed in cursus sem. Cras facilisis leo sit amet purus cursus, sed iaculis neque congue. Cras sed lectus ante. Etiam tempus rutrum commodo. Duis sit amet tristique purus, sed interdum quam. Vestibulum quis convallis purus. Vestibulum scelerisque blandit risus, ut sagittis lacus pulvinar sed. Duis sed cursus nulla. Mauris elit urna, tincidunt ut erat vel, faucibus rutrum sapien. Praesent sed est porta, interdum ligula nec, pulvinar purus.
+                        @Model.currentPost.body
                         <div class="postfooter">
                             <div class="leftbutton">
                                 <button class="btn btn-default">Reply</button>
                             </div>
-                            <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> 42</span> </div>
+                            <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.scoreCounter </span> </div>
                         </div>
                         <div class="endfooter">&nbsp;</div>
                     </div>
@@ -55,6 +57,10 @@
                 </div>
                 <!-- Responses start-->
                 <h4 class="responses">Responses</h4>
+
+                @foreach(var item in Model.answerList)
+                {
+
                 <!-- Answer test starts -->
                 <div class="col-sm-12">
                     <div class="panel panel-primary">
@@ -62,7 +68,7 @@
                         <div class="panel-heading">
                             <h3 id="panel-title" class="panel-title">
 
-                                Class error
+                                @item.title
 
                             </h3>
                         </div>
@@ -74,27 +80,27 @@
                                 </div>
                                 <div class="authorinfo">
                                     <h4>
-                                        lommi
+                                        @item.User.userName
                                         <!-- author score starts -->
                                         <span class="notimportant">answered:</span>
                                     </h4>
                                     <div class="authorscore">
                                         <span class="badge">
                                             <span class="glyphicon glyphicon-console">
-                                            </span> 500
+                                            </span> @item.User.score
                                         </span>
                                     </div>
                                     <!-- author score ends -->
 
                                 </div>
                                 <div class="postinfo">
-                                    <span class="notimportant">answer posted:</span> 25/12/2015
+                                    <span class="notimportant">answer posted:</span> @item.dateCreated
 
                                 </div>
                                 <div class="end">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fringilla justo et diam pretium, eget viverra libero tristique. Vivamus hendrerit accumsan nulla in vehicula. Aliquam sed mauris eget ipsum suscipit semper. Maecenas velit leo, hendrerit id rutrum ac, cursus eu magna. Donec condimentum posuere enim, sed porttitor leo auctor a. Sed in cursus sem. Cras facilisis leo sit amet purus cursus, sed iaculis neque congue. Cras sed lectus ante. Etiam tempus rutrum commodo. Duis sit amet tristique purus, sed interdum quam. Vestibulum quis convallis purus. Vestibulum scelerisque blandit risus, ut sagittis lacus pulvinar sed. Duis sed cursus nulla. Mauris elit urna, tincidunt ut erat vel, faucibus rutrum sapien. Praesent sed est porta, interdum ligula nec, pulvinar purus.
+                                    @item.body
                                     <div class="postfooter">
-                                        <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> 42</span> </div>
+                                        <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @item.User.score </span> </div>
                                     </div>
                                     <div class="endfooter">&nbsp;</div>
                                 </div>
@@ -103,6 +109,9 @@
                         </div>
                     </div>
                 </div>
+                    
+                }
+
             </div>
         </div>
     </div>
