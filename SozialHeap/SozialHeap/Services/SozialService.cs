@@ -171,8 +171,7 @@ namespace Sozialheap.Services
 
         public List<User> GetUsersByGroup(int groupId, int n = 5)
         {
-            // var users = db2.Database.
-
+            // TODO IMPLEMENT !
             return new List<User>();
         }
 

@@ -70,7 +70,7 @@
                 </h3>
             </div>
             <div class="panel-body">
-                @if(Model.postList != null)
+                @if(Model.postList.Count > 0)
                 {
                     foreach(var item in Model.postList)
                     { 
@@ -86,6 +86,10 @@
                     </div>
                     <!-- end example -->
                     }
+                }
+                else
+                {
+                    <h2>No question! Be the first</h2>
                 }
 
             </div>
@@ -105,7 +109,7 @@
             </div>
             <div class="panel-body">
 
-                @foreach (var item in Model.group.Users)
+                @foreach (var item in Model.group.Users.Take(5))
                 { 
                 <div class="topitem postquestion">
                     <div class="imgholder">
