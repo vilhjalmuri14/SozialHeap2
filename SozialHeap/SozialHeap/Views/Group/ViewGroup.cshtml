@@ -72,8 +72,12 @@
                 </h3>
             </div>
             <div class="panel-body">
+<<<<<<< HEAD
 
                 @foreach (var item in Model.group.Users)
+=======
+                @if(Model.postList.Count > 0)
+>>>>>>> 87e3455a0e7605f217a69c81230c6ea1bdc7d74f
                 {
                     <div class="topitem postquestion">
                         <a href="@Url.Action("ShowerUser/" + @item.userName, "User")">
@@ -89,6 +93,10 @@
                                 <h4>@item.userName</h4><br />
                             </a>
 </div>
+                }
+                else
+                {
+                    <h2>No question! Be the first</h2>
                 }
 
             </div>
@@ -111,7 +119,18 @@
 
                         Recent questions
 
+<<<<<<< HEAD
                     </h3>
+=======
+                @foreach (var item in Model.group.Users.Take(5))
+                { 
+                <div class="topitem postquestion">
+                    <div class="imgholder">
+                        <img src="~/images/anonymous_user.png" />
+                        
+                    </div>
+                    <h4>@item.userName</h4>
+>>>>>>> 87e3455a0e7605f217a69c81230c6ea1bdc7d74f
                 </div>
                 <div class="panel-body">
                     @if (Model.postList != null)

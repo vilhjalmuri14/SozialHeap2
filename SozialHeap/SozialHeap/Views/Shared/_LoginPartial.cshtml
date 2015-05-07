@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <button class="btn" type="button" id="buttonProfile">Username <span class="badge" id="headerNotification">42</span></button>
-    <button class="btn" type="button" id="buttonGroup">Group</button>
+    <button class="btn" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification">42</span></button>
+    <button class="btn" type="button" id="buttonGroup">Groups</button>
            
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {

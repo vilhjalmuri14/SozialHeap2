@@ -1,0 +1,148 @@
+﻿@model Sozialheap.Models.ViewModels.UserView
+@{
+    ViewBag.Title = "ShowUser";
+}
+
+<!-- <d class="row"> -->
+<!-- group profile starts -->
+<div class="col-sm-6">
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Java
+
+            </h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="end"></div>
+
+            <div class="textholder post profile">
+                <div class="imgholder">
+                    <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                </div>
+                <div class="authorinfo">
+                    <h4>@Model.user.userName</h4>
+                    <div class="authorscore">
+                        <span class="badge">
+                            <span class="glyphicon glyphicon-console">
+                            </span> @Model.user.score
+                        </span>
+                    </div>
+                    <!-- author score ends -->
+                </div>
+                <div class="end"></div>
+
+                <div class="description">@Model.user.description</div>
+                <div class="end"></div>
+
+                <div class="button">
+                    <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-default">Followers <span class="badge"> 44 </span></button>
+                    <button class="btn btn-default">Following <span class="badge"> 22 </span></button>
+                </div>
+            </div>
+        </div>
+        <div class="end"></div>
+
+
+    </div>
+</div>
+
+<!-- group profile ends -->
+<!-- Top Question starts -->
+<div class="col-sm-6">
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Top Questions
+
+            </h3>
+        </div>
+
+        @foreach (var item in Model.postList)
+        {
+            <div class="panel-body">
+                <div class="topitem postquestion">
+                    <div class="imgholder">
+                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                    </div>
+                    <div class="textholder">
+                        <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
+                        @item.body
+                    </div>
+                </div>
+            </div>
+        }
+
+        </div>
+    </div>
+
+<!-- Top Question ends -->
+<!-- Top Users starts -->
+<div class="col-sm-6">
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Top Users
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+            <div class="userthumb postuser">
+                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                <br /> lommi geggege lommi lommi lommi lommi
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Top Users ends -->
+
+</div>
+

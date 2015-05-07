@@ -12,6 +12,16 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService();
 
+        public ActionResult ShowUser(string id)
+        {
+            UserView model = new UserView();
+
+            model.user = service.GetUserByUsername(id);
+            model.postList = service.getPostbyId(model.user.userID);
+           
+            return View(model);
+        }
+
         public ActionResult Feed()
         {
             // TODO: create the view!!
