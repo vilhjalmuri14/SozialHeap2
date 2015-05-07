@@ -76,7 +76,7 @@ namespace Sozialheap.Services
         {
             List<Post> p = (from item in db2.Posts
                             where item.groupID == groupId
-                            orderby item.dateCreated
+                            orderby item.dateCreated descending
                             select item).ToList();
 
             return p;
@@ -90,7 +90,7 @@ namespace Sozialheap.Services
         {
             List<Post> p = (from item in db2.Posts
                             where item.userID == id
-                            orderby item.dateCreated
+                            orderby item.dateCreated descending
                             select item).ToList();
 
             return p;
@@ -105,7 +105,7 @@ namespace Sozialheap.Services
         {
             Post p = (from item in db2.Posts
                       where item.postID == postId
-                      orderby item.dateCreated
+                      orderby item.dateCreated descending
                       select item).SingleOrDefault();
 
             return p;
@@ -224,6 +224,7 @@ namespace Sozialheap.Services
         {
             var answers = (from item in db2.Answers
                          where item.postID == id
+                         orderby item.dateCreated descending
                          select item).ToList();
             return (List<Answer>)answers;
         }
