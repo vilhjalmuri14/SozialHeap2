@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<!-- New navbar-->
+    <!-- New navbar-->
     <div class="container">
         <div class="row" id="header">
             <div class="col-sm-4" id="logo">
@@ -17,7 +17,8 @@
                     <a href="/">
                         <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
                         SozialHeap;
-                    </a></h1>
+                    </a>
+                </h1>
             </div>
             <div class="col-sm-3 headerExtra" id="headerSearch">
                 <div class="input-group">
@@ -47,13 +48,11 @@
         function viewquestion() {
             window.location = "/Question/ViewQuestion";
         }
-        function viewgroup()
-        {
+        function viewgroup() {
             window.location = "/Group/GroupFeed";
         }
 
-        function viewuser()
-        {
+        function viewuser() {
             window.location = "/User/UserFeed";
         }
         window.onload = function () {
@@ -61,7 +60,7 @@
             $(".postgroup").click(viewgroup);
             $(".postuser").click(viewuser);
             $(".postquestion, .postgroup, .postuser").css('cursor', 'pointer');;
-           
+
 
         }
 
@@ -83,9 +82,9 @@
                     <h4 class="modal-title">Log in</h4>
                 </div>
                 <div class="modal-body" style="margin-left: 2em;">
-                  @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                          @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
                         <div class="form-group">
                             <label for="UserName" class="control-label">User name</label>
                             <input type="text" class="form-control" id="UserName" name="UserName">
@@ -95,39 +94,88 @@
                             <label for="Password" class="control-label">Password</label>
                             <input type="password" class="form-control" id="Password" name="Password">
                         </div>
-                      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Log in</button>
-      </div>
-                  }
-</div>
-</div>
-               
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-       <script>
-           $(function () {
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    }
+                </div>
+            </div>
 
-               $('#loginmodal').on('shown.bs.modal', function () {
-                   $('#UserName').value = "";
-                   $('#UserName').focus();
-               });
-           });
+        </div>
+    </div>
+    <script>
+        $(function () {
 
-           function stopRKey(evt) {
-               var evt = (evt) ? evt : ((event) ? event : null);
-               var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
-               if ((evt.keyCode == 13) && (node.type == "text") && (node.id == "UserName"))
-               {
+            $('#loginmodal').on('shown.bs.modal', function () {
+                $('#UserName').value = "";
+                $('#UserName').focus();
+            });
+
+            $('#registermodal').on('shown.bs.modal', function () {
+                $('#RegisterUserName').value = "";
+                $('#RegisterConfirmPassword').value = "";
+                $('#RegisterPassword').value = "";
+                $('#RegisterUserName').focus();
+            });
+        });
+
+        function stopRKey(evt) {
+            var evt = (evt) ? evt : ((event) ? event : null);
+            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+            if ((evt.keyCode == 13) && (node.type == "text") && (node.id == "UserName")) {
                 $('#Password').focus();
-                return false; 
-           }
-           }
+                return false;
+            }
+            else if ((evt.keyCode == 13) && (node.type == "text") && (node.id == "RegisterUserName")) {
+                $('#RegisterPassword').focus();
+                return false;
+            }
+            else if ((evt.keyCode == 13) && (node.type == "password") && (node.id == "RegisterPassword")) {
+                $('#RegisterConfirmPassword').focus();
+                return false;
+            }
+        }
 
-           document.onkeypress = stopRKey;
+        document.onkeypress = stopRKey;
 
-       </script>
-    
+    </script>
+    <!-- login modal ends-->
+    <!-- login modal starts -->
+    <div class="modal fade" id="registermodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Register new user</h4>
+                </div>
+                <div class="modal-body" style="margin-left: 2em;">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="UserName" class="control-label">User name</label>
+                            <input type="text" class="form-control" id="RegisterUserName" name="UserName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password" class="control-label">Password</label>
+                            <input type="password" class="form-control" id="RegisterPassword" name="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="ConfirmPassword" class="control-label">Confirm password</label>
+                            <input type="password" class="form-control" id="RegisterConfirmPassword" name="Password">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            </div>
+        </div>
+    <!-- register modal ends-->
 </body>
+
 </html>
