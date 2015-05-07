@@ -225,12 +225,8 @@ height: 75px;
 /* footer starts */
 footer
 {
-  position: absolute;
-  bottom: 0;
-  height: 50px;
-  text-align: left;
-  width: 100%;
-  margin-right: 3em;
+ position: absolute;
+ bottom: 0px;
 }
 /* profile start */
 .profile
