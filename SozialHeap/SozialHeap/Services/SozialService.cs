@@ -46,16 +46,17 @@ namespace Sozialheap.Services
         /// <param name="g">Group object</param>
         public void CreateGroup(Group g)
         {
+            db2.Groups.Add(g);
+            db2.SaveChanges();
             // TODO: Implement creategroup !
         }
 
-        /// <summary>
-        /// Updates the group information by the given group by its id
-        /// </summary>
-        /// <param name="g">Group to update</param>
         public void EditGroup(Group g)
         {
-            // TODO: Implement EDIT !
+            // testing update!
+            Group newGroup = GetGroupById(g.groupID);
+            newGroup = g;
+            db2.SaveChanges();
         }
 
         /// <summary>
