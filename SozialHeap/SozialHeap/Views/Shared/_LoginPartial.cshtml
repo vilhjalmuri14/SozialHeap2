@@ -1,22 +1,19 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    <button class="btn" type="button" id="buttonProfile">Username <span class="badge" id="headerNotification">42</span></button>
+    <button class="btn" type="button" id="buttonGroup">Group</button>
+           
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
     @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+            
+            <button class="btn glyphicon glyphicon-log-out" id="buttonLogOut" type="button" onclick="javascript:document.getElementById('logoutForm').submit()"></button>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+
+    <a href="@Url.Action("Register","Account")"><button class="btn" id="buttonRegister">Register</button></a>
+    <a href="@Url.Action("Login","Account")"><button class="btn glyphicon glyphicon-log-in" id="buttonLogIn"></button></a>
 }

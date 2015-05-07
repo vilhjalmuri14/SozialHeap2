@@ -1,3 +1,17 @@
+body
+{
+    padding-bottom:80px;
+    margin-bottom: 80px; 
+    height: 100%;
+}
+
+form
+{
+    display: inline;
+}
+
+
+
 .notimportant
 {
     color: #ccc;
@@ -7,6 +21,15 @@
 {
   clear: both;
 }
+
+/* make links */
+.postquestion, .
+.postgroup,
+.postuser
+{
+    cursor: pointer;
+}
+
 
 /* main starts*/ 
 
@@ -153,6 +176,25 @@ height: 75px;
   /* margin-left: 2em; */ 
 }
 
+#headerButtons a,
+#headerButtons a:visited,
+#headerButtons a:active,
+#headerButtons a:link
+{
+    color: #000;
+}
+
+/* TODO: MAKE TITLE HOVER SEXY */
+.title a,
+.title a:visited,
+.title a:active,
+.title a:link,
+.title a:hover
+{
+    color: #000;
+    text-decoration: none;
+}
+
 
 #headerButtons, #headerSearch
 {
@@ -181,8 +223,11 @@ height: 75px;
 /* footer starts */
 footer
 {
-  margin-top: 3em;
-  text-align: right;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  text-align: left;
+  width: 100%;
   margin-right: 3em;
 }
 /* profile start */
@@ -203,10 +248,11 @@ footer
 .profile .description
 {
   float: left; 
-  margin-left: 1em; 
-  margin-top: 1em;
+  margin-left: 1em;
+  margin-top: 20px; 
   margin-bottom: 20px;
   max-width: 420px;
+  
 }
 .profile .button
 {
@@ -216,3 +262,23 @@ footer
 }
 
 /* profile end */
+
+.userthumb
+{
+width: 94px; 
+  overflow: hidden; 
+  height: auto; 
+  float: left; 
+  margin-right: 2em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+height: 75px;
+}
+
+
+.userthumb img
+{
+  width: 54px; 
+  height: auto;
+}
