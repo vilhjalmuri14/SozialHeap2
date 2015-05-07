@@ -1,17 +1,17 @@
 ﻿@model Sozialheap.Models.ViewModels.UserView
 @{
-    ViewBag.Title = "ShowUser";
+    ViewBag.Title = "ViewUser";
 }
 
 <!-- <d class="row"> -->
 <!-- group profile starts -->
 <div class="col-sm-6">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary user">
 
         <div class="panel-heading">
             <h3 id="panel-title" class="panel-title">
 
-                Java
+                User profile
 
             </h3>
         </div>
@@ -54,37 +54,6 @@
 </div>
 
 <!-- group profile ends -->
-<!-- Top Question starts -->
-<div class="col-sm-6">
-    <div class="panel panel-primary">
-
-        <div class="panel-heading">
-            <h3 id="panel-title" class="panel-title">
-
-                Top Questions
-
-            </h3>
-        </div>
-
-        @foreach (var item in Model.postList)
-        {
-            <div class="panel-body">
-                <div class="topitem postquestion">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
-                        @item.body
-                    </div>
-                </div>
-            </div>
-        }
-
-        </div>
-    </div>
-
-<!-- Top Question ends -->
 <!-- Top Users starts -->
 <div class="col-sm-6">
     <div class="panel panel-primary">
@@ -92,7 +61,7 @@
         <div class="panel-heading">
             <h3 id="panel-title" class="panel-title">
 
-                Top Users
+                Top Followers
 
             </h3>
         </div>
@@ -143,6 +112,43 @@
 
 
     <!-- Top Users ends -->
+    </div>
+<div class="row">
+    <!-- Top Question starts -->
+    <div class="col-sm-12">
+        <div class="panel panel-primary question">
+
+            <div class="panel-heading">
+                <h3 id="panel-title" class="panel-title">
+
+                    Newest Questions
+
+                </h3>
+            </div>
+
+            @foreach (var item in Model.postList)
+            {
+                <div class="panel-body">
+                    <div class="topitem postquestion">
+                        <div class="imgholder">
+                            <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                        </div>
+                        <div class="textholder">
+                            <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
+                            @item.body
+                        </div>
+                        <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                            <span class="makedivlink"></span>
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!-- Top Question ends -->
+
 
 </div>
 
