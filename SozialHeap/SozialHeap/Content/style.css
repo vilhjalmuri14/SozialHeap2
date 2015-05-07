@@ -280,3 +280,55 @@ height: 75px;
   width: 54px; 
   height: auto;
 }
+
+/*  search start */
+        /* search ends*/
+        /* colors */
+        .question
+        {
+            border-color: #466675;
+        }
+        .question .panel-heading
+        {
+            background: #466675;
+        }
+        .answer
+        {
+            border-color: #6A8D9D;
+        }
+        .answer .panel-heading
+        {
+            background: #6A8D9D;
+        }
+
+        .group
+        {
+            border-color: #047182;
+        }
+
+        .group .panel-heading
+        {
+            background: #047182;
+        }
+
+        .user
+        {
+            border-color: #ccc;
+        }
+        .user .panel-heading
+        {
+            background: #ccc;
+        }
+
+        .panel-heading
+        {
+            
+        }
+
+        .panel-title
+        {
+            font-family: "lineal_simples_stregular";
+            color: #e5f7ff;
+            text-align: right;
+            font-size: 12px;
+        }
