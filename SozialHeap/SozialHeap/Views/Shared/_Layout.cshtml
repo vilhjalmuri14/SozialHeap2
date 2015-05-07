@@ -46,19 +46,19 @@
     <!-- Script to add links to question-->
     <script>
         function viewquestion() {
-            window.location = "/Question/ViewQuestion";
+            window.location = "/Question/ViewQuestion/3";
         }
         function viewgroup() {
-            window.location = "/Group/GroupFeed";
+            window.location = "/Group/ViewGroup/2";
         }
 
         function viewuser() {
-            window.location = "/User/UserFeed";
+            window.location = "/User/ViewUser/lommi";
         }
         window.onload = function () {
-            $(".postquestion").click(viewquestion)
-            $(".postgroup").click(viewgroup);
-            $(".postuser").click(viewuser);
+            // $(".postquestion").click(viewquestion)
+            // $(".postgroup").click(viewgroup);
+            // $(".postuser").click(viewuser);
             $(".postquestion, .postgroup, .postuser").css('cursor', 'pointer');;
 
 

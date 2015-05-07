@@ -3,8 +3,10 @@ using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Sozialheap.Services
 {
@@ -21,6 +23,7 @@ namespace Sozialheap.Services
         {
             var groups = (from item in db2.Groups
                           select item).ToList();
+            
             return groups;
         }
 
@@ -33,7 +36,7 @@ namespace Sozialheap.Services
         {
             var group = (from item in db2.Groups
                          where item.groupID == id
-                         select item).Single<Group>();
+                         select item).SingleOrDefault<Group>();
             return (Group)group;
         }
 
@@ -100,7 +103,10 @@ namespace Sozialheap.Services
         /// <param name="p">Post to insert</param>
         public void CreatePost(Post p)
         {
-            // TODO: implement db insert
+            // add the attached Post
+
+            db2.Posts.Add(p);
+            db2.SaveChanges();
         }
 
         /// <summary>
@@ -159,7 +165,7 @@ namespace Sozialheap.Services
             var users = (from item in db2.Users
                          where item.userName.StartsWith(query)
                          select item).ToList();
-
+            
             return users;
         }
 
@@ -201,6 +207,17 @@ namespace Sozialheap.Services
                          where item.postID == id
                          select item).ToList();
             return (List<Answer>)answers;
+        }
+
+
+        public void LikePost(int postID, string username)
+        {
+            var sqlParams = new List<SqlParameter>
+             {
+              new SqlParameter("@postID", postID.ToString()),
+              new SqlParameter("@userName", username)
+             };
+            db2.Database.ExecuteSqlCommand("exec pLikePost 2, 'lommi'", new SqlParameter());
         }
     }
 }

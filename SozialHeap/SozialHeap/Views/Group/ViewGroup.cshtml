@@ -70,18 +70,22 @@
                 </h3>
             </div>
             <div class="panel-body">
-                @foreach(var item in Model.postList)
-                { 
-                <div class="topitem postquestion">
-                    <div class="imgholder">
-                        <img src="~/images/question.png" />
+                @if(Model.postList != null)
+                {
+                    foreach(var item in Model.postList)
+                    { 
+                    <div class="topitem postquestion">
+                        <div class="imgholder">
+                            <img src="~/images/question.png" />
+                        </div>
+                        <div class="textholder" style="overflow: hidden; height: 60px;">
+                            <h4>@Html.ActionLink(item.name, "ViewQuestion/" + @item.postID, "Question")</h4> <span class="notimportant">posted in </span>
+                            <a href="#">@Model.group.groupName</a><br />
+                            @item.body
+                        </div>
                     </div>
-                    <div class="textholder" style="overflow: hidden; height: 60px;">
-                        <h4>@item.name</h4> <span class="notimportant">posted in </span><a href="#">@Model.group.groupName</a><br />
-                        @item.body
-                    </div>
-                </div>
-                <!-- end example -->
+                    <!-- end example -->
+                    }
                 }
 
             </div>

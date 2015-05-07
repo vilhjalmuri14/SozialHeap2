@@ -227,6 +227,7 @@ footer
 {
  position: absolute;
  bottom: 0px;
+ display: none;
 }
 /* profile start */
 .profile
@@ -344,4 +345,27 @@ height: 75px;
         {
             font-family: "lineal_simples_stregular";
             
+        }
+
+        /* Question starts */
+        .questionbox
+        {
+            width:100%; 
+            margin-right: 30px; 
+            margin-left: 30px;  
+            margin-top: -2em;
+            
+        }
+        .questionbox .info
+        {
+            float: left;  
+            display: inline; 
+            height: 20px;
+        }
+        .questionbox .cool
+        {
+            float: right; 
+            display: inline; 
+            height:20px; 
+            margin-right: 80px;
         }
