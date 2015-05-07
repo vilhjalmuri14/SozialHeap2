@@ -291,6 +291,8 @@ height: 75px;
         .question .panel-heading
         {
             background: #466675;
+            border-color: #466675;
+        
         }
         .answer
         {
@@ -299,25 +301,30 @@ height: 75px;
         .answer .panel-heading
         {
             background: #6A8D9D;
+            border-color: #6A8D9D;
+
         }
 
         .group
         {
-            border-color: #047182;
+            border-color: #4E7182;
         }
 
         .group .panel-heading
         {
-            background: #047182;
+            background: #4E7182:
+            border-color: #4E7182;
         }
 
         .user
         {
-            border-color: #ccc;
+            border-color: #5461a8;
         }
         .user .panel-heading
         {
-            background: #ccc;
+            background: #5461A8;
+            border-color: #5461a8;
+
         }
 
         .panel-heading
