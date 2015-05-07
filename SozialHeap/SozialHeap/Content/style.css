@@ -339,3 +339,9 @@ height: 75px;
             text-align: right;
             font-size: 12px;
         }
+
+        .modal-title
+        {
+            font-family: "lineal_simples_stregular";
+            
+        }
