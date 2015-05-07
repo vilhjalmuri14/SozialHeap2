@@ -1,4 +1,6 @@
-﻿using Sozialheap.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Sozialheap.Models;
 using Sozialheap.Models.ViewModels;
 using Sozialheap.Services;
 using SozialHeap.Models;
@@ -16,7 +18,7 @@ namespace Sozialheap.Controllers
         
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult CreateQuestion([Bind(Include = "groupID, name, body")]Post form)
+        public ActionResult CreateQuestion([Bind(Include = "groupID,categoryID,name,body")]Post form)
         {
             var group = service.GetAllGroups();
             if (form.groupID < 1 || form.name == "" || form.body == "")
@@ -29,6 +31,10 @@ namespace Sozialheap.Controllers
             form.scoreCounter = 0;
 //            form.PostCategory = 1;
             form.dateCreated = DateTime.Now;
+           // ApplicationUser u = User.Identity.
+            form.userID = User.Identity.GetUserId();
+            form.viewCount = 0;
+
             service.CreatePost(form);
 
             return View();
@@ -47,11 +53,12 @@ namespace Sozialheap.Controllers
 
             // We have valid input, lets insert
             form.scoreCounter = 0;
-            //            form.PostCategory = 1;
+            form.seenByOwner = false;
+            form.userID = User.Identity.GetUserId();
             form.dateCreated = DateTime.Now;
             service.CreateAnswer(form);
 
-            return View();
+            return RedirectToAction("ViewQuestion/"+form.postID, "Question", form.postID);
         }
 
         [HttpGet]

@@ -123,6 +123,12 @@ namespace Sozialheap.Services
             db2.SaveChanges();
         }
 
+        public void CreateAnswer(Answer a)
+        {
+            db2.Answers.Add(a);
+            db2.SaveChanges();
+        }
+
         /// <summary>
         /// Delete post with the given id
         /// </summary>

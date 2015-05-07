@@ -313,6 +313,7 @@
     <Content Include="Views\Shared\_CreatePost.cshtml" />
     <Content Include="Views\Shared\_CreateGroup.cshtml" />
     <Content Include="Views\User\ShowUser.cshtml" />
+    <Content Include="Views\Shared\_CreateAnswer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
