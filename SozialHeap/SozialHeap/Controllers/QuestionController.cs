@@ -37,7 +37,7 @@ namespace Sozialheap.Controllers
 
             service.CreatePost(form);
 
-            return View();
+            return RedirectToAction("ViewGroup/"+form.groupID, "Group", "");
         }
 
         [HttpPost]
@@ -81,6 +81,7 @@ namespace Sozialheap.Controllers
                 if (model.currentPost != null)
                 {
                     model.answerList = service.GetAnswerById(model.currentPost.postID);
+                    ViewBag.postID = (int)id;
                     return View(model);
                 }
                 return View("Error");
@@ -88,18 +89,5 @@ namespace Sozialheap.Controllers
             return View("Error");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PostQuestion([Bind(Include = "groupID,userID,name,body")] Post p)
-        {
-            if(p.body == "" || p.name == "")
-            {
-                // no nulls with body or name
-                p.userID = User.Identity.ToString();
-                return RedirectToAction("Index");
-            }
-
-            return RedirectToAction("Index");
-        }
     }
 }

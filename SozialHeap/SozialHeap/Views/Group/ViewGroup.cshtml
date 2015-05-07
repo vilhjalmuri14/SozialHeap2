@@ -98,7 +98,8 @@
     <div class="end"></div>
     <div class="row">
         <div class="col-sm-12" ¨>
-            <button class="btn questionbutton">Post a new question</button>
+            <a href="#createPost" class="btn questionbutton" data-toggle="modal">Post a new question</a>
+            
         </div>        
         </div>
     <div class="row">
@@ -143,3 +144,7 @@
 
     </div>
 </div>
+
+<!-- Modal window for new posts -->
+
+@Html.Partial("_CreatePost")

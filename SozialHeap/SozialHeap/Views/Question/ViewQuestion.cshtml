@@ -45,7 +45,7 @@
                         @Model.currentPost.body
                         <div class="postfooter">
                             <div class="leftbutton">
-                                <button class="btn btn-default">Reply</button>
+                                <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
                             </div>
                             <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.scoreCounter </span> </div>
                         </div>
@@ -116,3 +116,6 @@
         </div>
     </div>
     <!-- Question test ends -->
+
+<!-- Answer button -->
+@Html.Partial("_CreateAnswer")

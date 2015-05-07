@@ -13,6 +13,7 @@ namespace Sozialheap.Controllers
     public class GroupController : Controller
     {
         SozialService service = new SozialService();
+
         public ActionResult CreateGroup(Group g)
         {
             // TODO: create view!!
@@ -40,7 +41,7 @@ namespace Sozialheap.Controllers
             }
             else
             {
-
+                ViewBag.groupID = (int)id;
                 v.notifications = 01;
                 v.notificationList = null;
                 v.postList = service.getPosts((int)id);
@@ -49,7 +50,6 @@ namespace Sozialheap.Controllers
 
                 return View(v);
             }
-            
         }
     }
 }
