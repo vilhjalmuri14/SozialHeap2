@@ -144,7 +144,7 @@ namespace Sozialheap.Services
         public User GetUserByUsername(string username)
         {
             var user = (from item in db2.Users
-                            where item.userName == "username"
+                            where item.userName == username
                             select item).SingleOrDefault();
             return user;
         }
