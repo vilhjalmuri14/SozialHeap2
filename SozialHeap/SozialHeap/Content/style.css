@@ -155,6 +155,8 @@ height: 75px;
 {
   margin-left: 1em;
   padding-right: 10px;
+  height: 60px;
+  overflow: hidden;
 }
 .topitem .textholder h4
 {
