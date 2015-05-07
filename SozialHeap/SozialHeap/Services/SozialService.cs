@@ -83,6 +83,20 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
+        /// Returns posts by given userID.
+        /// </summary>
+        /// <returns>list of Posts</returns>
+        public List<Post> getPostbyId(string id)
+        {
+            List<Post> p = (from item in db2.Posts
+                            where item.userID == id
+                            orderby item.dateCreated
+                            select item).ToList();
+
+            return p;
+        }
+
+        /// <summary>
         /// Returns post by given id.
         /// </summary>
         /// <param name="groupId">id of Post</param>
