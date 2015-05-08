@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-primary group">
+
+            <div class="panel-heading">
+                <h3 id="panel-title" class="panel-title">
+
+                    Group list
+
+                </h3>
+            </div>
+            <div class="panel-body">
+              
+                @foreach (var item in Model.Users.Take(5))
+                {
+                        <div class="col-sm-6">
+
+                    <div class="topitem postquestion">
+                        
+                            
+                        
+                        <div class="imgholder">
+                            <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                                <img src="~/images/Group.png" />
+                            </a>
+
+                        </div>
+                            <h4>@item.userName</h4><br />
+                            <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                                <span class="makedivlink makedivlink_small"></span>
+                            </a>
+
+                    </div>
+                            </div>
+                }
+
+            </div>
+        </div>
+        <!-- Top Users ends -->
+    </div>
+</div>

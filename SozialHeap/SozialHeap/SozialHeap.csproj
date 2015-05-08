@@ -320,6 +320,7 @@
     <Content Include="Views\Shared\_CreateAnswer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\User\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
