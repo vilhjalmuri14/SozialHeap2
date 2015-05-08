@@ -166,7 +166,7 @@ position: relative;
 }
 .topitem .textholder span
 {
-  color: #ccc;
+  /* color: #ccc; */
 }
 
 /* main ends */ 
@@ -399,9 +399,17 @@ height: 75px;
             z-index: 1;
         }
 
+        .brutallink
+        {
+            position: relative; 
+            color: #000;
+            z-index: 2;
+        }
+
         /* nofriends class*/
         .nofriends
         {
             margin: 20px 20px;
         }
+        
         

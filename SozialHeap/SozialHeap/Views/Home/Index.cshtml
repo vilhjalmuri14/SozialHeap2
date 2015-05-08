@@ -20,12 +20,18 @@
                 @foreach (var item in Model.Posts)
                 {
                     <div class="topitem postquestion" id="topquestion1">
+                        <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                            <span class="makedivlink"></span>
+                        </a>
                         <div class="imgholder">
                             <img src="~/images/question.png" />
                         </div>
                         <div class="textholder">
-                            <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted in </span>@Html.ActionLink(item.Group.groupName, "ViewGroup/" + item.groupID, "Group")<br />
-                            @item.body
+                            <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted in </span>
+                            <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                                <span class="brutallink">@item.Group.groupName</span>
+                                </a><br />
+                                @item.body
                         </div>
                     </div>
                 }
@@ -50,6 +56,10 @@
             { 
             <div class="panel-body">
                 <div class="topitem postquestion" id="topquestion1">
+                    <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                        <span class="makedivlink"></span>
+                    </a>
+
                     <div class="imgholder">
                         <img src="~/images/Group.png" />
                     </div>
@@ -78,6 +88,10 @@
             {
                 <div class="panel-body">
                     <div class="topitem postquestion" id="topquestion1">
+                        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                            <span class="makedivlink"></span>
+                        </a>
+
                         <div class="imgholder">
                             <img src="~/images/Group.png" />
                         </div>
