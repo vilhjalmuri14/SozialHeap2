@@ -76,16 +76,16 @@
                 @foreach (var item in Model.group.Users)
                 {
                     <div class="topitem postquestion">
-                        <a href="@Url.Action("ShowerUser/" + @item.userName, "User")">
+                        <a href="@Url.Action("ShowUser/" + @item.userName, "User")">
                             <span class="makedivlink makedivlink_small"></span>
                          </a>
                             <div class="imgholder">
-                                <a href="@Url.Action("ShowerUser/" + @item.userName, "User")">
+                                <a href="@Url.Action("ShowUser/" + @item.userName, "User")">
                                     <img src="~/images/anonymous_user.png" />
                                 </a>
 
                             </div>
-                            <a href="@Url.Action("ShowerUser/" + @item.userName, "User")">
+                            <a href="@Url.Action("ShowUser/" + @item.userName, "User")">
                                 <h4>@item.userName</h4><br />
                             </a>
 </div>
