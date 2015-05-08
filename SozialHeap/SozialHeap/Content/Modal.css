@@ -1,6 +1,4 @@
-﻿body {
-}
-
+﻿
 .modal-footer {
   padding: 15px;
   text-align: center;
@@ -10,13 +8,30 @@
 .modal-body {
     margin-left: 2em;
     margin-right: 2em;
+    
+    position: relative;
+    padding: 0px 15px;
+    padding-top: 15px;
 }
 
 .modal-dialog {
-    width: 500px;
-    margin: 30px auto;
+    width: auto;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 15px;
 }
 
 .modal-content {
-    margin: auto 15px;
+    margin: auto;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #466675;
+  border-color: #466675;
+}
+
+.modal-header {
+    color: #fff;
+    background-color: #466675;
 }
