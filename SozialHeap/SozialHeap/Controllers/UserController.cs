@@ -12,6 +12,7 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService();
 
+        [Authorize]
         public ActionResult ViewUser(string id)
         {
             UserView model = new UserView();

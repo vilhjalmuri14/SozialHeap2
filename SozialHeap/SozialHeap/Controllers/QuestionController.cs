@@ -52,6 +52,7 @@ namespace Sozialheap.Controllers
             }
 
             // We have valid input, lets insert
+            
             form.scoreCounter = 0;
             form.seenByOwner = false;
             form.userID = User.Identity.GetUserId();
