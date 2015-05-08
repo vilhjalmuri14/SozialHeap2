@@ -66,13 +66,19 @@
             </h3>
         </div>
         <div class="panel-body">
-            @foreach(var item in Model.user.Users1.Take(5))
-            { 
-            <div class="userthumb postuser">
-                <img src="~/images/anonymous_user.png" />
-                <br /> @Html.ActionLink(item.userName, "ViewUser/" + item.userName, "User")
-            </div>
-            }
+           @foreach (var item in Model.user.Users1.Take(5))
+{
+
+    <div class="topitem postquestion">
+        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+            <span class="makedivlink makedivlink_small"></span>
+        </a>
+        <div class="imgholder">
+            <img src="~/images/anonymous_user.png" />
+        </div>
+        <h4>@item.userName</h4>
+    </div>
+}
 
         </div>
     </div>
@@ -88,12 +94,19 @@
         </div>
         <div class="panel-body">
             @foreach (var item in Model.user.Groups1.Take(5))
-            {
-                <div class="userthumb postuser">
+{
+
+            <div class="topitem postquestion">
+                <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                    <span class="makedivlink makedivlink_small"></span>
+                </a>
+                <div class="imgholder">
                     <img src="~/images/Group.png" />
-                    <br /> @Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")
                 </div>
-            }
+                <h4>@item.groupName</h4>
+            </div>
+}                      
+            
 
         </div>
     </div>
