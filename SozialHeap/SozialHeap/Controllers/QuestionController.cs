@@ -16,6 +16,7 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService();
         
+        [Authorize]
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult CreateQuestion([Bind(Include = "groupID,categoryID,name,body")]Post form)
@@ -40,6 +41,7 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewGroup/"+form.groupID, "Group", "");
         }
 
+        [Authorize]
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult CreateAnswer([Bind(Include = "postID, title, body")]Answer form)
@@ -62,6 +64,7 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewQuestion/"+form.postID, "Question", form.postID);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult LikePost(int id, string username)
         {
