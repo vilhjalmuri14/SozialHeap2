@@ -20,34 +20,35 @@
                     </a>
                 </h1>
             </div>
-            <div class="col-sm-3 headerExtra" id="headerSearch">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default glyphicon glyphicon-search searchbutton" type="button"></button>
-                    </span>
+
+                <div class="col-sm-3 headerExtra" id="headerSearch">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default glyphicon glyphicon-search searchbutton" type="button"></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-5 headerExtra" id="headerButtons">
+                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
-            <div class="col-sm-5 headerExtra" id="headerButtons">
-                @Html.Partial("_LoginPartial")
-            </div>
+        </div> <!-- Header finish -->
+
+
+        <div class="container body-content" id="main">
+            @RenderBody()
+            <hr />
+            <!-- footer starts -->
+            <footer>
+                <p><a href="#">&copy; SozialHeap 2015</a>, unnið af hóp 43</p>
+            </footer>
         </div>
-    </div> <!-- Header finish -->
-
-
-    <div class="container body-content" id="main">
-        @RenderBody()
-        <hr />
-        <!-- footer starts -->
-        <footer>
-            <p><a href="#">&copy; SozialHeap 2015</a>, unnið af hóp 43</p>
-        </footer>
-    </div>
-    <!-- Script to add links to question-->
-    <script>
-        function viewquestion() {
-            window.location = "/Question/ViewQuestion/3";
-        }
+        <!-- Script to add links to question-->
+        <script>
+            function viewquestion() {
+                window.location = "/Question/ViewQuestion/3";
+            }
         function viewgroup() {
             window.location = "/Group/ViewGroup/2";
         }
@@ -60,11 +61,9 @@
             // $(".postgroup").click(viewgroup);
             // $(".postuser").click(viewuser);
             $(".postquestion, .postgroup, .postuser").css('cursor', 'pointer');
-
-
         }
 
-    </script>
+            </script>
 
 
 
@@ -140,6 +139,7 @@
         document.onkeypress = stopRKey;
 
     </script>
+
     <!-- login modal ends-->
     <!-- login modal starts -->
     <div class="modal fade" id="registermodal">
