@@ -50,7 +50,6 @@ namespace Sozialheap.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult CreateAnswer([Bind(Include = "postID, title, body")]Answer form)
         {
-            var group = service.GetAllGroups();
             if (form.postID < 1 || form.title == "" || form.body == "")
             {
                 ViewBag.Message = "You cannot create Answer without a title or body!";

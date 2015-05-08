@@ -19,18 +19,19 @@ namespace Sozialheap.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult CreateGroup([Bind(Include = "postID, title")]Group form)
+        public ActionResult CreateGroup([Bind(Include = "groupName, description")]Group form)
         {
-            if(form.groupName == "" || form.userID == "")
+            if(form.groupName == "")
             {
                 // Sensitive fields missing!
+                return RedirectToAction("Index");
             }
-
+            form.userID = User.Identity.GetUserId();
             form.dateCreated = DateTime.Now;
             
             service.CreateGroup(form);
 
-            return View("ViewGroup/"+form.groupID);
+            return View("~/ViewGroup/"+form.groupID);
         }
 
         [Authorize]
@@ -56,7 +57,6 @@ namespace Sozialheap.Controllers
             model.group = service.GetGroupById(new_id);
             if (User.Identity.IsAuthenticated)
             {
-
                 model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
                 ViewBag.notifications = model.notificationList.Count();
             }
@@ -82,7 +82,7 @@ namespace Sozialheap.Controllers
                 v.group.Users = service.GetUsersByGroup((int)id, 1);
                 if (User.Identity.IsAuthenticated)
                 {
-                    
+                    v.following = service.isFollowingGroup(service.GetUserById(User.Identity.GetUserId()), v.group);
                     v.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
                     ViewBag.notifications = v.notificationList.Count();
                 }

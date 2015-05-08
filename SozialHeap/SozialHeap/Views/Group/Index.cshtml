@@ -8,6 +8,13 @@
     <div class="col-sm-12">
         <div class="panel panel-primary group">
 
+            <!-- Lommi gera fallegt :) -->
+            <div class="textholder">
+                <a href="#createGroup" class="btn btn-default" data-toggle="modal">
+                    Create group
+                </a>
+            </div>
+
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
@@ -22,8 +29,6 @@
                         <div class="col-sm-6">
 
                     <div class="topitem postquestion">
-                        
-                            
                         
                         <div class="imgholder">
                             <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
@@ -46,3 +51,4 @@
         <!-- Top Users ends -->
     </div>
 </div>
+@Html.Partial("_CreateGroup")
