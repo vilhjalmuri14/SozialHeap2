@@ -66,6 +66,13 @@
             </h3>
         </div>
         <div class="panel-body">
+            @if (Model.user.Users1.Take(5).Count() == 0)
+            {
+                <div class="nofriends" style="margin: 20px 20px;">
+                    @Model.user.userName has currently no followers.
+                </div>
+                
+            }
            @foreach (var item in Model.user.Users1.Take(5))
 {
 
@@ -93,6 +100,13 @@
             </h3>
         </div>
         <div class="panel-body">
+            @if (Model.user.Groups1.Take(5).Count() == 0)
+            {
+                <div class="nofriends" style="margin: 20px 20px;">
+                    @Model.user.userName is currently not following any groups.
+                </div>
+
+            }
             @foreach (var item in Model.user.Groups1.Take(5))
 {
 
@@ -125,7 +139,13 @@
 
                 </h3>
             </div>
+            @if (Model.postList.Count() == 0)
+            {
+                <div class="nofriends" style="margin: 20px 20px;">
+                    @Model.user.userName has not posted any questions.
+                </div>
 
+            }
             @foreach (var item in Model.postList)
             {
                 <div class="panel-body">
