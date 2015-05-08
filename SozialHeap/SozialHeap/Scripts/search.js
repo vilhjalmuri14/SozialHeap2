@@ -1,7 +1,4 @@
-﻿var substringMatcher = function (strs) {
-    return function findMatches(q, cb) {
-        var matches, substringRegex;
-
+﻿
         // an array that will be populated with substring matches
         matches = [];
 
@@ -39,4 +36,26 @@ $('#headerSearch .form-control').typeahead({
 {
     name: 'states',
     source: substringMatcher(states)
+});
+
+
+$(function () {
+
+    $("#tags").autocomplete({
+        source: "~/User/UserQuery/",
+        minLength: 1,
+        select: function (event, ui) {
+            var url = ui.item.userName;
+            if (url != '#') {
+                location.href = '~/User/ViewUser/' + url;
+            }
+        },
+
+        html: true, // optional (jquery.ui.autocomplete.html.js required)
+
+        // optional (if other layers overlap autocomplete list)
+        open: function (event, ui) {
+            $(".ui-autocomplete").css("z-index", 9990000);
+        }
+    });
 });
