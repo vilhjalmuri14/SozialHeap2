@@ -13,5 +13,6 @@ namespace Sozialheap.Models.ViewModels
         public User currentUser { get; set; }
         public Group group { get; set; }
         public List<Post> postList { get; set; }
+        public bool follwoing { get; set; }
     }
 }

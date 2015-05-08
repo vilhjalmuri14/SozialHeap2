@@ -40,7 +40,21 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="button">
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
+                       @if(Model.following)
+                       {
+                           <a class="btn btn-default" href="@Url.Action("StopFollowing/"+Model.user.userName)">
+                                <span class="glyphicon glyphicon-ok"> </span> UnFollow
+                            </a>
+                       }
+                       else
+                       {
+                            <a class="btn btn-default" href="@Url.Action("StartFollowing/"+Model.user.userName)">
+                                <span class="glyphicon glyphicon-ok"> </span> Follow
+                            </a>
+                       }
+                            
+                    
+                        
                     </div>
                 }
 

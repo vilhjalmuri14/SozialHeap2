@@ -162,11 +162,11 @@ namespace Sozialheap.Services
         /// <returns>single User object</returns>
         public User GetUserById(string id)
         {
-            var user = (from item in db2.Users
+            User user = (from item in db2.Users
                         where (item.userID == id)
-                        select item).Take(1);
+                        select item).SingleOrDefault();
 
-            return (User)user;
+            return user;
         }
 
         /// <summary>
@@ -236,19 +236,30 @@ namespace Sozialheap.Services
 
         public void StartFollowingUser(User currentUser, User userToFollow)
         {
+            // Users1 are those who are following the current user
+            // Users are those who the user is following
             userToFollow.Users1.Add(currentUser);
             db2.SaveChanges();
         }
 
+        public void StopFollowingUser(User currentUser, User userToStopFollow)
+        {
+            userToStopFollow.Users1.Remove(currentUser);
+            db2.SaveChanges();
+
+        }
+
+        public bool isFollowing(User currentUser, User isFollowing)
+        {
+            return isFollowing.Users1.Contains(currentUser);
+        }
+
+
 
         public void LikePost(int postID, string username)
         {
-            var sqlParams = new List<SqlParameter>
-             {
-              new SqlParameter("@postID", postID.ToString()),
-              new SqlParameter("@userName", username)
-             };
-            db2.Database.ExecuteSqlCommand("exec pLikePost 2, 'lommi'", new SqlParameter());
+            //TODO: Implement!
+            return;
         }
     }
 }

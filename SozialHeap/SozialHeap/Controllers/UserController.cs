@@ -22,6 +22,7 @@ namespace Sozialheap.Controllers
 
             model.user = service.GetUserByUsername(id);
             model.postList = service.getPostbyId(model.user.userID);
+            model.following = service.isFollowing(service.GetUserById(User.Identity.GetUserId()), model.user);
            
             return View(model);
         }
@@ -49,11 +50,23 @@ namespace Sozialheap.Controllers
         }
 
         [Authorize]
-        public ActionResult StartFollowing(string userName)
+        public ActionResult StartFollowing(string id)
         {
-            SozialHeap.Models.User userToFollow = service.GetUserByUsername(userName);
+            SozialHeap.Models.User userToFollow = service.GetUserByUsername(id);
             SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
-            return null;
+            service.StartFollowingUser(currentUser, userToFollow);
+
+            return RedirectToAction("ViewUser/" + userToFollow.userName);
+        }
+
+        [Authorize]
+        public ActionResult StopFollowing(string id)
+        {
+            SozialHeap.Models.User userToStopFollow = service.GetUserByUsername(id);
+            SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
+            service.StopFollowingUser(currentUser, userToStopFollow);
+
+            return RedirectToAction("ViewUser/" + userToStopFollow.userName);
         }
     }
 }
