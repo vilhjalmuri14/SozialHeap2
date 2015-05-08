@@ -29,7 +29,8 @@ namespace Sozialheap
                       "~/Content/bootstrap.css",
                       "~/Content/style.css",
                       "~/Content/stylesheet.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/Modal.css"));
         }
     }
 }
