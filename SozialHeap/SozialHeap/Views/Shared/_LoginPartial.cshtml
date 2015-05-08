@@ -2,10 +2,10 @@
 @if (Request.IsAuthenticated)
 {
     <a href="@Url.Action("ViewUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User")">
-        <button class="btn" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification" onclick="return false;">42</span></button>
+        <button class="btn user" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification" onclick="return false;">42</span></button>
     </a>
 
-        <button class="btn" type="button" id="buttonGroup">Groups</button>
+        <button class="btn group" type="button" id="buttonGroup">Groups</button>
 
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {

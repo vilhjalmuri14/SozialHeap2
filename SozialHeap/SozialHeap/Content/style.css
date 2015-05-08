@@ -320,21 +320,46 @@ height: 75px;
             border-color: #4E7182;
         }
 
-        .group .panel-heading
+        
+        .group .panel-heading,
+        .group.btn
         {
             background: #4E7182;
             border-color: #4E7182;
         }
 
-        .user
+        .group.btn:hover
+        {
+            background: #7CB3CE;
+            border-color: #7CB3CE;
+        }
+        .user 
         {
             border-color: #5461a8;
+            
+            
         }
+        .user.btn,
         .user .panel-heading
         {
             background: #5461A8;
             border-color: #5461a8;
 
+        }
+        .user.btn,
+        .group.btn
+        {
+            color: #fff;
+        }
+
+        .user .badge
+        {
+            background: #93A2F4;
+        }
+        .user.btn:hover
+        {
+            background: #7a8df4;
+            border-color: #7a8df4;
         }
 
         .panel-heading
@@ -412,4 +437,25 @@ height: 75px;
             margin: 20px 20px;
         }
         
+        /* login logout class*/
+        #buttonLogOut
+        {
+            background: #1B2D35;
+            color: #fff;
+        }
+
+        #buttonRegister
+        {
+            background: #fff;
+            color: #000;
+            border-color: #ccc;
+        }
+
+        #buttonLogIn
+        {
+            background: #fff;
+            color: #000;
+            border-color: #ccc;
+        }
+
         
