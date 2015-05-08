@@ -68,7 +68,7 @@
         <div class="panel-body">
             @if (Model.user.Users1.Take(5).Count() == 0)
             {
-                <div class="nofriends" style="margin: 20px 20px;">
+                <div class="nofriends">
                     @Model.user.userName has currently no followers.
                 </div>
                 
@@ -102,7 +102,7 @@
         <div class="panel-body">
             @if (Model.user.Groups1.Take(5).Count() == 0)
             {
-                <div class="nofriends" style="margin: 20px 20px;">
+                <div class="nofriends">
                     @Model.user.userName is currently not following any groups.
                 </div>
 
@@ -141,7 +141,7 @@
             </div>
             @if (Model.postList.Count() == 0)
             {
-                <div class="nofriends" style="margin: 20px 20px;">
+                <div class="nofriends">
                     @Model.user.userName has not posted any questions.
                 </div>
 
