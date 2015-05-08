@@ -14,6 +14,7 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService();
 
+        [Authorize]
         [HttpPost]
         public ActionResult CreateGroup([Bind(Include = "postID, title")]Group form)
         {
@@ -29,6 +30,7 @@ namespace Sozialheap.Controllers
             return View("ViewGroup/"+form.groupID);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditGroup([Bind(Include = "groupID, postID, title")]Group form)
         {
