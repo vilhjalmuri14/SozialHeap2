@@ -4,9 +4,9 @@
     <a href="@Url.Action("ViewUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User")">
         <button class="btn user" type="button" id="buttonProfile">@System.Web.HttpContext.Current.User.Identity.Name <span class="badge" id="headerNotification" onclick="return false;">42</span></button>
     </a>
-
+        <a href="@Url.Action("Index","Group")">
         <button class="btn group" type="button" id="buttonGroup">Groups</button>
-
+            </a>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()

@@ -5,8 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-    <div class="col-sm-6">
-        <div class="panel panel-primary user">
+    <div class="col-sm-12">
+        <div class="panel panel-primary group">
 
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
@@ -19,6 +19,8 @@
               
                 @foreach (var item in Model.groupList)
                 {
+                        <div class="col-sm-6">
+
                     <div class="topitem postquestion">
                         
                             
@@ -31,11 +33,12 @@
                         </div>
                             <h4>@item.groupName</h4><br />
                             <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
-                                Owner: @item.User.userName
+                                <!-- Owner: @item.User.userName -->
                                 <span class="makedivlink makedivlink_small"></span>
                             </a>
 
                     </div>
+                            </div>
                 }
 
             </div>
