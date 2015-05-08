@@ -1,0 +1,22 @@
+﻿body {
+}
+
+.modal-footer {
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.modal-body {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.modal-dialog {
+    width: 500px;
+    margin: 30px auto;
+}
+
+.modal-content {
+    margin: auto 15px;
+}

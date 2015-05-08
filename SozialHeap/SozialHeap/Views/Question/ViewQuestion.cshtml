@@ -44,9 +44,13 @@
                     <div class="end">
                         @Model.currentPost.body
                         <div class="postfooter">
-                            <div class="leftbutton">
-                                <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
-                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="leftbutton">
+                                    <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
+                                </div>
+                            }
+                            
                             <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.scoreCounter </span> </div>
                         </div>
                         <div class="endfooter">&nbsp;</div>

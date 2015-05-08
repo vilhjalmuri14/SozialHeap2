@@ -1,6 +1,7 @@
-﻿@model Sozialheap.Models.ViewModels.FeedView
+﻿@model SozialHeap.Models.ViewModels.FrontPageView
+
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Welcome";
 }
 <!-- Content starts -->
 <div class="row">
@@ -16,148 +17,95 @@
                 </h3>
             </div>
             <div class="panel-body">
-               
-                <div class="topitem postquestion" id="topquestion1">
-                    <div class="imgholder">
-                        <img src="~/images/anonymous_user.png" />
+                @foreach (var item in Model.Posts)
+                {
+                    <div class="topitem postquestion" id="topquestion1">
+                        <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                            <span class="makedivlink"></span>
+                        </a>
+                        <div class="imgholder">
+                            <img src="~/images/question.png" />
+                        </div>
+                        <div class="textholder">
+                            <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted in </span>
+                            <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                                <span class="brutallink">@item.Group.groupName</span>
+                                </a><br />
+                                @item.body
+                        </div>
                     </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
-                
+                }
                 <!-- end example -->
-                <div class="topitem postquestion" id="topquestion2">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
     <!-- Top Question ends -->
-
-    
-
     <!-- Newest Questions starts -->
     <div class="col-sm-6">
         <div class="panel panel-primary question">
 
-            <div class="panel-heading" >
+            <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
                     Newest Questions
 
                 </h3>
             </div>
+            @foreach(var item in Model.Groups)
+            { 
             <div class="panel-body">
                 <div class="topitem postquestion" id="topquestion1">
+                    <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                        <span class="makedivlink"></span>
+                    </a>
+
                     <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                        <img src="~/images/Group.png" />
                     </div>
                     <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
+                        <h4>@Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")</h4><br />
+                        @item.description
                     </div>
                 </div>
-                <!-- end example -->
-                <div class="topitem postquestion" id="topquestion2">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
-
-
+           
             </div>
+            }
         </div>
     </div>
-    <!-- Newest Questions  ends -->
 
-    
-
-    <!-- Featured groups starts -->
     <div class="col-sm-6">
-        <div class="panel panel-primary group">
+        <div class="panel panel-primary user">
 
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
-                    Featured groups
+                    Top Users
 
                 </h3>
             </div>
-            <div class="panel-body">
-                <div class="topitem postgroup" id="topgroup1">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
-                <!-- end example -->
-                <div class="topitem postgroup" id="topgroup1">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
+            @foreach (var item in Model.Users.Take(5))
+            {
+                <div class="panel-body">
+                    <div class="topitem postquestion" id="topquestion1">
+                        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                            <span class="makedivlink"></span>
+                        </a>
 
+                        <div class="imgholder">
+                            <img src="~/images/Group.png" />
+                        </div>
+                        <div class="textholder">
+                            <h4>@Html.ActionLink(item.userName, "ViewUser/"+item.userName, "User")</h4> <br />
+                            @item.description
+                        </div>
+                    </div>
 
-            </div>
+                </div>
+            }
         </div>
     </div>
-    <!-- Featured groups  ends -->
 
-    <!-- Suggested groups starts -->
-    <div class="col-sm-6">
-        <div class="panel panel-primary group">
-
-            <div class="panel-heading">
-                <h3 id="panel-title" class="panel-title">
-
-                    Suggested groups
-
-                </h3>
-            </div>
-            <div class="panel-body">
-                <div class="topitem postgroup" id="topgroup1">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
-                <!-- end example -->
-                <div class="topitem postgroup" id="topgroup1">
-                    <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                    </div>
-                    <div class="textholder">
-                        <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
-                        There is something wrong with java when I…
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
     <!-- Suggested groups  ends -->
 </div>
 <!-- Content ends -->

@@ -1,5 +1,7 @@
-﻿using Sozialheap.Models.ViewModels;
+﻿using Sozialheap.Services;
 using SozialHeap.Models;
+using SozialHeap.Models.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,16 @@ namespace SozialHeap.Controllers
 {
     public class HomeController : Controller
     {
+        SozialService service = new SozialService();
+
         public ActionResult Index()
         {
-            FeedView v = new FeedView();
-            return View("Index");
+            FrontPageView model = new FrontPageView();
+            model.Groups = service.GetAllGroups();
+            model.Users = service.GetAllUsers();
+            model.Posts = service.getRecentPosts();
+
+            return View(model);
         }
 
         public ActionResult About()

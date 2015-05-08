@@ -37,10 +37,13 @@
 
                 <div class="description">@Model.user.description</div>
                 <div class="end"></div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="button">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
+                    </div>
+                }
 
-                <div class="button">
-                    <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
-                </div>
                 <div class="buttons">
                     <button class="btn btn-default">Followers <span class="badge"> @Model.user.Users1.Count </span></button>
                     <button class="btn btn-default">Following <span class="badge"> @Model.user.Users.Count </span></button>
@@ -56,7 +59,7 @@
 <!-- group profile ends -->
 <!-- Top Users starts -->
 <div class="col-sm-6">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary user">
 
         <div class="panel-heading">
             <h3 id="panel-title" class="panel-title">
@@ -66,18 +69,31 @@
             </h3>
         </div>
         <div class="panel-body">
-            @foreach(var item in Model.user.Users1.Take(5))
-            { 
-            <div class="userthumb postuser">
-                <img src="~/images/anonymous_user.png" />
-                <br /> @Html.ActionLink(item.userName, "ViewUser/" + item.userName, "User")
-            </div>
+            @if (Model.user.Users1.Take(5).Count() == 0)
+            {
+                <div class="nofriends">
+                    @Model.user.userName has currently no followers.
+                </div>
+                
             }
+           @foreach (var item in Model.user.Users1.Take(5))
+{
+
+    <div class="topitem postquestion">
+        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+            <span class="makedivlink makedivlink_small"></span>
+        </a>
+        <div class="imgholder">
+            <img src="~/images/anonymous_user.png" />
+        </div>
+        <h4>@item.userName</h4>
+    </div>
+}
 
         </div>
     </div>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary group">
 
         <div class="panel-heading">
             <h3 id="panel-title" class="panel-title">
@@ -87,13 +103,27 @@
             </h3>
         </div>
         <div class="panel-body">
-            @foreach (var item in Model.user.Groups1.Take(5))
+            @if (Model.user.Groups1.Take(5).Count() == 0)
             {
-                <div class="userthumb postuser">
-                    <img src="~/images/Group.png" />
-                    <br /> @Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")
+                <div class="nofriends">
+                    @Model.user.userName is currently not following any groups.
                 </div>
+
             }
+            @foreach (var item in Model.user.Groups1.Take(5))
+{
+
+            <div class="topitem postquestion">
+                <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                    <span class="makedivlink makedivlink_small"></span>
+                </a>
+                <div class="imgholder">
+                    <img src="~/images/Group.png" />
+                </div>
+                <h4>@item.groupName</h4>
+            </div>
+}                      
+            
 
         </div>
     </div>
@@ -112,7 +142,13 @@
 
                 </h3>
             </div>
+            @if (Model.postList.Count() == 0)
+            {
+                <div class="nofriends">
+                    @Model.user.userName has not posted any questions.
+                </div>
 
+            }
             @foreach (var item in Model.postList)
             {
                 <div class="panel-body">

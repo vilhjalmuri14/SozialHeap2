@@ -72,7 +72,13 @@
                 </h3>
             </div>
             <div class="panel-body">
+                @if (Model.group.Users.Count() == 0)
+                {
+                    <div class="nofriends">
+                        Group @Html.DisplayFor(modelItem => Model.group.groupName) has currently no followers
+                    </div>
 
+                }
                 @foreach (var item in Model.group.Users)
                 {
                     <div class="topitem postquestion">
@@ -97,10 +103,12 @@
     </div>
     <div class="end"></div>
     <div class="row">
+        @if (User.Identity.IsAuthenticated)
+        {
         <div class="col-sm-12" ¨>
             <a href="#createPost" class="btn questionbutton" data-toggle="modal">Post a new question</a>
-            
-        </div>        
+        </div>  
+        }     
         </div>
     <div class="row">
         <!-- Top Question starts -->
@@ -115,8 +123,16 @@
                     </h3>
                 </div>
                 <div class="panel-body">
+                    
                     @if (Model.postList != null)
                     {
+                        if (Model.postList.Count() == 0)
+                        {
+                        <div class="nofriends">
+                            Group @Html.DisplayFor(modelItem => Model.group.groupName) has currently no questions
+                        </div>
+
+                        }
                         foreach (var item in Model.postList)
                         {
                             <div class="topitem postquestion">

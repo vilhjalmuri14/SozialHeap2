@@ -8,12 +8,12 @@ namespace SozialHeap.Models.ViewModels
     public class SimpleUser
     {
         public string userName{ get; set; }
-        public string userId { get; set; }
+        public string value { get; set; }
 
         public SimpleUser(string un, string uid)
         {
             userName = un;
-            userId = uid;
+            value = uid;
         }
     }
 }
