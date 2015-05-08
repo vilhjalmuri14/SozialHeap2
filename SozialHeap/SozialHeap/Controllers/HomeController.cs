@@ -1,4 +1,5 @@
-﻿using SozialHeap.Models;
+﻿using Sozialheap.Models.ViewModels;
+using SozialHeap.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace SozialHeap.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            FeedView v = new FeedView();
+            return View("Index");
         }
 
         public ActionResult About()

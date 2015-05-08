@@ -1,6 +1,7 @@
 ﻿using Sozialheap.Models;
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
+using SozialHeap.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -181,13 +182,18 @@ namespace Sozialheap.Services
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public List<User> GetUsersByQuery(string query)
+        public List<SozialHeap.Models.ViewModels.SimpleUser> GetUsersByQuery(string query)
         {
-            var users = (from item in db2.Users
+            List<User> users = (from item in db2.Users
                          where item.userName.StartsWith(query)
                          select item).ToList();
-            
-            return users;
+            List<SozialHeap.Models.ViewModels.SimpleUser> su = new List<SozialHeap.Models.ViewModels.SimpleUser>();
+
+            foreach(var item in users)
+            {
+                su.Add(new SimpleUser(item.userName, item.userID));
+            }
+            return su;
         }
 
         public List<User> GetUsersByGroup(int groupId, int n = 5)
