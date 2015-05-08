@@ -76,12 +76,17 @@ namespace Sozialheap.Services
         /// <returns>List of all post of that group</returns>
         public List<Post> getPosts(int groupId)
         {
-            List<Post> p = (from item in db2.Posts
+            List<Post> posts = (from item in db2.Posts
                             where item.groupID == groupId
                             orderby item.dateCreated descending
                             select item).ToList();
 
-            return p;
+            return posts;
+        }
+        
+        public List<Post> getRecentPosts()
+        {
+            return (from item in db2.Posts orderby item.dateCreated descending select item).Take(5).ToList();
         }
 
         /// <summary>
@@ -212,14 +217,7 @@ namespace Sozialheap.Services
             var users = (from item in db2.Users
                          select item).ToList();
             
-            List<User> nUsers = new List<User>();
-
-            foreach (var i in users)
-            {
-                //nUsers.Add(new User(i.userID, i.userName));
-            }
-
-            return nUsers;
+            return users;
         }
 
         /// <summary>
