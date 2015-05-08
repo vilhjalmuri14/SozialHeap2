@@ -75,5 +75,12 @@ namespace Sozialheap.Controllers
                 return View(v);
             }
         }
+
+        public ActionResult Index()
+        {
+            AllGroupView model = new AllGroupView();
+            model.groupList = service.GetAllGroups();
+            return View(model);
+        }
     }
 }
