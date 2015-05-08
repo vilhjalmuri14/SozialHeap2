@@ -249,17 +249,38 @@ namespace Sozialheap.Services
 
         }
 
-        public bool isFollowing(User currentUser, User isFollowing)
+        public bool isFollowingUser(User currentUser, User isFollowing)
         {
             return isFollowing.Users1.Contains(currentUser);
         }
 
-
-
-        public void LikePost(int postID, string username)
+        public void StartFollowingGroup(User user, Group group)
         {
-            //TODO: Implement!
-            return;
+            group.Users.Add(user);
+            db2.SaveChanges();
+        }
+
+        public void StopFollowingGroup(User user, Group group)
+        {
+            group.Users.Remove(user);
+            db2.SaveChanges();
+        }
+
+        public bool isFollowingGroup(User user, Group group)
+        {
+            return group.Users.Contains(user);
+        }
+
+        public void LikePost(User user, Post post)
+        {
+            user.Posts1.Add(post);
+            db2.SaveChanges();
+        }
+
+        public void UnLikePost(User user, Post post)
+        {
+            user.Posts1.Remove(post);
+            db2.SaveChanges();
         }
     }
 }

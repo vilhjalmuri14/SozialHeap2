@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Sozialheap.Controllers
 {
@@ -73,7 +75,10 @@ namespace Sozialheap.Controllers
                 v.postList = service.getPosts((int)id);
                 v.group = service.GetGroupById((int)id);
                 v.group.Users = service.GetUsersByGroup((int)id, 1);
-
+                if (User.Identity.IsAuthenticated)
+                {
+                    v.following = service.isFollowingGroup(service.GetUserById(User.Identity.GetUserId()), v.group);
+                }
                 return View(v);
             }
         }
@@ -83,6 +88,26 @@ namespace Sozialheap.Controllers
             AllGroupView model = new AllGroupView();
             model.groupList = service.GetAllGroups();
             return View(model);
+        }
+
+        [Authorize]
+        public ActionResult StartFollowing(int id)
+        {
+            Group group = service.GetGroupById(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            service.StartFollowingGroup(currentUser, group);
+
+            return RedirectToAction("ViewGroup/" + id);
+        }
+
+        [Authorize]
+        public ActionResult StopFollowing(int id)
+        {
+            Group group = service.GetGroupById(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            service.StopFollowingGroup(currentUser, group);
+
+            return RedirectToAction("ViewGroup/" + id);
         }
     }
 }

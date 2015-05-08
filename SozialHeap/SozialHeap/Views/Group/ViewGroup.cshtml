@@ -40,12 +40,26 @@
                     <div class="description">@Html.DisplayFor(modelItem => Model.group.description)</div>
                     <div class="end"></div>
 
-                    <div class="button">
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
-                    </div>
-                    <div class="button">
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
-                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        if (Model.following)
+                        {
+                            <a class="btn btn-danger" href="@Url.Action("StopFollowing/"+Model.group.groupID)">
+                                <span class="glyphicon glyphicon-ok"> </span> UnFollow
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("StartFollowing/"+Model.group.groupID)">
+                                <span class="glyphicon glyphicon-ok"> </span> Follow
+                            </a>
+                            
+                        }
+                    }
+                    
+
+
                     <div class="buttons">
                         <button class="btn btn-default">Followers <span class="badge">@Html.DisplayFor(modelItem => Model.group.Users.Count) </span></button>
                     </div>

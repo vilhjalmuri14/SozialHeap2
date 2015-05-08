@@ -68,9 +68,8 @@ namespace Sozialheap.Controllers
         [HttpGet]
         public ActionResult LikePost(int id, string username)
         {
-            service.LikePost(id, username);
-
-            return Json("1", JsonRequestBehavior.AllowGet);
+            // NOT IMPLEMENTED
+            return null;
         }
 
         public ActionResult ViewQuestion(int? id)

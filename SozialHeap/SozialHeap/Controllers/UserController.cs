@@ -22,7 +22,7 @@ namespace Sozialheap.Controllers
 
             model.user = service.GetUserByUsername(id);
             model.postList = service.getPostbyId(model.user.userID);
-            model.following = service.isFollowing(service.GetUserById(User.Identity.GetUserId()), model.user);
+            model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
            
             return View(model);
         }
