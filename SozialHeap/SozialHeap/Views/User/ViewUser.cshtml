@@ -37,10 +37,13 @@
 
                 <div class="description">@Model.user.description</div>
                 <div class="end"></div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="button">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
+                    </div>
+                }
 
-                <div class="button">
-                    <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
-                </div>
                 <div class="buttons">
                     <button class="btn btn-default">Followers <span class="badge"> @Model.user.Users1.Count </span></button>
                     <button class="btn btn-default">Following <span class="badge"> @Model.user.Users.Count </span></button>

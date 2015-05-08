@@ -1,10 +1,13 @@
 ﻿using Sozialheap.Models.ViewModels;
+using Sozialheap.Models;
 using Sozialheap.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Sozialheap.Controllers
 {
@@ -12,7 +15,7 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService();
 
-        [Authorize]
+        
         public ActionResult ViewUser(string id)
         {
             UserView model = new UserView();
@@ -43,6 +46,14 @@ namespace Sozialheap.Controllers
             var users = service.GetUsersByQuery(userName);
 
             return Json(users, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public ActionResult StartFollowing(string userName)
+        {
+            SozialHeap.Models.User userToFollow = service.GetUserByUsername(userName);
+            SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
+            return null;
         }
     }
 }

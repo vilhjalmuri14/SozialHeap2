@@ -234,6 +234,12 @@ namespace Sozialheap.Services
             return (List<Answer>)answers;
         }
 
+        public void StartFollowingUser(User currentUser, User userToFollow)
+        {
+            userToFollow.Users1.Add(currentUser);
+            db2.SaveChanges();
+        }
+
 
         public void LikePost(int postID, string username)
         {
