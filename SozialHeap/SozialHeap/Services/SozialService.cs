@@ -196,7 +196,7 @@ namespace Sozialheap.Services
 
             foreach(var item in users)
             {
-                su.Add(new SimpleUser(item.userName, item.userID));
+                su.Add(new SimpleUser(item.userName, item.userName));
             }
             return su;
         }

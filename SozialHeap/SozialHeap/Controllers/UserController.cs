@@ -41,9 +41,9 @@ namespace Sozialheap.Controllers
             return View();
         }
 
-        public ActionResult UserQuery(string userName)
+        public ActionResult UserQuery(string term)
         {
-            var users = service.GetUsersByQuery(userName);
+            var users = service.GetUsersByQuery(term);
 
             return Json(users, JsonRequestBehavior.AllowGet);
         }
