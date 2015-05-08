@@ -10,7 +10,7 @@ namespace Sozialheap.Models.ViewModels
     {
         public int notfications { get; set; }
 
-        public List<Post> notifiactionList { get; set; }
+        public List<Post> notificationList { get; set; }
 
         public User currentUser { get; set; }
 

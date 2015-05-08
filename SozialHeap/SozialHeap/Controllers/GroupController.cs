@@ -54,7 +54,12 @@ namespace Sozialheap.Controllers
             SingleGroupView model = new SingleGroupView();
 
             model.group = service.GetGroupById(new_id);
-            ViewBag.Notfications = 89;
+            if (User.Identity.IsAuthenticated)
+            {
+
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
         
             return View(model);
         }
@@ -77,7 +82,9 @@ namespace Sozialheap.Controllers
                 v.group.Users = service.GetUsersByGroup((int)id, 1);
                 if (User.Identity.IsAuthenticated)
                 {
-                    v.following = service.isFollowingGroup(service.GetUserById(User.Identity.GetUserId()), v.group);
+                    
+                    v.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                    ViewBag.notifications = v.notificationList.Count();
                 }
                 return View(v);
             }
@@ -87,6 +94,12 @@ namespace Sozialheap.Controllers
         {
             AllGroupView model = new AllGroupView();
             model.groupList = service.GetAllGroups();
+            if (User.Identity.IsAuthenticated)
+            {
+
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
             return View(model);
         }
 

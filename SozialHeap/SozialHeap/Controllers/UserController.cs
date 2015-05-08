@@ -23,7 +23,12 @@ namespace Sozialheap.Controllers
             model.user = service.GetUserByUsername(id);
             model.postList = service.getPostbyId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
-           
+            if (User.Identity.IsAuthenticated)
+            {
+
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
             return View(model);
         }
 
@@ -33,7 +38,12 @@ namespace Sozialheap.Controllers
 
             UserView model = new UserView();
             model.groupList = service.GetAllGroups();
+            if (User.Identity.IsAuthenticated)
+            {
 
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
             return View(model);
         }
 

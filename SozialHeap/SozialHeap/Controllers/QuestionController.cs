@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿
 using Sozialheap.Models;
 using Sozialheap.Models.ViewModels;
 using Sozialheap.Services;
 using SozialHeap.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Sozialheap.Controllers
 {
@@ -18,7 +21,7 @@ namespace Sozialheap.Controllers
         
         [Authorize]
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult CreateQuestion([Bind(Include = "groupID,categoryID,name,body")]Post form)
         {
             var group = service.GetAllGroups();
@@ -27,7 +30,7 @@ namespace Sozialheap.Controllers
                 ViewBag.Message = "You cannot create Question without a title or question!";
                 return View();
             }
-            
+
             // We have valid input, lets insert
             form.scoreCounter = 0;
 //            form.PostCategory = 1;
@@ -43,6 +46,7 @@ namespace Sozialheap.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         //[ValidateAntiForgeryToken]
         public ActionResult CreateAnswer([Bind(Include = "postID, title, body")]Answer form)
         {
@@ -80,7 +84,12 @@ namespace Sozialheap.Controllers
 
                 int new_id = id ?? default(int);
                 model.currentPost = service.getPost(new_id);
-               
+                if (User.Identity.IsAuthenticated)
+                {
+
+                    model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                    ViewBag.notifications = model.notificationList.Count();
+                }
                 if (model.currentPost != null)
                 {
                     model.answerList = service.GetAnswerById(model.currentPost.postID);

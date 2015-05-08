@@ -12,5 +12,7 @@ namespace SozialHeap.Models.ViewModels
         public List<Group> Groups { get; set; }
         public List<User> Users { get; set; }
         public List<Post> Posts { get; set; }
+        public List<Post> notificationList { get; set; }
+        public int notifications { get; set; }
     }
 }

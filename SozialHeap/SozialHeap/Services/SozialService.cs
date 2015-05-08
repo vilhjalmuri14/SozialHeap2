@@ -234,6 +234,11 @@ namespace Sozialheap.Services
             return (List<Answer>)answers;
         }
 
+        /// <summary>
+        /// Connect to another user (follow)
+        /// </summary>
+        /// <param name="currentUser">The user that wants to follow the next user</param>
+        /// <param name="userToFollow">Ther user that he wants to follow</param>
         public void StartFollowingUser(User currentUser, User userToFollow)
         {
             // Users1 are those who are following the current user
@@ -242,6 +247,11 @@ namespace Sozialheap.Services
             db2.SaveChanges();
         }
 
+        /// <summary>
+        /// User 1 stop following user 2
+        /// </summary>
+        /// <param name="currentUser">User who wants to stop following someone</param>
+        /// <param name="userToStopFollow">The user who he wants to stop follow</param>
         public void StopFollowingUser(User currentUser, User userToStopFollow)
         {
             userToStopFollow.Users1.Remove(currentUser);
@@ -249,38 +259,82 @@ namespace Sozialheap.Services
 
         }
 
+        /// <summary>
+        /// Check if user 1 is following user 2
+        /// </summary>
+        /// <param name="currentUser">Is this user following the next</param>
+        /// <param name="isFollowing">Is this user being followed by the prior user</param>
+        /// <returns></returns>
         public bool isFollowingUser(User currentUser, User isFollowing)
         {
             return isFollowing.Users1.Contains(currentUser);
         }
 
+        /// <summary>
+        /// User 1 wants to follow user 2
+        /// </summary>
+        /// <param name="user">User who wants to follow the next user</param>
+        /// <param name="group">The user who he wants to follow</param>
         public void StartFollowingGroup(User user, Group group)
         {
             group.Users.Add(user);
             db2.SaveChanges();
         }
 
+        /// <summary>
+        /// User 1 wants to stop following user 2
+        /// </summary>
+        /// <param name="user">The user who wants to stop following user 2</param>
+        /// <param name="group">The user he wants to stop following</param>
         public void StopFollowingGroup(User user, Group group)
         {
             group.Users.Remove(user);
             db2.SaveChanges();
         }
 
+        /// <summary>
+        /// Checks if a user is following a group
+        /// </summary>
+        /// <param name="user">User you want to check if is following the specified group</param>
+        /// <param name="group">The group you want to check if he follows</param>
+        /// <returns>true if a user is following the specified group</returns>
         public bool isFollowingGroup(User user, Group group)
         {
             return group.Users.Contains(user);
         }
 
+        /// <summary>
+        /// User puts a like on post
+        /// </summary>
+        /// <param name="user">User who wants to like a post</param>
+        /// <param name="post">The post he wants to like</param>
         public void LikePost(User user, Post post)
         {
             user.Posts1.Add(post);
             db2.SaveChanges();
         }
 
+        /// <summary>
+        /// User wants to unlike post
+        /// </summary>
+        /// <param name="user">User who wants to unlike a post</param>
+        /// <param name="post">Post that the user wants to unlike</param>
         public void UnLikePost(User user, Post post)
         {
             user.Posts1.Remove(post);
             db2.SaveChanges();
+        }
+
+        /// <summary>
+        /// Returns the Posts that have unseen answers by the owner(user)
+        /// </summary>
+        /// <param name="user">Owner of Question</param>
+        /// <returns>List of Posts with unseen answers</returns>
+        public List<Post> getUnreadPostsByUser(User user)
+        {
+            return (List<Post>)(from item in db2.Answers
+                    where item.Post.userID == user.userID && item.seenByOwner == false
+                    select item.Post).ToList();
         }
     }
 }

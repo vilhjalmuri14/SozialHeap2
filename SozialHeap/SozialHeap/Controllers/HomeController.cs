@@ -8,6 +8,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace SozialHeap.Controllers
 {
     public class HomeController : Controller
@@ -20,7 +23,12 @@ namespace SozialHeap.Controllers
             model.Groups = service.GetAllGroups();
             model.Users = service.GetAllUsers();
             model.Posts = service.getRecentPosts();
+            if (User.Identity.IsAuthenticated)
+            {
 
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
             return View(model);
         }
 

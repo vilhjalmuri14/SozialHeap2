@@ -5,7 +5,7 @@
 
 <!-- Question starts -->
 
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading question">
@@ -58,7 +58,7 @@
 
                 </div>
                 <!-- Responses start-->
-                <h4 class="responses">Responses</h4>
+                <h4 class="responses">Responses (descenting order)</h4>
 
                 @foreach(var item in Model.answerList)
                 {
@@ -98,7 +98,7 @@
                                 <div class="postinfo">
 
                                 </div>
-                                <div class="end">
+                                <div class="end" style="white-space: pre-wrap;">
                                     @item.body
 
 
