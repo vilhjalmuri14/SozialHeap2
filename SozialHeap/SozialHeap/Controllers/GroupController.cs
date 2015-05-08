@@ -14,11 +14,35 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService();
 
-        public ActionResult CreateGroup(Group g)
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateGroup([Bind(Include = "postID, title")]Group form)
         {
-            // TODO: create view!!
+            if(form.groupName == "" || form.userID == "")
+            {
+                // Sensitive fields missing!
+            }
 
-            return View(service.GetAllGroups());
+            form.dateCreated = DateTime.Now;
+            
+            service.CreateGroup(form);
+
+            return View("ViewGroup/"+form.groupID);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditGroup([Bind(Include = "groupID, postID, title")]Group form)
+        {
+            if (form.groupName == "" || form.userID == "")
+            {
+                // Sensitive fields missing!
+                return View("Error");
+            }
+
+            service.EditGroup(form);
+
+            return View("ViewGroup/" + form.groupID);
         }
 
         public ActionResult GetGroup(int? id)

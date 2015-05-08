@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Sozialheap.Models.ViewModels.FeedView
+@{
     ViewBag.Title = "Home Page";
 }
 <!-- Content starts -->
@@ -15,15 +16,17 @@
                 </h3>
             </div>
             <div class="panel-body">
+               
                 <div class="topitem postquestion" id="topquestion1">
                     <div class="imgholder">
-                        <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                        <img src="~/images/anonymous_user.png" />
                     </div>
                     <div class="textholder">
                         <h4>Class error</h4> <span class="notimportant">posted in </span><a href="#">java</a><br />
                         There is something wrong with java when I…
                     </div>
                 </div>
+                
                 <!-- end example -->
                 <div class="topitem postquestion" id="topquestion2">
                     <div class="imgholder">
@@ -34,8 +37,6 @@
                         There is something wrong with java when I…
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

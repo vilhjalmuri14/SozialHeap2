@@ -218,6 +218,7 @@
     <Compile Include="Models\ViewModels\AllGroupView.cs" />
     <Compile Include="Models\ViewModels\FeedView.cs" />
     <Compile Include="Models\ViewModels\PostView.cs" />
+    <Compile Include="Models\ViewModels\SimpleUser.cs" />
     <Compile Include="Models\ViewModels\SingleGroupView.cs" />
     <Compile Include="Models\ViewModels\UserView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

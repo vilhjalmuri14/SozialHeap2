@@ -21,7 +21,7 @@
 
             <div class="textholder post profile">
                 <div class="imgholder">
-                    <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                    <img src="~/images/anonymous_user.png" />
                 </div>
                 <div class="authorinfo">
                     <h4>@Model.user.userName</h4>
@@ -42,8 +42,8 @@
                     <button class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Follow</button>
                 </div>
                 <div class="buttons">
-                    <button class="btn btn-default">Followers <span class="badge"> 44 </span></button>
-                    <button class="btn btn-default">Following <span class="badge"> 22 </span></button>
+                    <button class="btn btn-default">Followers <span class="badge"> @Model.user.Users1.Count </span></button>
+                    <button class="btn btn-default">Following <span class="badge"> @Model.user.Users.Count </span></button>
                 </div>
             </div>
         </div>
@@ -66,53 +66,40 @@
             </h3>
         </div>
         <div class="panel-body">
+            @foreach(var item in Model.user.Users1.Take(5))
+            { 
             <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
+                <img src="~/images/anonymous_user.png" />
+                <br /> @Html.ActionLink(item.userName, "ViewUser/" + item.userName, "User")
             </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
-            <div class="userthumb postuser">
-                <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
-                <br /> lommi geggege lommi lommi lommi lommi
-            </div>
+            }
 
         </div>
     </div>
 
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Groups
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var item in Model.user.Groups1.Take(5))
+            {
+                <div class="userthumb postuser">
+                    <img src="~/images/Group.png" />
+                    <br /> @Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")
+                </div>
+            }
+
+        </div>
+    </div>
 
     <!-- Top Users ends -->
-    </div>
+</div>
 <div class="row">
     <!-- Top Question starts -->
     <div class="col-sm-12">
@@ -131,7 +118,7 @@
                 <div class="panel-body">
                     <div class="topitem postquestion">
                         <div class="imgholder">
-                            <img src="https://pbs.twimg.com/profile_images/486509703564771329/SM9Jy_c3_bigger.jpeg" />
+                            <img src="~/images/anonymous_user.png" />
                         </div>
                         <div class="textholder">
                             <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
