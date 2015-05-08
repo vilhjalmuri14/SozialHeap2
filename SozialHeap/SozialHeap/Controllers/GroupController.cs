@@ -2,6 +2,7 @@
 using Sozialheap.Models.ViewModels;
 using Sozialheap.Services;
 using SozialHeap.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,7 @@ namespace Sozialheap.Controllers
         
             return View(model);
         }
+
         public ActionResult ViewGroup(int? id)
         {
             SingleGroupView v = new SingleGroupView();
