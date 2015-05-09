@@ -326,6 +326,17 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
+        /// Checks if a user has liked a post
+        /// </summary>
+        /// <param name="user">User you want to check if has liked the specified post</param>
+        /// <param name="post">The post you want to check if he liked</param>
+        /// <returns>true if a user has liked the specified group</returns>
+        public bool DidUserLikePost(User user, Post post)
+        {
+            return user.Posts1.Contains(post);
+        }
+
+        /// <summary>
         /// Returns the Posts that have unseen answers by the owner(user)
         /// </summary>
         /// <param name="user">Owner of Question</param>

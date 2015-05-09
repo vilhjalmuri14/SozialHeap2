@@ -12,6 +12,9 @@ namespace Sozialheap.Models.ViewModels
         public List<Post> notificationList { get; set; }
         public User currentUser { get; set; }
         public Post currentPost { get; set; }
+        public bool LikedPost { get; set; }
+        public List<bool> LikedAnswers { get; set; }
         public List<Answer> answerList { get; set; }
+        public bool followingPost { get; set; }
     }
 }

@@ -68,11 +68,23 @@ namespace Sozialheap.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public ActionResult LikePost(int id, string username)
+        public ActionResult LikePost(int id)
         {
-            // NOT IMPLEMENTED
-            return null;
+            Post post = service.getPost(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            service.LikePost(currentUser, post);
+
+            return RedirectToAction("ViewQuestion/" + id);
+        }
+
+        [Authorize]
+        public ActionResult UnLikePost(int id)
+        {
+            Post post = service.getPost(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            service.UnLikePost(currentUser, post);
+
+            return RedirectToAction("ViewQuestion/" + id);
         }
 
         public ActionResult ViewQuestion(int? id)
@@ -85,8 +97,9 @@ namespace Sozialheap.Controllers
                 model.currentPost = service.getPost(new_id);
                 if (User.Identity.IsAuthenticated)
                 {
-
-                    model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                    User currentUser = service.GetUserById(User.Identity.GetUserId());
+                    model.notificationList = service.getUnreadPostsByUser(currentUser);
+                    model.LikedPost = service.DidUserLikePost(currentUser, model.currentPost);
                     ViewBag.notifications = model.notificationList.Count();
                 }
                 if (model.currentPost != null)
