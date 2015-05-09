@@ -39,30 +39,35 @@
 
                     <div class="description">@Html.DisplayFor(modelItem => Model.group.description)</div>
                     <div class="end"></div>
+                    <div class="row" style="">
+                        <div class="buttonLeftCol">
+                            @if (User.Identity.IsAuthenticated)
+                            {
 
-                    @if (User.Identity.IsAuthenticated)
-                    {
+                                if (Model.following)
+                                {
+                                    <a class="btn btn-danger" href="@Url.Action("StopFollowing/"+Model.group.groupID)">
+                                        <span class="glyphicon glyphicon-ok"> </span> UnFollow
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("StartFollowing/"+Model.group.groupID)">
+                                        <span class="glyphicon glyphicon-ok"> </span> Follow
+                                    </a>
 
-                        if (Model.following)
-                        {
-                            <a class="btn btn-danger" href="@Url.Action("StopFollowing/"+Model.group.groupID)">
-                                <span class="glyphicon glyphicon-ok"> </span> UnFollow
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="btn btn-primary" href="@Url.Action("StartFollowing/"+Model.group.groupID)">
-                                <span class="glyphicon glyphicon-ok"> </span> Follow
-                            </a>
-                            
-                        }
-                    }
-                    
+                                }
+                            }
 
+                        </div>
+                        <div  class="buttonRightCol">
 
-                    <div class="buttons">
-                        <button class="btn btn-default">Followers <span class="badge">@Html.DisplayFor(modelItem => Model.group.Users.Count) </span></button>
+                            <div class="buttons">
+                                <button class="btn btn-default">Followers <span class="badge">@Html.DisplayFor(modelItem => Model.group.Users.Count) </span></button>
+                            </div>
+                        </div>
                     </div>
+                    <div class="end"></div>
                 </div>
             </div>
             <div class="end"></div>

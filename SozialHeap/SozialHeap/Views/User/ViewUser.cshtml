@@ -37,29 +37,36 @@
 
                 <div class="description">@Model.user.description</div>
                 <div class="end"></div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="button">
-                       @if(Model.following)
-                       {
-                           <a class="btn btn-warning" href="@Url.Action("StopFollowing/"+Model.user.userName)">
-                                <span class="glyphicon glyphicon-remove"> </span> UnFollow
-                            </a>
-                       }
-                       else
-                       {
-                            <a class="btn btn-success" href="@Url.Action("StartFollowing/"+Model.user.userName)">
-                                <span class="glyphicon glyphicon-ok"> </span> Follow
-                            </a>
-                       }
-                        
-                    </div>
-                }
+                <div class="row">
+                    <div class="buttonLeftCol">
 
-                <div class="buttons">
-                    <button class="btn btn-default">Followers <span class="badge"> @Model.user.Users1.Count </span></button>
-                    <button class="btn btn-default">Following <span class="badge"> @Model.user.Users.Count </span></button>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="button">
+                                @if (Model.following)
+                                {
+                                    <a class="btn btn-warning" style="margin-bottom: 0; height: 40px; " href="@Url.Action("StopFollowing/"+Model.user.userName)">
+                                        <span class="glyphicon glyphicon-remove"> </span> UnFollow
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-success" href="@Url.Action("StartFollowing/"+Model.user.userName)">
+                                        <span class="glyphicon glyphicon-ok"> </span> Follow
+                                    </a>
+                                }
+
+                            </div>
+                        }
+                        </div>
+                    <div class="buttonRightCol">
+
+                        <div class="buttons">
+                            <button class="btn btn-default">Followers <span class="badge"> @Model.user.Users1.Count </span></button>
+                            <button class="btn btn-default">Following <span class="badge"> @Model.user.Users.Count </span></button>
                 </div>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="end"></div>

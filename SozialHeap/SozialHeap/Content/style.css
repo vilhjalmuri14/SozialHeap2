@@ -458,4 +458,41 @@ height: 75px;
             border-color: #ccc;
         }
 
+        /* columns*/
         
+        .buttonLeftCol
+        {
+            float: left; 
+            margin-left: 20px;
+        }
+        .buttonRightCol
+        {
+            float: right; 
+            display: inline;
+        }
+        @media screen and (max-width: 900px) {
+         .buttonLeftCol
+         {
+            margin-left: 20px;
+          
+        }
+        .buttonRightCol {
+            margin-top: 20px;
+            margin-left: 20px;
+            float: left;
+            clear: left;            
+        }
+
+        .buttonRightCol .btn {
+            float: left;
+            clear; left;
+            margin-top: 20px;
+            
+        }
+         .buttonRightCol .btn:first-of-type {
+            float: left;
+            clear; left;
+            margin-top: 0px;
+            
+        }
+}
