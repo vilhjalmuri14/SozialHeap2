@@ -85,3 +85,11 @@ $(function() {
         });
 
 });
+
+$(function () {
+    /* Ugly hack to fix a cheap font */
+    $(".panel-title").each(function (index) {
+        var text = $(this).text().replace(/([^a-zA-Z\d\s])/g, '<span style="font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;">$1</span>');
+        $(this).html(text);
+    });
+});
