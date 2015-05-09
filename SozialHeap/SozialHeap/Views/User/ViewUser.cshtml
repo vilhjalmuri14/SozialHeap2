@@ -45,15 +45,15 @@
                             <div class="button">
                                 @if (Model.following)
                                 {
-                                    <a class="btn btn-warning" style="margin-bottom: 0; height: 40px; " href="@Url.Action("StopFollowing/"+Model.user.userName)">
-                                        <span class="glyphicon glyphicon-remove"> </span> UnFollow
+                                    <a class="btn user followed " href="@Url.Action("StopFollowing/"+Model.user.userName)">
+                                        <span class="glyphicon glyphicon-ok"> </span> Following
                                     </a>
+
                                 }
                                 else
                                 {
-                                    <a class="btn btn-success" href="@Url.Action("StartFollowing/"+Model.user.userName)">
-                                        <span class="glyphicon glyphicon-ok"> </span> Follow
-                                    </a>
+                                    <a class="btn user notfollowing" href="@Url.Action("StartFollowing/"+Model.user.userName)">
+                                        <span class="glyphicon glyphicon-plus"></span> Follow </a>
                                 }
 
                             </div>

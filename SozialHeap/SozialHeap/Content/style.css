@@ -10,7 +10,10 @@ form
     display: inline;
 }
 
-
+.hidden
+{
+    visibility: hidden;
+}
 
 .notimportant
 {
@@ -458,6 +461,63 @@ height: 75px;
             border-color: #ccc;
         }
 
+
+
+        /* following // not following */
+
+        .followed
+        {
+            margin-bottom: 0; 
+        }
+
+
+        .user.followed
+        {
+            background: #93a2f4;  
+            border-color: #93a2f4;
+        }
+
+        .remove
+        {
+            background: #ec971f !important;
+            border-color: #ec971f !important;
+            color: #fff;
+        }
+
+        .user.add
+        {
+            background: #93a2f4 !important;
+            border-color: #93a2f4 !important;
+            color: #fff;
+        }
+
+        .group.add
+        {
+            background: #4e7182 !important;
+            border-color: #4E7182 !important;
+        }
+
+        .add:visited,
+        .add:active,
+        .add:link
+        {
+            color: #fff;
+        }
+
+        .notfollowing
+        {
+            border-width: 1px;
+            border-color: #000 !important;
+            background: #fff !important;
+        }
+
+        .notfollowing:visited,
+        .notfollowing:active,
+        .notfollowing:link
+        {
+            color: #000;
+        }
+
         /* columns*/
         
         .buttonLeftCol
@@ -470,7 +530,7 @@ height: 75px;
             float: right; 
             display: inline;
         }
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 600px) {
          .buttonLeftCol
          {
             margin-left: 20px;
@@ -481,6 +541,8 @@ height: 75px;
             margin-left: 20px;
             float: left;
             clear: left;            
+            width: 150px;
+            overflow: hidden;
         }
 
         .buttonRightCol .btn {

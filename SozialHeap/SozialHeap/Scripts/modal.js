@@ -57,3 +57,31 @@ function stopRKey(evt) {
 }
 
 document.onkeypress = stopRKey;
+
+
+$(function() {
+    $(".followed").mouseenter(
+          function ()
+          { 
+              $(this).addClass('remove');
+              $(this).html('<span class="glyphicon glyphicon-remove followed"> </span> UnFollow');
+          });
+    $(".followed").mouseleave(
+          function () {
+              $(this).removeClass("remove");
+           
+              $(this).html('<span class="glyphicon glyphicon-ok"> </span> Following')
+          });
+    $(".notfollowing").mouseenter(
+      function () {
+          $(this).addClass('add');
+          $(this).html('<span class="glyphicon glyphicon-ok"> Follow');
+      });
+    $(".notfollowing").mouseleave(
+        function () {
+            $(this).removeClass('add');
+            $(this).html('<span class="glyphicon glyphicon-plus"></span> Follow');
+
+        });
+
+});
