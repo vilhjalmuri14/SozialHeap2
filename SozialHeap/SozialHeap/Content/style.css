@@ -335,6 +335,14 @@ height: 75px;
             background: #4E7182;
             border-color: #4E7182;
         }
+        .groupbutton
+        {
+            border-color: #4E7182;
+            background: #4E7182;
+            margin-bottom: 20px;
+            color: #fff;
+            float: right;
+        }
 
         .group.btn:hover
         {
@@ -535,7 +543,11 @@ height: 75px;
             float: right; 
             display: inline;
         }
-        @media screen and (max-width: 600px) {
+        .showlower
+        {
+            display: none;
+        }
+        @media screen and (max-width: 640px) {
          .buttonLeftCol
          {
             margin-left: 20px;
@@ -562,4 +574,21 @@ height: 75px;
             margin-top: 0px;
             
         }
+
+        .hidelower
+        {
+            display: none;
+        }
+
+        .showlower
+        {
+           display: inline;
+            background: #000;
+            color: #fff;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+
 }
