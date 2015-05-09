@@ -323,6 +323,11 @@ height: 75px;
             border-color: #4E7182;
         }
 
+        .group .badge
+        {
+            background: #4e7182;
+        }
+
         
         .group .panel-heading,
         .group.btn
