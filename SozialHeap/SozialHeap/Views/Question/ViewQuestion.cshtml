@@ -38,7 +38,7 @@
 
                     </div>
                     <div class="postinfo">
-                        <span class="notimportant">question posted:</span> @Model.currentPost.dateCreated
+                        <span class="notimportant">question posted:</span> @ViewBag.timeSince
 
                     </div>
                     <div class="end">
@@ -70,7 +70,7 @@
                                 }
                                 else
                                 {
-                                    <span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.scoreCounter Likes </span>
+                                    <span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.Users.Count Likes </span>
                                 }
 
                             </div>
@@ -129,7 +129,7 @@
 
                             </div>
                             <div class="questionbox">
-                                <div class="info"> <span class="notimportant">answer posted:</span> @Model.answerList[i].dateCreated</div>
+                                <div class="info"> <span class="notimportant">answer posted:</span> @ViewBag.ansTime[i]</div>
 
 
                             <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge">  @Model.answerList[i].scoreCounter </span></div>

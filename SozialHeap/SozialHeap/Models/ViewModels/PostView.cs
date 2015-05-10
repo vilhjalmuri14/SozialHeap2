@@ -15,6 +15,7 @@ namespace Sozialheap.Models.ViewModels
         public bool LikedPost { get; set; }
         public List<bool> LikedAnswers { get; set; }
         public List<Answer> answerList { get; set; }
+        public List<string> answerTime { get; set; }
         public bool followingPost { get; set; }
     }
 }

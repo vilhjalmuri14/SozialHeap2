@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SozialHeap.Utils;
 
 namespace Sozialheap.Controllers
 {
@@ -106,6 +107,12 @@ namespace Sozialheap.Controllers
                 {
                     model.answerList = service.GetAnswerById(model.currentPost.postID);
                     ViewBag.postID = (int)id;
+                    ViewBag.timeSince = Utils.TimeSince(model.currentPost.dateCreated);
+                    ViewBag.ansTime = new string[model.answerList.Count];
+                    for (int i = 0; i < model.answerList.Count; i++ )
+                    {
+                        ViewBag.ansTime[i] = Utils.TimeSince(model.answerList[i].dateCreated);
+                    }
                     return View(model);
                 }
                 return View("Error");
@@ -113,5 +120,9 @@ namespace Sozialheap.Controllers
             return View("Error");
         }
 
+        public static string FormatTime(DateTime? date)
+        {
+            return Utils.TimeSince(date);
+        }
     }
 }
