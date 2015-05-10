@@ -25,17 +25,30 @@ namespace SozialHeap.Utils
 
             if(diff.TotalDays > 0.9999999)
             {
+                if(diff.TotalDays > 31)
+                {
+
+                }
                 return Math.Round(diff.TotalDays, 0, MidpointRounding.ToEven).ToString() + " days ago";
             }
             else
             {
                 StringBuilder sb = new StringBuilder();
+                
                 int hours = (int)Math.Round(diff.TotalHours, 0, MidpointRounding.ToEven);
                 int minutes = (int)Math.Round(diff.TotalMinutes, 0, MidpointRounding.ToEven);
                 if(hours > 0)
                 {
                     sb.Append(hours.ToString());
-                    sb.Append(" ago");
+                    if(hours > 1)
+                    {
+                        sb.Append(" hours");
+                    }
+                    else
+                    {
+                        sb.Append(" hour");
+                    }
+                    
                 }
                 if(minutes > 0)
                 {
@@ -44,7 +57,19 @@ namespace SozialHeap.Utils
                         sb.Append(" and ");
                     }
                     sb.Append(minutes.ToString());
-                    sb.Append(" minutes ago");
+                    if(minutes > 1)
+                    {
+                        sb.Append(" minutes ago");
+                    }
+                    else
+                    {
+                        sb.Append(" minute ago");
+                    }
+                    
+                }
+                else if(hours > 0)
+                {
+                    sb.Append(" ago");
                 }
                 if(hours == 0 && minutes == 0)
                 { 
@@ -53,7 +78,5 @@ namespace SozialHeap.Utils
                 return sb.ToString();
             }
         }
-
-
     }
 }
