@@ -22,18 +22,39 @@ namespace SozialHeap.Utils
             DateTime currTime = DateTime.Now;
             DateTime time1 = (DateTime)time;
             TimeSpan diff = currTime - time1;
-
-            if(diff.TotalDays > 0.9999999)
+            StringBuilder sb = new StringBuilder();
+                
+            int days = (int)diff.TotalDays;
+            if(days > 0)
             {
-                if(diff.TotalDays > 31)
+                if(days > 30)
                 {
-
+                    int months = days / 30;
+                    sb.Append(months.ToString());
+                    if(months > 1)
+                    {
+                        sb.Append(" months ago");
+                        return sb.ToString();
+                    }
+                    else
+                    {
+                        sb.Append(" month ago");
+                        return sb.ToString();
+                    }
                 }
-                return Math.Round(diff.TotalDays, 0, MidpointRounding.ToEven).ToString() + " days ago";
+                sb.Append(days.ToString());
+                if(days > 1)
+                {
+                    sb.Append(" days ago");
+                }
+                else
+                {
+                    sb.Append(" day ago");
+                }
+                return sb.ToString();
             }
             else
             {
-                StringBuilder sb = new StringBuilder();
                 
                 int hours = (int)Math.Round(diff.TotalHours, 0, MidpointRounding.ToEven);
                 int minutes = (int)Math.Round(diff.TotalMinutes, 0, MidpointRounding.ToEven);

@@ -25,7 +25,6 @@ $(function () {
             }
         });
     });
-    /*
     $('#headerSearch .form-control').autocomplete({
         source: "/User/UserQuery/",
         minLength: 1,
@@ -43,6 +42,6 @@ $(function () {
             $(".ui-autocomplete").css("z-index", 9999990000);
         }
     });
-    */
+    
 });
 

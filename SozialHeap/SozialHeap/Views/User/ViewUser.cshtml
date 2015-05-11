@@ -85,44 +85,48 @@
 
 <!-- Notifications list -->
 
-<div class="col-sm-6" style="float: left;">
-    <div class="panel panel-primary question">
+@if (ViewBag.isLoggedIn == true)
+{
 
-        <div class="panel-heading">
-            <h3 id="panel-title" class="panel-title">
+    <div class="col-sm-6" style="float: left;">
+        <div class="panel panel-primary question">
+            <div class="panel-heading">
+                <h3 id="panel-title" class="panel-title">
 
-                Answers to your questions
+                    Answers to your questions
 
-            </h3>
-        </div>
-        @if (Model.notificationList.Count() == 0)
-        {
-            <div class="nofriends">
-                No new answers.
+                </h3>
             </div>
-
-        }
-        @foreach (var item in Model.notificationList)
-        {
-            <div class="panel-body">
-                <div class="topitem postquestion">
-                    <div class="imgholder">
-                        <img src="~/images/anonymous_user.png" />
-                    </div>
-                    <div class="textholder">
-                        <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
-                        @item.body
-                    </div>
-                    <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
-                        <span class="makedivlink"></span>
-                    </a>
+       
+        
+            @if (Model.notificationList.Count() == 0)
+            {
+                <div class="nofriends">
+                    No new answers.
                 </div>
-            </div>
-        }
-
+            }
+        
+            @foreach (var item in Model.notificationList)
+            {
+                <div class="panel-body">
+                    <div class="topitem postquestion">
+                        <div class="imgholder">
+                            <img src="~/images/anonymous_user.png" />
+                        </div>
+                        <div class="textholder">
+                            <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
+                            @item.body
+                        </div>
+                        <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                            <span class="makedivlink"></span>
+                        </a>
+                    </div>
+                </div>
+            }
+        
+        </div>
     </div>
-</div>
-
+}
 <!-- end notifications list-->
 
 <!-- group profile ends -->
