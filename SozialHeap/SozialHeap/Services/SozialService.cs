@@ -311,6 +311,7 @@ namespace Sozialheap.Services
         public void LikePost(User user, Post post)
         {
             user.Posts1.Add(post);
+            post.scoreCounter++;
             db2.SaveChanges();
         }
 
@@ -322,6 +323,7 @@ namespace Sozialheap.Services
         public void UnLikePost(User user, Post post)
         {
             user.Posts1.Remove(post);
+            post.scoreCounter--;
             db2.SaveChanges();
         }
 

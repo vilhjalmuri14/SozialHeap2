@@ -50,13 +50,13 @@ namespace SozialHeap.Utils
                     }
                     
                 }
-                if(minutes > 0)
+                if((minutes % 60) > 0)
                 {
                     if(hours > 0)
                     {
                         sb.Append(" and ");
                     }
-                    sb.Append(minutes.ToString());
+                    sb.Append((minutes % 60).ToString());
                     if(minutes > 1)
                     {
                         sb.Append(" minutes ago");
