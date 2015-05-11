@@ -18,6 +18,14 @@ $('#prefetch .typeahead').typeahead(null, {
 
 $(function () {
 
+    $(document).ready(function () {
+        $('#queryString').keypress(function (e) {
+            if (e.which == 13 && $('#queryString').val() != '') {
+                document.location = '/Home/Search/' + $("#queryString").val();
+            }
+        });
+    });
+    /*
     $('#headerSearch .form-control').autocomplete({
         source: "/User/UserQuery/",
         minLength: 1,
@@ -35,5 +43,6 @@ $(function () {
             $(".ui-autocomplete").css("z-index", 9999990000);
         }
     });
+    */
 });
 

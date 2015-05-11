@@ -1,0 +1,41 @@
+﻿@model SozialHeap.Models.ViewModels.SearchResults
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search results</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Type</td>
+            <td>Name</td>
+            <td>Text</td>
+        </tr>
+    </thead>
+
+@foreach (var item in Model.users) {
+    <tr>
+        <td>User</td>
+        <td>
+            <a href="@Url.Action("/ViewUser/" + item.userName, "User")">@item.userName </a>
+</td>
+        <td>@item.description</td>
+        
+    </tr>
+}
+@foreach (var item in Model.Posts)
+{
+    <tr>
+        <td>Posts</td>
+        <td>
+            <a href="@Url.Action("/ViewQuestion/" + item.postID, "Question")">@item.name </a>
+            
+        </td>
+        <td>@item.body</td>
+    </tr>
+}
+
+</table>

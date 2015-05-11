@@ -614,5 +614,47 @@ namespace Sozialheap.Services
                 Console.WriteLine(ex.Message.ToString());
             }
         }
+
+        public List<Post> findPostByString(string query)
+        {
+            List<Post> posts = (from item in db2.Posts
+                              where item.body.Contains(query) || item.name.Contains(query)
+                              select item).ToList();
+
+            List<Answer> answers = (from item in db2.Answers
+                                    where item.body.Contains(query) || item.title.Contains(query)
+                                    select item).ToList();
+
+            List<Post> final = new List<Post>();
+            final = posts;
+            
+            for (int i = 0; i < answers.Count; i++ )
+            {
+                if(!final.Contains(answers[i].Post))
+                {
+                    final.Add(answers[i].Post);
+                }
+            }
+
+            return final;
+        }
+
+        public List<User> findUsersByString(string query)
+        {
+            try
+            {
+                List<User> res = (from item in db2.Users
+                                  where item.userName.Contains(query) || item.description.Contains(query) || item.fullName.Contains(query)
+                                  select item).ToList();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new List<User>();
+        }
+
+        
     }
 }
