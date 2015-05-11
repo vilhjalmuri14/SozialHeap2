@@ -51,8 +51,16 @@ namespace Sozialheap.Services
         /// <param name="g">Group object</param>
         public void CreateGroup(Group g)
         {
-            db2.Groups.Add(g);
-            db2.SaveChanges();
+            try
+            {
+                db2.Groups.Add(g);
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                
+                return;
+            }
             // TODO: Implement creategroup !
         }
 
@@ -209,11 +217,11 @@ namespace Sozialheap.Services
         public List<User> GetUsersByGroup(Group grp, int n = 5)
         {
             // TODO IMPLEMENT !
-            /*List<User> users = (from item in db2.Users
+            List<User> users = (from item in db2.Users
                                 where item.Groups.Contains(grp)
                                 orderby item.score descending
                                 select item).ToList();
-             */
+            
             return new List<User>();
         }
 

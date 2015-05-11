@@ -31,8 +31,16 @@ namespace Sozialheap.Controllers
             form.dateCreated = DateTime.Now;
             
             service.CreateGroup(form);
+            if(form.groupID > 0)
+            {
+                return View("~/Group/ViewGroup/" + form.groupID);
 
-            return View("~/ViewGroup/"+form.groupID);
+            }
+            else
+            {
+                ViewBag.Message = "Could not create group, check if its name already exists!";
+                return View("GroupHelper");
+            }
         }
 
         [Authorize]
@@ -85,8 +93,9 @@ namespace Sozialheap.Controllers
                 ViewBag.groupID = (int)id;
                 v.notifications = 01;
                 v.notificationList = null;
+                v.group.Users = v.group.Users.OrderByDescending(x=>x.score).ToList();
                 v.postList = service.getPosts((int)id);
-                v.group.Users = service.GetUsersByGroup(v.group);
+                //v.group.Users = service.GetUsersByGroup(v.group);
                 if (User.Identity.IsAuthenticated)
                 {
                     v.following = service.isFollowingGroup(service.GetUserById(User.Identity.GetUserId()), v.group);
