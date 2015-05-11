@@ -312,6 +312,10 @@ namespace Sozialheap.Services
         {
             user.Posts1.Add(post);
             post.scoreCounter++;
+            if(post.User != user)
+            {
+                post.User.score += 5;
+            }
             db2.SaveChanges();
         }
 
@@ -324,6 +328,10 @@ namespace Sozialheap.Services
         {
             user.Posts1.Remove(post);
             post.scoreCounter--;
+            if (post.User != user)
+            {
+                post.User.score -= 5;
+            }
             db2.SaveChanges();
         }
 
