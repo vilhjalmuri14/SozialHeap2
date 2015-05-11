@@ -235,7 +235,7 @@ footer
 /* profile start */
 .profile
 {
-  border-bottom-width: 0px; 
+  border-bottom-width: 0; 
 }
 
 .profile .authorinfo 
@@ -288,7 +288,19 @@ height: 75px;
 /*  search start */
         /* search ends*/
         /* colors */
-        .question
+
+
+        .errormsg
+        {
+            border-color: red;
+        }
+
+        .errormsg .panel-heading
+        {
+            border-color: red;
+            background: red;
+        }
+        .question   
         {
             border-color: #466675;
         }
@@ -384,7 +396,7 @@ height: 75px;
 
         .backtitle
         {
-            font-family 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .panel-title
         {
@@ -568,14 +580,14 @@ height: 75px;
 
         .buttonRightCol .btn {
             float: left;
-            clear; left;
+            clear: left;
             margin-top: 20px;
             
         }
          .buttonRightCol .btn:first-of-type {
             float: left;
-            clear; left;
-            margin-top: 0px;
+            clear: left;
+            margin-top: 0;
             
         }
 
