@@ -1,42 +1,42 @@
-﻿
-@{
-    ViewBag.Title = "index";
+﻿@{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <div class="row">
     <div class="col-sm-12">
-        <div class="panel panel-primary group">
+        <div class="panel panel-primary user">
+
 
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
-                    Group list
+                    User list
 
-                </h3> 
+                </h3>
             </div>
             <div class="panel-body">
-              
-                @foreach (var item in Model.Users.Take(5))
+
+                @foreach (var item in Model.userList)
                 {
-                        <div class="col-sm-6">
+                    <div class="col-sm-6">
 
-                    <div class="topitem postquestion">
-                        
-                            
-                        
-                        <div class="imgholder">
-                            <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                <img src="~/images/Group.png" />
-                            </a>
+                        <div class="topitem postquestion">
 
-                        </div>
+                            <div class="imgholder">
+                                <a href="@Url.Action("ViewUser/" + @item.groupID, "User")">
+                                    <img src="~/images/User.png" />
+                                </a>
+
+                            </div>
                             <h4>@item.userName</h4><br />
                             <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
                                 <span class="makedivlink makedivlink_small"></span>
                             </a>
 
+                        </div>
                     </div>
-                            </div>
                 }
 
             </div>
