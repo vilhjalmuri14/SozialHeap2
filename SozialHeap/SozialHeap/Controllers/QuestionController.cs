@@ -104,6 +104,10 @@ namespace Sozialheap.Controllers
                 {
                     // set user information for logged in user
                     User currentUser = service.GetUserById(User.Identity.GetUserId());
+                    if(currentUser == model.currentPost.User)
+                    {
+                        service.AcknowledgeNotifications(model.currentPost);
+                    }
                     model.notificationList = service.getUnreadPostsByUser(currentUser);
                     model.LikedPost = service.DidUserLikePost(currentUser, model.currentPost);
                     ViewBag.notifications = model.notificationList.Count();

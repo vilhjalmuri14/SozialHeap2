@@ -81,7 +81,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                
+                Console.WriteLine(ex.Message.ToString());
                 return;
             }
         }
@@ -321,6 +321,7 @@ namespace Sozialheap.Services
             {
                 Console.WriteLine(ex.Message.ToString());
             }
+            return new List<SimpleUser>();
         }
 
         public List<User> GetUsersByGroup(Group grp, int n = 5)
@@ -339,6 +340,7 @@ namespace Sozialheap.Services
             {
                 Console.WriteLine(ex.Message.ToString());
             }
+            return new List<User>();
         }
 
 
@@ -595,6 +597,22 @@ namespace Sozialheap.Services
                 }
             }
             return new List<Post>();
+        }
+
+        public void AcknowledgeNotifications(Post post)
+        {
+            try
+            {
+                foreach (var item in post.Answers)
+                {
+                    item.seenByOwner = true;
+                }
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
     }
 }

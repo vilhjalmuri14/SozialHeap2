@@ -219,6 +219,7 @@
     <Compile Include="Models\ViewModels\FeedView.cs" />
     <Compile Include="Models\ViewModels\FrontPageView.cs" />
     <Compile Include="Models\ViewModels\PostView.cs" />
+    <Compile Include="Models\ViewModels\SearchResults.cs" />
     <Compile Include="Models\ViewModels\SimpleUser.cs" />
     <Compile Include="Models\ViewModels\SingleGroupView.cs" />
     <Compile Include="Models\ViewModels\UserView.cs" />

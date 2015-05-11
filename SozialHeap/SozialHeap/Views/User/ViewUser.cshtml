@@ -3,7 +3,6 @@
     ViewBag.Title = "ViewUser";
 }
 
-<!-- <d class="row"> -->
 <!-- group profile starts -->
 <div class="col-sm-6">
     <div class="panel panel-primary user">
@@ -71,11 +70,60 @@
                     </div>
             </div>
         </div>
+        @if (ViewBag.isThisUser == true)
+        {
+            foreach(var item in Model.notificationList)
+            {
+                <p>@item.name</p>
+            }
+        }
         <div class="end"></div>
 
 
     </div>
 </div>
+
+<!-- Notifications list -->
+
+<div class="col-sm-6" style="float: left;">
+    <div class="panel panel-primary question">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Answers to your questions
+
+            </h3>
+        </div>
+        @if (Model.notificationList.Count() == 0)
+        {
+            <div class="nofriends">
+                No new answers.
+            </div>
+
+        }
+        @foreach (var item in Model.notificationList)
+        {
+            <div class="panel-body">
+                <div class="topitem postquestion">
+                    <div class="imgholder">
+                        <img src="~/images/anonymous_user.png" />
+                    </div>
+                    <div class="textholder">
+                        <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
+                        @item.body
+                    </div>
+                    <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                        <span class="makedivlink"></span>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<!-- end notifications list-->
 
 <!-- group profile ends -->
 <!-- Top Users starts -->

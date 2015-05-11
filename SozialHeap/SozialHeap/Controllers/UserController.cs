@@ -32,9 +32,17 @@ namespace Sozialheap.Controllers
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
             if (User.Identity.IsAuthenticated)
             {
-
-                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                User currUser = service.GetUserById(User.Identity.GetUserId());
+                model.notificationList = service.getUnreadPostsByUser(currUser);
                 ViewBag.notifications = model.notificationList.Count();
+                if(model.user == currUser)
+                {
+                    // Current user, display notifications!
+                    ViewBag.isThisUser = true;
+                    // mark all posts as read
+                    //service.AcknowledgeNotifications(currUser);
+
+                }
             }
             return View(model);
         }
