@@ -177,7 +177,7 @@ position: relative;
 /* header starts */ 
 
 .title{
-  font-family: 'lineal_simples_stregular';
+  font-family: 'lineal_simples_stregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 0;
   /* margin-left: 2em; */ 
 }
@@ -383,9 +383,13 @@ height: 75px;
             
         }
 
+        .backtitle
+        {
+            font-family 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
         .panel-title
         {
-            font-family: "lineal_simples_stregular";
+            font-family: 'lineal_simples_stregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             color: #e5f7ff;
             text-align: right;
             font-size: 12px;
@@ -393,7 +397,7 @@ height: 75px;
 
         .modal-title
         {
-            font-family: "lineal_simples_stregular", "sans-serif";
+            font-family: 'lineal_simples_stregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             
         }
 
