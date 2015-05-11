@@ -1,5 +1,4 @@
-﻿
-using Sozialheap.Models;
+﻿using Sozialheap.Models;
 using Sozialheap.Models.ViewModels;
 using Sozialheap.Services;
 using SozialHeap.Models;
@@ -29,7 +28,7 @@ namespace Sozialheap.Controllers
             if (form.groupID < 1 || form.name == null || form.body == null)
             {
                 ViewBag.Message = "You cannot create Question without a title or question!";
-                return View();
+                return View("QuestionHelper");
             }
 
             // We have valid input, lets insert
@@ -51,10 +50,10 @@ namespace Sozialheap.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult CreateAnswer([Bind(Include = "postID, title, body")]Answer form)
         {
-            if (form.postID < 1 || form.title == "" || form.body == "")
+            if (form.postID < 1 || form.title == null || form.body == null)
             {
                 ViewBag.Message = "You cannot create Answer without a title or body!";
-                return View();
+                return View("QuestionHelper");
             }
 
             // We have valid input, lets insert
@@ -73,7 +72,10 @@ namespace Sozialheap.Controllers
         {
             Post post = service.getPost(id);
             User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.LikePost(currentUser, post);
+            if(post != null && currentUser != null)
+            {
+                service.LikePost(currentUser, post);
+            }
 
             return RedirectToAction("ViewQuestion/" + id);
         }
@@ -83,8 +85,10 @@ namespace Sozialheap.Controllers
         {
             Post post = service.getPost(id);
             User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.UnLikePost(currentUser, post);
-
+            if (post != null && currentUser != null)
+            {
+                service.UnLikePost(currentUser, post);
+            }
             return RedirectToAction("ViewQuestion/" + id);
         }
 
@@ -98,6 +102,7 @@ namespace Sozialheap.Controllers
                 model.currentPost = service.getPost(new_id);
                 if (User.Identity.IsAuthenticated)
                 {
+                    // set user information for logged in user
                     User currentUser = service.GetUserById(User.Identity.GetUserId());
                     model.notificationList = service.getUnreadPostsByUser(currentUser);
                     model.LikedPost = service.DidUserLikePost(currentUser, model.currentPost);
@@ -105,6 +110,7 @@ namespace Sozialheap.Controllers
                 }
                 if (model.currentPost != null)
                 {
+                    // 
                     model.answerList = service.GetAnswerById(model.currentPost.postID);
                     ViewBag.postID = (int)id;
                     ViewBag.timeSince = Utils.TimeSince(model.currentPost.dateCreated);
@@ -117,6 +123,7 @@ namespace Sozialheap.Controllers
                 }
                 return View("Error");
             }
+            ViewBag.Message = "You must select a valid question.";
             return View("Error");
         }
 

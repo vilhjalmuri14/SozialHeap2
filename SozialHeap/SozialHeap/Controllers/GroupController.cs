@@ -21,10 +21,11 @@ namespace Sozialheap.Controllers
         [HttpPost]
         public ActionResult CreateGroup([Bind(Include = "groupName, description")]Group form)
         {
-            if(form.groupName == "")
+            if(form.groupName == null)
             {
                 // Sensitive fields missing!
-                return RedirectToAction("Index");
+                ViewBag.Message = "You tried to post a nameless group!";
+                return View("GroupHelper");
             }
             form.userID = User.Identity.GetUserId();
             form.dateCreated = DateTime.Now;
@@ -38,7 +39,7 @@ namespace Sozialheap.Controllers
         [HttpPost]
         public ActionResult EditGroup([Bind(Include = "groupID, postID, title")]Group form)
         {
-            if (form.groupName == "" || form.userID == "")
+            if (form.groupName == null || form.userID == null)
             {
                 // Sensitive fields missing!
                 return View("Error");
@@ -107,10 +108,14 @@ namespace Sozialheap.Controllers
         public ActionResult StartFollowing(int id)
         {
             Group group = service.GetGroupById(id);
-            User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.StartFollowingGroup(currentUser, group);
+            if(group != null)
+            {
+                User currentUser = service.GetUserById(User.Identity.GetUserId());
+                service.StartFollowingGroup(currentUser, group);
 
-            return RedirectToAction("ViewGroup/" + id);
+                return RedirectToAction("ViewGroup/" + id);
+            }
+            return View("GroupHelper");
         }
 
         [Authorize]
