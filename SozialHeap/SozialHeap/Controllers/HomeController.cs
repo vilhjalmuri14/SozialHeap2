@@ -20,7 +20,7 @@ namespace SozialHeap.Controllers
         public ActionResult Index()
         {
             FrontPageView model = new FrontPageView();
-            model.Groups = service.GetAllGroups();
+            model.Groups = service.GetAllGroups().Take(5).ToList();
             model.Users = service.GetAllUsers();
             model.Posts = service.getRecentPosts();
             if (User.Identity.IsAuthenticated)
