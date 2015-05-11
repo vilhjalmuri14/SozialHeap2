@@ -15,7 +15,12 @@ namespace Sozialheap.Services
     public class SozialService
     {
         // The database (our one, not the authentication one)
-        private SozialheapEntities db2 = new SozialheapEntities();
+        private SozialheapEntities db2;
+        public SozialService()
+        {
+             db2 = new SozialheapEntities();
+        }
+        
         private bool checkNetwork()
         {
             return true;
@@ -26,10 +31,18 @@ namespace Sozialheap.Services
         /// <returns>List of all groups</returns>
         public List<Group> GetAllGroups()
         {
-            var groups = (from item in db2.Groups
-                          select item).ToList();
-            
-            return groups;
+            try
+            {
+                var groups = (from item in db2.Groups
+                              select item).ToList();
+                return groups;
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new List<Group>();
         }
 
         /// <summary>
@@ -39,10 +52,20 @@ namespace Sozialheap.Services
         /// <returns>single group</returns>
         public Group GetGroupById(int id)
         {
-            var group = (from item in db2.Groups
-                         where item.groupID == id
-                         select item).SingleOrDefault<Group>();
-            return (Group)group;
+            try
+            {
+
+
+                var group = (from item in db2.Groups
+                             where item.groupID == id
+                             select item).SingleOrDefault<Group>();
+                return (Group)group;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new Group();
         }
 
         /// <summary>
@@ -61,15 +84,22 @@ namespace Sozialheap.Services
                 
                 return;
             }
-            // TODO: Implement creategroup !
         }
 
         public void EditGroup(Group g)
         {
             // testing update!
-            Group newGroup = GetGroupById(g.groupID);
-            newGroup = g;
-            db2.SaveChanges();
+            try
+            {
+                Group newGroup = GetGroupById(g.groupID);
+                newGroup = g;
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -88,17 +118,38 @@ namespace Sozialheap.Services
         /// <returns>List of all post of that group</returns>
         public List<Post> getPosts(int groupId)
         {
-            List<Post> posts = (from item in db2.Posts
-                            where item.groupID == groupId
-                            orderby item.dateCreated descending
-                            select item).ToList();
+            try 
+            { 
+                List<Post> posts = (from item in db2.Posts
+                                where item.groupID == groupId
+                                orderby item.dateCreated descending
+                                select item).ToList();
 
-            return posts;
+                return posts;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new List<Post>();
         }
         
+        /// <summary>
+        /// Get the newest 5 posts in the system
+        /// </summary>
+        /// <returns>List of 5 newest posts List<Post></returns>
         public List<Post> getRecentPosts()
         {
-            return (from item in db2.Posts orderby item.dateCreated descending select item).Take(5).ToList();
+            try 
+            { 
+                return (from item in db2.Posts orderby item.dateCreated descending select item).Take(5).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new List<Post>();
         }
 
         /// <summary>
@@ -107,12 +158,21 @@ namespace Sozialheap.Services
         /// <returns>list of Posts</returns>
         public List<Post> getPostbyId(string id)
         {
-            List<Post> p = (from item in db2.Posts
-                            where item.userID == id
-                            orderby item.dateCreated descending
-                            select item).ToList();
+            try
+            {
+                List<Post> p = (from item in db2.Posts
+                                where item.userID == id
+                                orderby item.dateCreated descending
+                                select item).ToList();
 
-            return p;
+                return p;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new List<Post>();
         }
 
         /// <summary>
@@ -122,12 +182,21 @@ namespace Sozialheap.Services
         /// <returns>one Post</returns>
         public Post getPost(int postId)
         {
-            Post p = (from item in db2.Posts
-                      where item.postID == postId
-                      orderby item.dateCreated descending
-                      select item).SingleOrDefault();
+            try
+            {
+                Post p = (from item in db2.Posts
+                                    where item.postID == postId
+                                    orderby item.dateCreated descending
+                                    select item).SingleOrDefault();
 
-            return p;
+                return p;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new Post();
         }
 
         /// <summary>
@@ -137,15 +206,30 @@ namespace Sozialheap.Services
         public void CreatePost(Post p)
         {
             // add the attached Post
-
-            db2.Posts.Add(p);
-            db2.SaveChanges();
+            try
+            {
+                db2.Posts.Add(p);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         public void CreateAnswer(Answer a)
         {
-            db2.Answers.Add(a);
-            db2.SaveChanges();
+            try
+            {
+                db2.Answers.Add(a);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -174,11 +258,19 @@ namespace Sozialheap.Services
         /// <returns>single User object</returns>
         public User GetUserById(string id)
         {
-            User user = (from item in db2.Users
-                        where (item.userID == id)
-                        select item).SingleOrDefault();
+            try
+            {
+                User user = (from item in db2.Users
+                             where (item.userID == id)
+                             select item).SingleOrDefault();
 
-            return user;
+                return user;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new User();
         }
 
         /// <summary>
@@ -188,10 +280,20 @@ namespace Sozialheap.Services
         /// <returns>User object</returns>
         public User GetUserByUsername(string username)
         {
+            try
+            {
             var user = (from item in db2.Users
                             where item.userName == username
                             select item).SingleOrDefault();
             return user;
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new User();
         }
 
         /// <summary>
@@ -201,28 +303,42 @@ namespace Sozialheap.Services
         /// <returns></returns>
         public List<SozialHeap.Models.ViewModels.SimpleUser> GetUsersByQuery(string query)
         {
-            List<User> users = (from item in db2.Users
-                         where item.userName.StartsWith(query)
-                         orderby item.score descending
-                         select item).ToList();
-            List<SozialHeap.Models.ViewModels.SimpleUser> su = new List<SozialHeap.Models.ViewModels.SimpleUser>();
-
-            foreach(var item in users)
+            try
             {
-                su.Add(new SimpleUser(item.userName, item.userName));
+                List<User> users = (from item in db2.Users
+                                    where item.userName.StartsWith(query)
+                                    orderby item.score descending
+                                    select item).ToList();
+                List<SozialHeap.Models.ViewModels.SimpleUser> su = new List<SozialHeap.Models.ViewModels.SimpleUser>();
+
+                foreach (var item in users)
+                {
+                    su.Add(new SimpleUser(item.userName, item.userName));
+                }
+                return su;
             }
-            return su;
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         public List<User> GetUsersByGroup(Group grp, int n = 5)
         {
             // TODO IMPLEMENT !
-            List<User> users = (from item in db2.Users
-                                where item.Groups.Contains(grp)
-                                orderby item.score descending
-                                select item).ToList();
-            
-            return new List<User>();
+            try
+            {
+                List<User> users = (from item in db2.Users
+                                    where item.Groups.Contains(grp)
+                                    orderby item.score descending
+                                    select item).ToList();
+
+                return new List<User>();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
 
@@ -232,11 +348,21 @@ namespace Sozialheap.Services
         /// <returns>List of Users (all)</returns>
         public List<User> GetAllUsers()
         {
-            var users = (from item in db2.Users
-                         orderby item.score descending
-                         select item).ToList();
+            try
+            {
+                var users = (from item in db2.Users
+                             orderby item.score descending
+                             select item).ToList();
+
+                return users;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
             
-            return users;
+            return new List<User>();
+
         }
 
         /// <summary>
@@ -246,11 +372,21 @@ namespace Sozialheap.Services
         /// <returns>list of answers</returns>
         public List<Answer> GetAnswerById(int id)
         {
+            try
+            {
             var answers = (from item in db2.Answers
                          where item.postID == id
                          orderby item.dateCreated descending
                          select item).ToList();
             return (List<Answer>)answers;
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new List<Answer>();
         }
 
         /// <summary>
@@ -262,8 +398,17 @@ namespace Sozialheap.Services
         {
             // Users1 are those who are following the current user
             // Users are those who the user is following
-            userToFollow.Users1.Add(currentUser);
-            db2.SaveChanges();
+            try
+            {
+                userToFollow.Users1.Add(currentUser);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
         }
 
         /// <summary>
@@ -273,9 +418,16 @@ namespace Sozialheap.Services
         /// <param name="userToStopFollow">The user who he wants to stop follow</param>
         public void StopFollowingUser(User currentUser, User userToStopFollow)
         {
-            userToStopFollow.Users1.Remove(currentUser);
-            db2.SaveChanges();
-
+            try
+            {
+                userToStopFollow.Users1.Remove(currentUser);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -286,7 +438,17 @@ namespace Sozialheap.Services
         /// <returns></returns>
         public bool isFollowingUser(User currentUser, User isFollowing)
         {
-            return isFollowing.Users1.Contains(currentUser);
+            try
+            {
+                return isFollowing.Users1.Contains(currentUser);
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -296,8 +458,16 @@ namespace Sozialheap.Services
         /// <param name="group">The user who he wants to follow</param>
         public void StartFollowingGroup(User user, Group group)
         {
-            group.Users.Add(user);
-            db2.SaveChanges();
+            try
+            {
+                group.Users.Add(user);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -307,8 +477,15 @@ namespace Sozialheap.Services
         /// <param name="group">The user he wants to stop following</param>
         public void StopFollowingGroup(User user, Group group)
         {
-            group.Users.Remove(user);
-            db2.SaveChanges();
+            try
+            {
+                group.Users.Remove(user);
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -319,7 +496,16 @@ namespace Sozialheap.Services
         /// <returns>true if a user is following the specified group</returns>
         public bool isFollowingGroup(User user, Group group)
         {
-            return group.Users.Contains(user);
+            try
+            {
+                return group.Users.Contains(user);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -329,13 +515,20 @@ namespace Sozialheap.Services
         /// <param name="post">The post he wants to like</param>
         public void LikePost(User user, Post post)
         {
-            user.Posts1.Add(post);
-            post.scoreCounter++;
-            if(post.User != user)
+            try
             {
-                post.User.score += 5;
+                user.Posts1.Add(post);
+                post.scoreCounter++;
+                if (post.User != user)
+                {
+                    post.User.score += 5;
+                }
+                db2.SaveChanges();
             }
-            db2.SaveChanges();
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -345,13 +538,20 @@ namespace Sozialheap.Services
         /// <param name="post">Post that the user wants to unlike</param>
         public void UnLikePost(User user, Post post)
         {
-            user.Posts1.Remove(post);
-            post.scoreCounter--;
-            if (post.User != user)
+            try
             {
-                post.User.score -= 5;
+                user.Posts1.Remove(post);
+                post.scoreCounter--;
+                if (post.User != user)
+                {
+                    post.User.score -= 5;
+                }
+                db2.SaveChanges();
             }
-            db2.SaveChanges();
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -362,7 +562,16 @@ namespace Sozialheap.Services
         /// <returns>true if a user has liked the specified group</returns>
         public bool DidUserLikePost(User user, Post post)
         {
-            return user.Posts1.Contains(post);
+            try
+            {
+                return user.Posts1.Contains(post);
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return false;
         }
 
         /// <summary>
@@ -374,9 +583,16 @@ namespace Sozialheap.Services
         {
             if (user != null)
             {
-                return (List<Post>)(from item in db2.Answers
+                try
+                {
+                    return (List<Post>)(from item in db2.Answers
                                     where item.Post.userID == user.userID && item.seenByOwner == false
                                     select item.Post).ToList();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message.ToString());
+                }
             }
             return new List<Post>();
         }
