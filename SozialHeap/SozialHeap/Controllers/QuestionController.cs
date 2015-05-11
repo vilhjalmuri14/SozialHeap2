@@ -26,7 +26,7 @@ namespace Sozialheap.Controllers
         public ActionResult CreateQuestion([Bind(Include = "groupID,categoryID,name,body")]Post form)
         {
             var group = service.GetAllGroups();
-            if (form.groupID < 1 || form.name == "" || form.body == "")
+            if (form.groupID < 1 || form.name == null || form.body == null)
             {
                 ViewBag.Message = "You cannot create Question without a title or question!";
                 return View();
