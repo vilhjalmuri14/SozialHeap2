@@ -13,7 +13,7 @@
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
-                    User list
+                    @ViewBag.Title
 
                 </h3>
             </div>
@@ -24,7 +24,9 @@
                     <div class="col-sm-6">
 
                         <div class="topitem postquestion">
-
+                            <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                                <span class="makedivlink makedivlink_small"></span>
+                            </a>
                             <div class="imgholder">
                                 <img src="~/images/anonymous_user.png" />
                             </div>
