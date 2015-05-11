@@ -64,8 +64,10 @@ namespace Sozialheap.Controllers
         {
             SozialHeap.Models.User userToFollow = service.GetUserByUsername(id);
             SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.StartFollowingUser(currentUser, userToFollow);
-
+            if (currentUser != userToFollow)
+            {
+                service.StartFollowingUser(currentUser, userToFollow);
+            }
             return RedirectToAction("ViewUser/" + userToFollow.userName);
         }
 
@@ -74,8 +76,10 @@ namespace Sozialheap.Controllers
         {
             SozialHeap.Models.User userToStopFollow = service.GetUserByUsername(id);
             SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.StopFollowingUser(currentUser, userToStopFollow);
-
+            if (userToStopFollow != currentUser)
+            {
+                service.StopFollowingUser(currentUser, userToStopFollow);
+            }
             return RedirectToAction("ViewUser/" + userToStopFollow.userName);
         }
     }
