@@ -31,8 +31,16 @@ namespace Sozialheap.Controllers
             form.dateCreated = DateTime.Now;
             
             service.CreateGroup(form);
+            if(form.groupID > 0)
+            {
+                return View("~/Group/ViewGroup/" + form.groupID);
 
-            return View("~/Group/ViewGroup/"+form.groupID);
+            }
+            else
+            {
+                ViewBag.Message = "Could not create group, check if its name already exists!";
+                return View("GroupHelper");
+            }
         }
 
         [Authorize]

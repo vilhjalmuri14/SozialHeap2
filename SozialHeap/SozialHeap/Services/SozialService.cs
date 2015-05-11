@@ -51,8 +51,16 @@ namespace Sozialheap.Services
         /// <param name="g">Group object</param>
         public void CreateGroup(Group g)
         {
-            db2.Groups.Add(g);
-            db2.SaveChanges();
+            try
+            {
+                db2.Groups.Add(g);
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                
+                return;
+            }
             // TODO: Implement creategroup !
         }
 
