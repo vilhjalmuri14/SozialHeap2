@@ -71,7 +71,7 @@ namespace Sozialheap.Controllers
             
             if(!id.HasValue)
             {
-                ViewBag.Message("No id given on requested group.");
+                ViewBag.Message = "No id given on requested group.";
                 return View("Error");
             }
             else
@@ -86,7 +86,7 @@ namespace Sozialheap.Controllers
                 v.notifications = 01;
                 v.notificationList = null;
                 v.postList = service.getPosts((int)id);
-                v.group.Users = service.GetUsersByGroup((int)id, 1);
+                v.group.Users = service.GetUsersByGroup(v.group);
                 if (User.Identity.IsAuthenticated)
                 {
                     v.following = service.isFollowingGroup(service.GetUserById(User.Identity.GetUserId()), v.group);

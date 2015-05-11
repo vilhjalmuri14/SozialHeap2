@@ -195,6 +195,7 @@ namespace Sozialheap.Services
         {
             List<User> users = (from item in db2.Users
                          where item.userName.StartsWith(query)
+                         orderby item.score descending
                          select item).ToList();
             List<SozialHeap.Models.ViewModels.SimpleUser> su = new List<SozialHeap.Models.ViewModels.SimpleUser>();
 
@@ -205,9 +206,14 @@ namespace Sozialheap.Services
             return su;
         }
 
-        public List<User> GetUsersByGroup(int groupId, int n = 5)
+        public List<User> GetUsersByGroup(Group grp, int n = 5)
         {
             // TODO IMPLEMENT !
+            /*List<User> users = (from item in db2.Users
+                                where item.Groups.Contains(grp)
+                                orderby item.score descending
+                                select item).ToList();
+             */
             return new List<User>();
         }
 
@@ -219,6 +225,7 @@ namespace Sozialheap.Services
         public List<User> GetAllUsers()
         {
             var users = (from item in db2.Users
+                         orderby item.score descending
                          select item).ToList();
             
             return users;
