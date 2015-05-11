@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SozialHeap.Models;
 
 namespace Sozialheap.Controllers
 {
@@ -77,6 +78,15 @@ namespace Sozialheap.Controllers
             service.StopFollowingUser(currentUser, userToStopFollow);
 
             return RedirectToAction("ViewUser/" + userToStopFollow.userName);
+        }
+
+        public ActionResult ShowFollowingUsers(string id)
+        {
+            UserView model = new UserView();
+
+            model.user = service.GetUserByUsername(id);
+
+            return View("index", model);
         }
     }
 }

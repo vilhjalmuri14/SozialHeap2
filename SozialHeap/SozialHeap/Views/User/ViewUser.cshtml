@@ -63,9 +63,10 @@
                     <div class="buttonRightCol">
 
                         <div class="buttons">
-                            <button class="btn btn-default">Followers <span class="badge"> @Model.user.Users1.Count </span></button>
-                            <button class="btn btn-default">Following <span class="badge"> @Model.user.Users.Count </span></button>
-                </div>
+                            <a class="btn btn-default" href="@Url.Action("ShowFollowingUsers/" + Model.user.userName)">Followers <span class="badge"> @Model.user.Users1.Count </span></a>
+                            <a class="btn btn-default" href="@Url.Action("ShowFollowingUsers/" + Model.user.userName)">Following <span class="badge"> @Model.user.Users.Count </span></a>
+                        </div>
+
                         </div>
                     </div>
             </div>
