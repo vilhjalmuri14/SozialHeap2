@@ -1,0 +1,38 @@
+﻿
+#question {
+    position: relative;
+    margin: auto;
+    text-align: start;
+    width: auto;
+    max-width: 600px;
+}
+
+.post .postfooter .leftbutton {
+    margin-top: 0px;
+}
+
+.post .postfooter .rightbutton {
+    margin-top: 5px;
+}
+
+.post .postinfo {
+    margin-top: 10px;
+}
+
+.post .end {
+    padding-top: 10px;
+}
+
+.questionbox {
+    margin-top: -25px;
+    margin-bottom: 50px;
+}
+
+.post .endfooter {
+    height: 20px;
+    margin: 0px;
+}
+
+.post .buttonline {
+    
+}

@@ -235,6 +235,7 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\lineal_simples_st-webfont.svg" />
     <Content Include="Content\Modal.css" />
+    <Content Include="Content\questionView.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\stylesheet.css" />
     <Content Include="favicon.ico" />

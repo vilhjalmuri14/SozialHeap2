@@ -5,8 +5,8 @@
 
 <!-- Question starts -->
 
-    <div class="col-sm-12">
-        <div class="panel panel-primary">
+    <div id="question">
+        <div class="panel panel-primary" id="questionInner">
 
             <div class="panel-heading question">
                 <h3 id="panel-title" class="panel-title">
@@ -38,41 +38,22 @@
 
                     </div>
                     <div class="postinfo">
-                        <span class="notimportant">question posted:</span> @ViewBag.timeSince
+                        <span class="notimportant">posted</span> @Model.currentPost.dateCreated
 
                     </div>
                     <div class="end">
                         @Model.currentPost.body
                         <div class="postfooter">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <div class="leftbutton">
-                                    <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
-                                </div>
-                            }
-                            
-                            <div class="coolpost rightbutton">
-                                
+                            <hr />
+                            <div class="buttonline">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    if(Model.LikedPost)
-                                    {
-                                        <a href="@Url.Action("UnLikePost/"+Model.currentPost.postID)">
-                                            <span class="glyphicon glyphicon-thumbs-up badge"> Unlike @Model.currentPost.scoreCounter </span>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a href="@Url.Action("LikePost/"+Model.currentPost.postID)">
-                                            <span class="glyphicon glyphicon-thumbs-up badge"> Like @Model.currentPost.scoreCounter </span>
-                                        </a>
-                                    }  
-                                }
-                                else
-                                {
-                                    <span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.Users.Count Likes </span>
+                                    <div class="leftbutton">
+                                        <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
+                                    </div>
                                 }
 
+                                <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.scoreCounter </span> </div>
                             </div>
                         </div>
                         <div class="endfooter">&nbsp;</div>
@@ -80,10 +61,9 @@
 
                 </div>
                 <!-- Responses start-->
-                <h4 class="responses">Responses (descenting order)</h4>
+                <h4 class="responses">Responses</h4>
 
-                
-                @for(int i = 0; i < Model.answerList.Count; i++)
+                @foreach(var item in Model.answerList)
                 {
 
                 <!-- Answer test starts -->
@@ -93,11 +73,11 @@
                         <div class="panel-heading">
                             <h3 id="panel-title" class="panel-title">
 
-                                @Model.answerList[i].title
+                                @item.title
 
                             </h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" id="answer-body">
 
                             <div class="textholder post">
                                 <div class="imgholder">
@@ -105,14 +85,14 @@
                                 </div>
                                 <div class="authorinfo">
                                     <h4>
-                                        @Model.answerList[i].User.userName
+                                        @item.User.userName
                                         <!-- author score starts -->
                                         <span class="notimportant">answered:</span>
                                     </h4>
                                     <div class="authorscore">
                                         <span class="badge">
                                             <span class="glyphicon glyphicon-console">
-                                            </span> @Model.answerList[i].User.score
+                                            </span> @item.User.score
                                         </span>
                                     </div>
                                     <!-- author score ends -->
@@ -121,21 +101,24 @@
                                 <div class="postinfo">
 
                                 </div>
-                                <div class="end" style="white-space: pre-wrap;">@Model.answerList[i].body
+                                <div class="end">
+                                    @item.body
+
+
                                 </div>
 
                             </div>
                             <div class="questionbox">
-                                <div class="info"> <span class="notimportant">answer posted:</span> @ViewBag.ansTime[i]</div>
+                                <div class="info"> <span class="notimportant">posted</span> @item.dateCreated</div>
 
 
-                            <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge">  @Model.answerList[i].scoreCounter </span></div>
+                            <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge"> @item.scoreCounter </span></div>
                         </div>
                     </div>
                         </div>
                  </div>
                 }
-                <a name="bottom"></a>
+
             </div>
         </div>
     </div>

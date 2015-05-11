@@ -31,7 +31,8 @@ namespace Sozialheap
                       "~/Content/style.css",
                       "~/Content/stylesheet.css",
                       "~/Content/site.css",
-                      "~/Content/Modal.css"));
+                      "~/Content/Modal.css",
+                      "~/Content/questionView.css"));
         }
     }
 }
