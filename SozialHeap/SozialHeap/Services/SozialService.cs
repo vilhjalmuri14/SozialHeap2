@@ -209,11 +209,11 @@ namespace Sozialheap.Services
         public List<User> GetUsersByGroup(Group grp, int n = 5)
         {
             // TODO IMPLEMENT !
-            /*List<User> users = (from item in db2.Users
+            List<User> users = (from item in db2.Users
                                 where item.Groups.Contains(grp)
                                 orderby item.score descending
                                 select item).ToList();
-             */
+            
             return new List<User>();
         }
 
