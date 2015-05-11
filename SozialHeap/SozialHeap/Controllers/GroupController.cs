@@ -32,7 +32,7 @@ namespace Sozialheap.Controllers
             
             service.CreateGroup(form);
 
-            return View("~/ViewGroup/"+form.groupID);
+            return View("~/Group/ViewGroup/"+form.groupID);
         }
 
         [Authorize]
