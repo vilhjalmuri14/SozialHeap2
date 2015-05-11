@@ -46,13 +46,13 @@
 
                                 if (Model.following)
                                 {
-                                    <a class="btn group followed"  href="@Url.Action("StopFollowing/"+Model.group.groupID)">
+                                    <a class="btn group followed" style="width: 100px;"  href="@Url.Action("StopFollowing/"+Model.group.groupID)">
                                         <span class="glyphicon glyphicon-ok"> </span> Following
                                     </a>
                                 }
                                 else
                                 {
-                                    <a class="btn group notfollowing" href="@Url.Action("StartFollowing/"+Model.group.groupID)">
+                                    <a class="btn group notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.group.groupID)" >
                                         <span class="glyphicon glyphicon-plus"></span> Follow
                                     </a>
 
