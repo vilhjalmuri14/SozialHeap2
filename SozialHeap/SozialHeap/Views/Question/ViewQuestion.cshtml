@@ -38,7 +38,7 @@
 
                 </div>
                 <div class="postinfo">
-                    <span class="notimportant">question posted:</span> @ViewBag.timeSince
+                    <span class="notimportant">posted</span> @ViewBag.timeSince
 
                 </div>
                 <div class="end">
@@ -80,7 +80,7 @@
 
             </div>
             <!-- Responses start-->
-            <h4 class="responses">Responses (descenting order)</h4>
+            <h4 class="responses">Responses</h4>
 
 
             @for (int i = 0; i < Model.answerList.Count; i++)
@@ -121,13 +121,12 @@
                                 <div class="postinfo">
 
                                 </div>
-                                <div class="end" style="white-space: pre-wrap;">
-                                    @Model.answerList[i].body
+                                <div class="end" style="white-space: pre-wrap;">@Model.answerList[i].body
                             </div>
 
                         </div>
                         <div class="questionbox">
-                            <div class="info"> <span class="notimportant">answer posted:</span> @ViewBag.ansTime[i]</div>
+                            <div class="info"> <span class="notimportant">posted</span> @ViewBag.ansTime[i]</div>
 
 
                             <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge">  @Model.answerList[i].scoreCounter </span></div>
