@@ -22,6 +22,11 @@ namespace Sozialheap.Controllers
             UserView model = new UserView();
 
             model.user = service.GetUserByUsername(id);
+            if(model.user == null)
+            {
+                ViewBag.Message = "Requested user does not exists";
+                return View("Error");
+            }
             model.postList = service.getPostbyId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
             if (User.Identity.IsAuthenticated)
@@ -65,8 +70,10 @@ namespace Sozialheap.Controllers
         {
             SozialHeap.Models.User userToFollow = service.GetUserByUsername(id);
             SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.StartFollowingUser(currentUser, userToFollow);
-
+            if (currentUser != userToFollow)
+            {
+                service.StartFollowingUser(currentUser, userToFollow);
+            }
             return RedirectToAction("ViewUser/" + userToFollow.userName);
         }
 
@@ -75,8 +82,10 @@ namespace Sozialheap.Controllers
         {
             SozialHeap.Models.User userToStopFollow = service.GetUserByUsername(id);
             SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
-            service.StopFollowingUser(currentUser, userToStopFollow);
-
+            if (userToStopFollow != currentUser)
+            {
+                service.StopFollowingUser(currentUser, userToStopFollow);
+            }
             return RedirectToAction("ViewUser/" + userToStopFollow.userName);
         }
 

@@ -325,6 +325,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
     <Content Include="Views\User\index.cshtml" />
+    <Content Include="Views\Question\QuestionHelper.cshtml" />
+    <Content Include="Views\Group\GroupHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

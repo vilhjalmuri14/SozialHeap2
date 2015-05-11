@@ -2,6 +2,7 @@
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,7 +16,10 @@ namespace Sozialheap.Services
     {
         // The database (our one, not the authentication one)
         private SozialheapEntities db2 = new SozialheapEntities();
-
+        private bool checkNetwork()
+        {
+            return true;
+        }
         /// <summary>
         /// Function returns list of all groups from the database
         /// </summary>
@@ -353,9 +357,13 @@ namespace Sozialheap.Services
         /// <returns>List of Posts with unseen answers</returns>
         public List<Post> getUnreadPostsByUser(User user)
         {
-            return (List<Post>)(from item in db2.Answers
-                    where item.Post.userID == user.userID && item.seenByOwner == false
-                    select item.Post).ToList();
+            if (user != null)
+            {
+                return (List<Post>)(from item in db2.Answers
+                                    where item.Post.userID == user.userID && item.seenByOwner == false
+                                    select item.Post).ToList();
+            }
+            return new List<Post>();
         }
     }
 }

@@ -5,66 +5,86 @@
 
 <!-- Question starts -->
 
-    <div id="question">
-        <div class="panel panel-primary" id="questionInner">
+<div class="col-sm-12">
+    <div class="panel panel-primary" id="question">
 
-            <div class="panel-heading question">
-                <h3 id="panel-title" class="panel-title">
+        <div class="panel-heading question">
+            <h3 id="panel-title" class="panel-title">
 
-                    @Model.currentPost.name
+                @Model.currentPost.name
 
-                </h3>
-            </div>
-            <div class="panel-body">
+            </h3>
+        </div>
+        <div class="panel-body">
 
-                <div class="textholder post">
-                    <div class="imgholder">
-                        <img src="~/images/anonymous_user.png" />
+            <div class="textholder post">
+                <div class="imgholder">
+                    <img src="~/images/anonymous_user.png" />
+                </div>
+                <div class="authorinfo">
+                    <h4>
+                        @Model.currentPost.User.userName
+
+                        <!-- author score starts -->
+                        <span class="notimportant">asked:</span>
+                    </h4>
+                    <div class="authorscore">
+                        <span class="badge">
+                            <span class="glyphicon glyphicon-console">
+                            </span> @Model.currentPost.User.score
+                        </span>
                     </div>
-                    <div class="authorinfo">
-                        <h4>
-                            @Model.currentPost.User.userName
-
-                            <!-- author score starts -->
-                            <span class="notimportant">asked:</span>
-                        </h4>
-                        <div class="authorscore">
-                            <span class="badge">
-                                <span class="glyphicon glyphicon-console">
-                                </span> @Model.currentPost.User.score
-                            </span>
-                        </div>
-                        <!-- author score ends -->
-
-                    </div>
-                    <div class="postinfo">
-                        <span class="notimportant">posted</span> @Model.currentPost.dateCreated
-
-                    </div>
-                    <div class="end">
-                        @Model.currentPost.body
-                        <div class="postfooter">
-                            <hr />
-                            <div class="buttonline">
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <div class="leftbutton">
-                                        <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
-                                    </div>
-                                }
-
-                                <div class="coolpost rightbutton"><span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.scoreCounter </span> </div>
-                            </div>
-                        </div>
-                        <div class="endfooter">&nbsp;</div>
-                    </div>
+                    <!-- author score ends -->
 
                 </div>
-                <!-- Responses start-->
-                <h4 class="responses">Responses</h4>
+                <div class="postinfo">
+                    <span class="notimportant">posted</span> @ViewBag.timeSince
 
-                @foreach(var item in Model.answerList)
-                {
+                </div>
+                <div class="end">
+                    @Model.currentPost.body
+                    <div class="postfooter">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="leftbutton">
+                                <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
+                            </div>
+                        }
+
+                        <div class="coolpost rightbutton">
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (Model.LikedPost)
+                                {
+                                    <a href="@Url.Action("UnLikePost/" + Model.currentPost.postID)">
+                                        <span class="glyphicon glyphicon-thumbs-up badge"> Unlike @Model.currentPost.scoreCounter </span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("LikePost/" + Model.currentPost.postID)">
+                                        <span class="glyphicon glyphicon-thumbs-up badge"> Like @Model.currentPost.scoreCounter </span>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-thumbs-up badge"> @Model.currentPost.Users.Count Likes </span>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="endfooter">&nbsp;</div>
+                </div>
+
+            </div>
+            <!-- Responses start-->
+            <h4 class="responses">Responses</h4>
+
+
+            @for (int i = 0; i < Model.answerList.Count; i++)
+            {
 
                 <!-- Answer test starts -->
                 <div class="col-sm-12">
@@ -73,11 +93,11 @@
                         <div class="panel-heading">
                             <h3 id="panel-title" class="panel-title">
 
-                                @item.title
+                                @Model.answerList[i].title
 
                             </h3>
                         </div>
-                        <div class="panel-body" id="answer-body">
+                        <div class="panel-body">
 
                             <div class="textholder post">
                                 <div class="imgholder">
@@ -85,14 +105,14 @@
                                 </div>
                                 <div class="authorinfo">
                                     <h4>
-                                        @item.User.userName
+                                        @Model.answerList[i].User.userName
                                         <!-- author score starts -->
                                         <span class="notimportant">answered:</span>
                                     </h4>
                                     <div class="authorscore">
                                         <span class="badge">
                                             <span class="glyphicon glyphicon-console">
-                                            </span> @item.User.score
+                                            </span> @Model.answerList[i].User.score
                                         </span>
                                     </div>
                                     <!-- author score ends -->
@@ -101,28 +121,24 @@
                                 <div class="postinfo">
 
                                 </div>
-                                <div class="end">
-                                    @item.body
-
-
-                                </div>
-
+                                <div class="end" style="white-space: pre-wrap;">@Model.answerList[i].body
                             </div>
-                            <div class="questionbox">
-                                <div class="info"> <span class="notimportant">posted</span> @item.dateCreated</div>
+
+                        </div>
+                        <div class="questionbox">
+                            <div class="info"> <span class="notimportant">posted</span> @ViewBag.ansTime[i]</div>
 
 
-                            <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge"> @item.scoreCounter </span></div>
+                            <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge">  @Model.answerList[i].scoreCounter </span></div>
                         </div>
                     </div>
-                        </div>
-                 </div>
-                }
-
+                </div>
             </div>
+            }
+            <a name="bottom"></a>
         </div>
     </div>
-    <!-- Question test ends -->
-
+</div>
+<!-- Question test ends -->
 <!-- Answer button -->
 @Html.Partial("_CreateAnswer")
