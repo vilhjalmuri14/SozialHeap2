@@ -21,6 +21,11 @@ namespace Sozialheap.Controllers
             UserView model = new UserView();
 
             model.user = service.GetUserByUsername(id);
+            if(model.user == null)
+            {
+                ViewBag.Message = "Requested user does not exists";
+                return View("Error");
+            }
             model.postList = service.getPostbyId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
             if (User.Identity.IsAuthenticated)

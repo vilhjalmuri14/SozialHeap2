@@ -71,15 +71,21 @@ namespace Sozialheap.Controllers
             
             if(!id.HasValue)
             {
-                return RedirectToAction("Error");
+                ViewBag.Message("No id given on requested group.");
+                return View("Error");
             }
             else
             {
+                v.group = service.GetGroupById((int)id);
+                if(v.group == null)
+                {
+                    ViewBag.Message = "Invalid group request!";
+                    return View("Error");
+                }
                 ViewBag.groupID = (int)id;
                 v.notifications = 01;
                 v.notificationList = null;
                 v.postList = service.getPosts((int)id);
-                v.group = service.GetGroupById((int)id);
                 v.group.Users = service.GetUsersByGroup((int)id, 1);
                 if (User.Identity.IsAuthenticated)
                 {
