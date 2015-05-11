@@ -118,45 +118,11 @@
 
         </div>
     </div>
-    
-    <div class="panel panel-primary group">
-
-        <div class="panel-heading">
-            <h3 id="panel-title" class="panel-title">
-
-                Groups
-
-            </h3>
-        </div>
-        <div class="panel-body">
-            @if (Model.user.Groups1.Take(5).Count() == 0)
-            {
-                <div class="nofriends">
-                    @Model.user.userName is currently not following any groups.
-                </div>
-
-            }
-            @foreach (var item in Model.user.Groups1.Take(5))
-{
-
-            <div class="topitem postquestion">
-                <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
-                    <span class="makedivlink makedivlink_small"></span>
-                </a>
-                <div class="imgholder">
-                    <img src="~/images/Group.png" />
-                </div>
-                <h4>@item.groupName</h4>
-            </div>
-}                      
-            
-
-        </div>
-    </div>
     </div>
     <!-- Top Users ends -->
+
     <!-- Top Question starts -->
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="float: left;">
         <div class="panel panel-primary question">
 
             <div class="panel-heading">
@@ -195,7 +161,43 @@
     </div>
 
     <!-- Top Question ends -->
+<!--- group followin-->
+<div class="col-sm-6" style="float: left;">
+
+    <div class="panel panel-primary group">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Groups
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            @if (Model.user.Groups1.Take(5).Count() == 0)
+            {
+                <div class="nofriends">
+                    @Model.user.userName is currently not following any groups.
+                </div>
+
+            }
+            @foreach (var item in Model.user.Groups1.Take(5))
+            {
+
+                <div class="topitem postquestion">
+                    <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                        <span class="makedivlink makedivlink_small"></span>
+                    </a>
+                    <div class="imgholder">
+                        <img src="~/images/Group.png" />
+                    </div>
+                    <h4>@item.groupName</h4>
+                </div>
+            }
 
 
+        </div>
+    </div>
 </div>
 
+<!-- end following -->
