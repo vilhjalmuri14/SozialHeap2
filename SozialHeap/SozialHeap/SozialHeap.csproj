@@ -216,7 +216,6 @@
       <DependentUpon>SozialheapModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AllGroupView.cs" />
-    <Compile Include="Models\ViewModels\AllUsersView.cs" />
     <Compile Include="Models\ViewModels\FeedView.cs" />
     <Compile Include="Models\ViewModels\FrontPageView.cs" />
     <Compile Include="Models\ViewModels\PostView.cs" />

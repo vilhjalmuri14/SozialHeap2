@@ -53,9 +53,13 @@ namespace Sozialheap.Controllers
             return View(model);
         }
 
-        public ActionResult UserFeed()
+        public ActionResult Index()
         {
-            return View();
+            UserView model = new UserView();
+
+            model.userList = service.GetAllUsers();
+
+            return View(model);
         }
 
         public ActionResult UserQuery(string term)
@@ -89,10 +93,17 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewUser/" + userToStopFollow.userName);
         }
 
-        public ActionResult ShowFollowingUsers(string id)
+        public ActionResult ShowFollowing(string id)
         {
             UserView model = new UserView();
+            model.user = service.GetUserByUsername(id);
 
+            return View("index", model);
+        }
+
+        public ActionResult ShowFollowers(string id)
+        {
+            UserView model = new UserView();
             model.user = service.GetUserByUsername(id);
 
             return View("index", model);
