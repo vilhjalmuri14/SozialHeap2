@@ -26,15 +26,16 @@
                         <div class="topitem postquestion">
 
                             <div class="imgholder">
-                                <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                    <img src="~/images/User.png" />
-                                </a>
-
+                                <img src="~/images/anonymous_user.png" />
                             </div>
-                            <h4>@item.userName</h4><br />
-                            <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                <span class="makedivlink makedivlink_small"></span>
-                            </a>
+                            <div class="authorscore userScore">
+                                <span class="badge">
+                                    <span class="glyphicon glyphicon-console">
+                                    </span> @item.score
+                                </span>
+                            </div>
+                            <h4 class="userName">@item.userName</h4>
+                        
 
                         </div>
                     </div>

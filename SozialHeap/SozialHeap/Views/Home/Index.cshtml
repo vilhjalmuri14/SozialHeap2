@@ -95,13 +95,21 @@
                         <div class="imgholder">
                             <img src="~/images/Group.png" />
                         </div>
-                        <div class="textholder">
-                            <h4>@Html.ActionLink(item.userName, "ViewUser/"+item.userName, "User")</h4> <br />
+                        <div class="authorscore userScore">
+                            <span class="badge">
+                                <span class="glyphicon glyphicon-console">
+                                </span> @item.score
+                            </span>
+                        </div>
+                            <h4 class="userName">@Html.ActionLink(item.userName, "ViewUser/"+item.userName, "User")</h4> 
+                          
+
+                            <br />
                             @item.description
                         </div>
                     </div>
 
-                </div>
+             
             }
         </div>
     </div>

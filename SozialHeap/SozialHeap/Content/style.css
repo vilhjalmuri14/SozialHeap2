@@ -596,3 +596,16 @@ height: 75px;
 
 
 }
+
+.userName
+{
+    display: inline !important;
+    margin: 0 !important;
+
+}
+
+.userScore
+{
+    display: inline;
+    margin-bottom: 0;
+}

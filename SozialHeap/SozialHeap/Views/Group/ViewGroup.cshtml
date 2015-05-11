@@ -111,7 +111,13 @@
 
                             </div>
                             <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                <h4>@item.userName</h4><br />
+                                <div class="authorscore userScore">
+                                    <span class="badge">
+                                        <span class="glyphicon glyphicon-console">
+                                        </span> @item.score
+                                    </span>
+                                </div>
+                                <h4 class="userName">@item.userName</h4><br />
                             </a>
 </div>
                 }

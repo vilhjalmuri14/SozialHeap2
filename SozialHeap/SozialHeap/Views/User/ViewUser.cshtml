@@ -107,8 +107,13 @@
         <div class="imgholder">
             <img src="~/images/anonymous_user.png" />
         </div>
-        <h4>@item.userName</h4>
-    </div>
+        <div class="authorscore userScore">
+            <span class="badge">
+                <span class="glyphicon glyphicon-console">
+                </span> @item.score
+            </span>
+        </div>
+        <h4 class="userName">@item.userName</h4>    </div>
 }
 
         </div>
