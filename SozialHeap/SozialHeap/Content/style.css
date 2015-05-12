@@ -449,7 +449,7 @@ height: 75px;
             color: #fff;
         }
 
-        .user .badge
+        .user .badge, .user.badge
         {
             background: #93A2F4;
         }
@@ -563,27 +563,27 @@ height: 75px;
 
         /* following // not following */
 
-        .followed
+        .followed, 
         {
             margin-bottom: 0; 
             
         }
 
 
-        .user.followed
+        .user.followed, .unlikebutton
         {
             background: #93a2f4;  
             border-color: #93a2f4;
         }
 
-        .remove
+        .remove, .unlikebutton:hover
         {
             background: #ec971f !important;
             border-color: #ec971f !important;
             color: #fff;
         }
 
-        .user.add
+        .user.add, .likebutton:hover
         {
             background: #93a2f4 !important;
             border-color: #93a2f4 !important;
@@ -599,11 +599,12 @@ height: 75px;
         .add:visited,
         .add:active,
         .add:link
+
         {
             color: #fff;
         }
 
-        .notfollowing
+        .notfollowing, .likebutton
         {
             border-width: 1px;
             border-color: #000 !important;
@@ -613,6 +614,14 @@ height: 75px;
         .notfollowing:visited,
         .notfollowing:active,
         .notfollowing:link
+        .likebutton:visited,
+        .likebutton:active,
+        .likebutton:link
+        .unlikebutton:visited,
+        .unlikebutton:active,
+        .unlikebutton:link
+        
+
         {
             color: #000;
         }

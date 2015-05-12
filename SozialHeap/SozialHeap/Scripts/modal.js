@@ -59,7 +59,20 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 
-$(function() {
+$(function () {
+    $(".unlikebutton").mouseenter(
+        function () {
+            $(this).find('span').removeClass("glyphicon-thumbs-up");
+            $(this).find('span').addClass("glyphicon-thumbs-down");
+            $(this).html($(this).html().replace("Liked!", "Unlike"));
+        });
+    $(".unlikebutton").mouseleave(
+       function () {
+           $(this).find('span').removeClass("glyphicon-thumbs-down");
+           $(this).find('span').addClass("glyphicon-thumbs-up");
+           $(this).html($(this).html().replace("Unlike", "Liked!"));
+       });
+
     $(".followed").mouseenter(
           function ()
           { 
