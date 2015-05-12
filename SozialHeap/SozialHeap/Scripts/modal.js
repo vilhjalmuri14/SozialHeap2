@@ -100,6 +100,7 @@ $(function () {
         if (usersFound == 0)
         {
             $("#usersearchbutton").html('No users found');
+            $(".userfound").hide();
         }
         else
         {
@@ -120,6 +121,7 @@ $(function () {
 
         if (groupsFound == 0) {
             $("#groupsearchbutton").html('No groups found');
+            $(".groupfound").hide();
         }
         else {
             $("#groupsearchbutton").html('<input type="checkbox" checked /> Groups (' + groupsFound + ')');
@@ -137,6 +139,8 @@ $(function () {
 
         if (questionsFound == 0) {
             $("#questionsearchbutton").html('No questions found');
+            $(".questionfound").hide();
+
         }
         else {
             $("#questionsearchbutton").html('<input type="checkbox" checked /> Questions (' + questionsFound + ')');
