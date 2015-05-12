@@ -23,11 +23,21 @@ namespace SozialHeap.Controllers
             model.Groups = service.GetAllGroups().Take(5).ToList();
             model.Users = service.GetAllUsers();
             model.Posts = service.getRecentPosts();
+
             if (User.Identity.IsAuthenticated)
             {
-
+                ViewBag.isLoggedIn = true;
                 model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
                 ViewBag.notifications = model.notificationList.Count();
+                User currUser = service.GetUserById(User.Identity.GetUserId());
+                model.recentFromUsers = service.getRecentByFollowingUsers(User.Identity.GetUserId());
+                model.recentGroups = new List<Group>();
+            }
+            else
+            {
+                ViewBag.isLoggedIn = false;
+                model.recentFromUsers = new List<Post>();
+                model.recentGroups = new List<Group>();
             }
             return View(model);
         }

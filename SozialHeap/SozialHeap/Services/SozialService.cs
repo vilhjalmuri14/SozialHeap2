@@ -781,6 +781,32 @@ namespace Sozialheap.Services
             return new List<Group>();
         }
 
+        public List<Post> getRecentByFollowingUsers(string userID)
+        {
+            /*
+            try
+            {
+                List<User> following = (from item in db2.Users
+                                    where item.Users.Contains(userID)
+                                    select item).ToList();
+
+                List<Post> res = (from item in db2.Posts
+                                      where following.Contains(item.User)
+                                      select item).ToList();
+                
+
+  //              var res = (from item in db2.Posts
+    //                       select item).toList();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            */
+            return new List<Post>();
+        }
+
         public List<string> getKeywords(string query)
         {
             if(query.Contains(' ') || query.Contains('-'))
@@ -802,7 +828,6 @@ namespace Sozialheap.Services
                 while (dataReader.Read())
                 {
                     res.Add(dataReader.GetValue(0).ToString());
-//                    MessageBox.Show(dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + " - " + dataReader.GetValue(2));
                 }
                 dataReader.Close();
                 command.Dispose();
