@@ -169,11 +169,29 @@ $(function () {
             });
         }
     }
+});
 
+function closemenu() {
+    $(".hidelower").each(function () {
+        $(this).removeClass('menuitem');
+        $(this).hide();
 
-    $('.postTR').click(function () {
-        window.location = $(this).find('a').attr('href');
-    }).hover(function () {
-        $(this).toggleClass('hover');
     });
+    $("#closemobilemenu").remove();
+    $("#mobilemenu").show();
+    $("#main").show();
+}
+$(function () {
+    
+    $("#mobilemenu").click(
+        function () {
+            $("#main").hide();
+            $("#mobilemenu").hide();            
+            $(".hidelower").each(function () {
+                $(this).addClass('menuitem');
+                $(this).show();
+                
+            });
+            $('<button class="btn menuitem" id="closemobilemenu" onClick="javascript:closemenu()">Close</div>').insertAfter("#main");
+        });
 });

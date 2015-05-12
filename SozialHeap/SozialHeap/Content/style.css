@@ -694,7 +694,16 @@ height: 75px;
             top: 20px;
             right: 20px;
         }
-
+        .menuitem
+        {
+            width:100%;
+            margin-bottom: 2em;
+            
+        }
+        #queryString
+        {
+            width: 90%;
+        }
 
 }
 
