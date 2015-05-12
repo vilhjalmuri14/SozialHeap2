@@ -16,6 +16,18 @@
         </tr>
     </thead>
 
+@foreach (var item in Model.groups)
+{
+    <tr>
+        <td>Group</td>
+        <td>
+            <a href="@Url.Action("/ViewGroup/" + item.groupName, "Group")">@item.groupName </a>
+        </td>
+        <td>@item.description</td>
+
+    </tr>
+}
+
 @foreach (var item in Model.users) {
     <tr>
         <td>User</td>
@@ -26,6 +38,7 @@
         
     </tr>
 }
+
 @foreach (var item in Model.Posts)
 {
     <tr>

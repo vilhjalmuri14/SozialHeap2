@@ -655,6 +655,22 @@ namespace Sozialheap.Services
             return new List<User>();
         }
 
+        public List<Group> findGroupsByString(string query)
+        {
+            try
+            {
+                List<Group> res = (from item in db2.Groups
+                                   where item.description.Contains(query) || item.groupName.Contains(query)
+                                   select item).ToList();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new List<Group>();
+        }
+
         public List<string> getKeywords(string query)
         {
             if(query.Contains(' ') || query.Contains('-'))
