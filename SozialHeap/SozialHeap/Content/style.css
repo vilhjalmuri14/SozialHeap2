@@ -1,3 +1,7 @@
+a {
+   outline: 0;
+}
+
 body
 {
     /*  padding-bottom:80px;
@@ -625,7 +629,7 @@ height: 75px;
             margin-left: 20px;
           
         }
-        .buttonRightCol {
+        .buttonRightCol,  {
             margin-top: 20px;
             margin-left: 20px;
             float: left;
@@ -634,13 +638,20 @@ height: 75px;
             overflow: hidden;
         }
 
+        .likebutton, .unlikebutton
+        {
+            display: block !important;
+            width: 150px !important;
+            margin:0;
+        }
+
         .buttonRightCol .btn {
             float: left;
             clear: left;
             margin-top: 20px;
             
         }
-         .buttonRightCol .btn:first-of-type {
+         .buttonRightCol .btn:first-of-type,  {
             float: left;
             clear: left;
             margin-top: 0;
