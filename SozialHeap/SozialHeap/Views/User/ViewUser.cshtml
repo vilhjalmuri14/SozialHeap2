@@ -42,13 +42,13 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="button">
+                                
                                 @if (Model.following)
-{
-    <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
-        <span class="glyphicon glyphicon-ok"> </span> Following
-    </a>
-
-}
+                                {
+                                    <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
+                                        <span class="glyphicon glyphicon-ok"> </span> Following
+                                    </a>
+                                }
                                 else
                                 {
                                     <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)">
@@ -57,7 +57,7 @@
                                 }
 
                             </div>
-                        }
+                         }
                         </div>
                     <div class="buttonRightCol">
 
@@ -70,13 +70,7 @@
                     </div>
             </div>
         </div>
-        @if (ViewBag.isThisUser == true)
-        {
-            foreach(var item in Model.notificationList)
-            {
-                <p>@item.name</p>
-            }
-        }
+        
         <div class="end"></div>
 
 
@@ -85,15 +79,14 @@
 
 <!-- Notifications list -->
 
-@if (ViewBag.isLoggedIn == true)
+@if (ViewBag.isThisUser == true)
 {
-
-    <div class="col-sm-6" style="float: left;">
+    <div class="col-sm-6" style="float: right;">
         <div class="panel panel-primary question">
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
-                    Answers to your questions
+                    Notifications
 
                 </h3>
             </div>
@@ -131,7 +124,7 @@
 
 <!-- group profile ends -->
 <!-- Top Users starts -->
-<div class="col-sm-6">
+<div class="col-sm-6" style="float: right;">
     <div class="panel panel-primary user">
 
         <div class="panel-heading">
@@ -189,7 +182,6 @@
                 <div class="nofriends">
                     @Model.user.userName has not posted any questions.
                 </div>
-
             }
             @foreach (var item in Model.postList)
             {
@@ -208,7 +200,6 @@
                     </div>
                 </div>
             }
-
         </div>
     </div>
 
