@@ -153,29 +153,6 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
-        /// Returns posts by given userID.
-        /// </summary>
-        /// <returns>list of Posts</returns>
-        public List<Post> getPostbyId(string id)
-        {
-            try
-            {
-                List<Post> p = (from item in db2.Posts
-                                where item.userID == id
-                                orderby item.dateCreated descending
-                                select item).ToList();
-
-                return p;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-            }
-
-            return new List<Post>();
-        }
-
-        /// <summary>
         /// Returns post by given id.
         /// </summary>
         /// <param name="groupId">id of Post</param>
@@ -233,12 +210,58 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
-        /// Delete post with the given id
+        /// Update the given answer
         /// </summary>
-        /// <param name="id">id of post to delete</param>
-        public void DeletePost(int id)
+        /// <param name="a">Answer to update</param>
+        public void EditAnswer(Answer a)
         {
-            // TODO: implement delete Post by id
+            try
+            {
+                Answer edit = GetSingleAnswerByAnswerId(a.answerID);
+                edit = a;
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Delete given post
+        /// </summary>
+        /// <param name="postToDelete">Post to delete</param>
+        public void DeletePost(Post postToDelete)
+        {
+            try 
+            { 
+                db2.Posts.Remove(postToDelete);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        
+        }
+
+        /// <summary>
+        /// Delete Answer
+        /// </summary>
+        /// <param name="ansToDelete">Answer that should be removed</param>
+        public void DeleteAnswer(Answer ansToDelete)
+        {
+            try
+            {
+                db2.Answers.Remove(ansToDelete);
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -247,9 +270,22 @@ namespace Sozialheap.Services
         /// <param name="p">Post to update</param>
         public void EditPost(Post p)
         {
+            try
+            {
+                Post edit = getPost(p.postID);
+                edit = p;
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
 
             // TODO implement edit Post
         }
+
 
         /// <summary>
         /// Returns single user by the provided id
@@ -271,6 +307,28 @@ namespace Sozialheap.Services
                 Console.WriteLine(ex.Message.ToString());
             }
             return new User();
+        }
+
+        /// <summary>
+        /// Returns posts by given userID.
+        /// </summary>
+        /// <returns>list of Posts</returns>
+        public List<Post> getPostbyUserId(string id)
+        {
+            try
+            {
+                List<Post> p = (from item in db2.Posts
+                                where item.userID == id
+                                orderby item.dateCreated descending
+                                select item).ToList();
+
+                return p;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return null;
         }
 
         /// <summary>
@@ -376,11 +434,11 @@ namespace Sozialheap.Services
         {
             try
             {
-            var answers = (from item in db2.Answers
-                         where item.postID == id
-                         orderby item.dateCreated descending
-                         select item).ToList();
-            return (List<Answer>)answers;
+                var answers = (from item in db2.Answers
+                             where item.postID == id
+                             orderby item.dateCreated descending
+                             select item).ToList();
+                return (List<Answer>)answers;
 
             }
             catch(Exception ex)
@@ -389,6 +447,22 @@ namespace Sozialheap.Services
             }
 
             return new List<Answer>();
+        }
+
+        public Answer GetSingleAnswerByAnswerId(int answerID)
+        {
+            try
+            {
+                Answer res = (from item in db2.Answers
+                              where item.answerID == answerID
+                              select item).SingleOrDefault();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return null;
         }
 
         /// <summary>

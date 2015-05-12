@@ -28,7 +28,7 @@ namespace Sozialheap.Controllers
                 return View("UserHelper");
             }
             model.user.Users1 = model.user.Users1.OrderByDescending(x => x.score).ToList();
-            model.postList = service.getPostbyId(model.user.userID);
+            model.postList = service.getPostbyUserId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
             if (User.Identity.IsAuthenticated)
             {
