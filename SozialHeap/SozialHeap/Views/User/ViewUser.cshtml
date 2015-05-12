@@ -260,5 +260,7 @@
     </div>
 </div>
 <!-- end following -->
-
-@Html.Partial("_EditUser");
+@if (ViewBag.isThisUser == true)
+{
+    @Html.Partial("_EditUser");
+}

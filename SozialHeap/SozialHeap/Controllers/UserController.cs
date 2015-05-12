@@ -41,6 +41,9 @@ namespace Sozialheap.Controllers
                     ViewBag.isThisUser = true;
                     ViewBag.userName = model.user.userName;
                     ViewBag.userID = model.user.userID;
+                    ViewBag.fullName = model.user.fullName;
+                    ViewBag.description = model.user.description;
+                    ViewBag.photo = model.user.photo;
                     // mark all posts as read
                 }
                 else
