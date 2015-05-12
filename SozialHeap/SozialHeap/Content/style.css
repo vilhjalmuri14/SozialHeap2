@@ -231,6 +231,7 @@ position: relative;
 /* footer starts */
 footer
 {
+    display: none;
  }
 /* profile start */
 .profile
@@ -304,13 +305,6 @@ height: 75px;
         {
             border-color: #466675;
         }
-
-        .question.btn   
-        {
-            border-color: #466675;
-            background: #466675;
-            color: #fff;
-        }
         .questionbutton
         {
             border-color: #466675;
@@ -374,30 +368,13 @@ height: 75px;
             
         }
 
-        .postTR.first 
+        .postTR.first
         {
-            border: 2px solid #466675;
-        }
-
-        .postTR.second
-        {
-            border: 2px solid #4e7182;
-        }
-        .postTR.first .holder
-        {
-            
             background: #466675;
         }
-        .postTR.second .holder
-        {            
-            
-            background: #4e7182; 
-        }
-
-        table .holder
+        .postTR.second
         {
-            max-width: 5px;
-            overflow: hidden;
+            background: #4E7182;
         }
 
         .postTR:hover
@@ -700,7 +677,6 @@ height: 75px;
 {
     display: inline !important;
     margin: 0 !important;
-
 }
 
 .userScore
@@ -709,23 +685,7 @@ height: 75px;
     margin-bottom: 0;
 }
 
-#searchresult .col-sm-3
+#innerUserBox
 {
-    overflow: hidden;
-}
-
-#searchresult .col-sm-3 .textholder
-{
-    width: 240px;
-    overflow: hidden;
-}
-
-.searchhover
-{
-    display: none;
-}
-
-#searchresult
-{
-    margin-top: 2em;
+    margin-bottom: -7px;
 }
