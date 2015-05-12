@@ -43,19 +43,25 @@
                         <div class="buttonLeftCol">
                             @if (User.Identity.IsAuthenticated)
                             {
-
-                                if (Model.following)
+                                if (ViewBag.isOwner == true)
                                 {
-                                    <a class="btn group followed" style="width: 100px;"  href="@Url.Action("StopFollowing/"+Model.group.groupID)">
-                                        <span class="glyphicon glyphicon-ok"> </span> Following
-                                    </a>
+                                    <a href="#editGroup" class="btn btn-default" data-toggle="modal">Edit group</a>
                                 }
                                 else
                                 {
-                                    <a class="btn group notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.group.groupID)" >
-                                        <span class="glyphicon glyphicon-plus"></span> Follow
-                                    </a>
+                                    if (Model.following)
+                                    {
+                                        <a class="btn group followed" style="width: 100px;"  href="@Url.Action("StopFollowing/"+Model.group.groupID)">
+                                            <span class="glyphicon glyphicon-ok"> </span> Following
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn group notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.group.groupID)" >
+                                            <span class="glyphicon glyphicon-plus"></span> Follow
+                                        </a>
 
+                                    }
                                 }
                             }
 
@@ -189,3 +195,7 @@
 <!-- Modal window for new posts -->
 
 @Html.Partial("_CreatePost")
+@if (ViewBag.isOwner == true)
+{
+    @Html.Partial("_EditGroup");
+}

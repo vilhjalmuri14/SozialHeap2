@@ -29,7 +29,7 @@
                         <span class="notimportant">asked:</span>
                     </h4>
                     <div class="authorscore">
-                        <span class="badge">
+                        <span class="badge user">
                             <span class="glyphicon glyphicon-console">
                             </span> @Model.currentPost.User.score
                         </span>
@@ -50,7 +50,6 @@
                                 <a href="#createAnswer" class="btn btn-default" data-toggle="modal">Reply</a>
                             </div>
                         }
-
                         <div class="coolpost rightbutton">
 
                             @if (User.Identity.IsAuthenticated)
@@ -58,13 +57,13 @@
                                 if (Model.LikedPost)
                                 {
                                     <a href="@Url.Action("UnLikePost/" + Model.currentPost.postID)">
-                                        <span class="glyphicon glyphicon-thumbs-up badge"> Unlike @Model.currentPost.scoreCounter </span>
-                                    </a>
+                                        <button class="btn unlikebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Liked! (@Model.currentPost.scoreCounter)</button>
+</a>
                                 }
                                 else
                                 {
                                     <a href="@Url.Action("LikePost/" + Model.currentPost.postID)">
-                                        <span class="glyphicon glyphicon-thumbs-up badge"> Like @Model.currentPost.scoreCounter </span>
+                                        <button class="btn likebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Like (@Model.currentPost.scoreCounter)</button>
                                     </a>
                                 }
                             }
@@ -110,7 +109,7 @@
                                         <span class="notimportant">answered:</span>
                                     </h4>
                                     <div class="authorscore">
-                                        <span class="badge">
+                                        <span class="badge user">
                                             <span class="glyphicon glyphicon-console">
                                             </span> @Model.answerList[i].User.score
                                         </span>
@@ -129,7 +128,6 @@
                             <div class="info"> <span class="notimportant">posted</span> @ViewBag.ansTime[i]</div>
 
 
-                            <div class="cool"><span class="glyphicon glyphicon-thumbs-up badge">  @Model.answerList[i].scoreCounter </span></div>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,12 @@
+a {
+   outline: 0;
+}
+
+a:hover
+{
+    text-decoration: none;
+}
+
 body
 {
     /*  padding-bottom:80px;
@@ -231,6 +240,7 @@ position: relative;
 /* footer starts */
 footer
 {
+    display: none;
  }
 /* profile start */
 .profile
@@ -304,13 +314,6 @@ height: 75px;
         {
             border-color: #466675;
         }
-
-        .question.btn   
-        {
-            border-color: #466675;
-            background: #466675;
-            color: #fff;
-        }
         .questionbutton
         {
             border-color: #466675;
@@ -374,30 +377,13 @@ height: 75px;
             
         }
 
-        .postTR.first 
+        .postTR.first
         {
-            border: 2px solid #466675;
-        }
-
-        .postTR.second
-        {
-            border: 2px solid #4e7182;
-        }
-        .postTR.first .holder
-        {
-            
             background: #466675;
         }
-        .postTR.second .holder
-        {            
-            
-            background: #4e7182; 
-        }
-
-        table .holder
+        .postTR.second
         {
-            max-width: 5px;
-            overflow: hidden;
+            background: #4E7182;
         }
 
         .postTR:hover
@@ -449,7 +435,7 @@ height: 75px;
             color: #fff;
         }
 
-        .user .badge
+        .user .badge, .user.badge
         {
             background: #93A2F4;
         }
@@ -563,27 +549,27 @@ height: 75px;
 
         /* following // not following */
 
-        .followed
+        .followed, 
         {
             margin-bottom: 0; 
             
         }
 
 
-        .user.followed
+        .user.followed, .unlikebutton
         {
             background: #93a2f4;  
             border-color: #93a2f4;
         }
 
-        .remove
+        .remove, .unlikebutton:hover
         {
             background: #ec971f !important;
             border-color: #ec971f !important;
             color: #fff;
         }
 
-        .user.add
+        .user.add, .likebutton:hover
         {
             background: #93a2f4 !important;
             border-color: #93a2f4 !important;
@@ -599,20 +585,30 @@ height: 75px;
         .add:visited,
         .add:active,
         .add:link
+
         {
             color: #fff;
         }
 
-        .notfollowing
+        .notfollowing, .likebutton
         {
             border-width: 1px;
             border-color: #000 !important;
             background: #fff !important;
+            color: #000 !important;
         }
 
         .notfollowing:visited,
         .notfollowing:active,
         .notfollowing:link
+        .likebutton:visited,
+        .likebutton:active,
+        .likebutton:link
+        .unlikebutton:visited,
+        .unlikebutton:active,
+        .unlikebutton:link
+        
+
         {
             color: #000;
         }
@@ -639,7 +635,7 @@ height: 75px;
             margin-left: 20px;
           
         }
-        .buttonRightCol {
+        .buttonRightCol,  {
             margin-top: 20px;
             margin-left: 20px;
             float: left;
@@ -648,13 +644,28 @@ height: 75px;
             overflow: hidden;
         }
 
+        .coolpost
+        {
+            display: block !important;
+            
+        }
+        .divinfo
+        {
+            overflow: hidden;
+        }
+
+        .info span
+        {
+            display:none;           
+        }
+
         .buttonRightCol .btn {
             float: left;
             clear: left;
             margin-top: 20px;
             
         }
-         .buttonRightCol .btn:first-of-type {
+         .buttonRightCol .btn:first-of-type,  {
             float: left;
             clear: left;
             margin-top: 0;
@@ -666,16 +677,34 @@ height: 75px;
             display: none;
         }
 
+        .imgholder
+        {
+            display: none;
+        }
+        .postquestion
+        {
+            margin-left: 1em;
+        }
         .showlower
         {
-           display: inline;
+            display:block;
             background: #000;
             color: #fff;
-            position: absolute;
-            top: 20px;
+            position: fixed !important;
             right: 20px;
+            top: 10px;
+            z-index: 9999;
         }
-
+        .menuitem
+        {
+            width:100%;
+            margin-bottom: 2em;
+            
+        }
+        #queryString
+        {
+            width: 90%;
+        }
 
 }
 
@@ -683,7 +712,6 @@ height: 75px;
 {
     display: inline !important;
     margin: 0 !important;
-
 }
 
 .userScore
@@ -692,23 +720,7 @@ height: 75px;
     margin-bottom: 0;
 }
 
-#searchresult .col-sm-3
+#innerUserBox
 {
-    overflow: hidden;
-}
-
-#searchresult .col-sm-3 .textholder
-{
-    width: 240px;
-    overflow: hidden;
-}
-
-.searchhover
-{
-    display: none;
-}
-
-#searchresult
-{
-    margin-top: 2em;
+    margin-bottom: -7px;
 }

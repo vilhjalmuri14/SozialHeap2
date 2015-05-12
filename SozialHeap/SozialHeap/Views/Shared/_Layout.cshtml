@@ -22,7 +22,7 @@
             </div>
 
                 <div class="col-sm-3 headerExtra" id="headerSearch">
-                    <div class="input-group hidelower">
+                    <div class="input-group hidelower" id="searchbar">
                    
                         <input type="text" id="queryString" name="queryString" class="form-control" placeholder="Search for...">
                         
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-sm-5 headerExtra" id="headerButtons">
                     @Html.Partial("_LoginPartial")
-                    <button class="btn btn-default glyphicon glyphicon-option-horizontal showlower"></button>
+                    <button class="btn btn-default glyphicon glyphicon-option-horizontal showlower" id="mobilemenu"></button>
                             </div>
             </div>
         </div> <!-- Header finish -->
@@ -47,28 +47,7 @@
                 <p><a href="#">&copy; SozialHeap 2015</a>, unnið af hóp 43</p>
             </footer>
         </div>
-        <!-- Script to add links to question-->
-        <script>
-            function viewquestion() {
-                window.location = "/Question/ViewQuestion/3";
-            }
-        function viewgroup() {
-            window.location = "/Group/ViewGroup/2";
-        }
-
-        function viewuser() {
-            window.location = "/User/ViewUser/lommi";
-        }
-        window.onload = function () {
-            // $(".postquestion").click(viewquestion)
-            // $(".postgroup").click(viewgroup);
-            // $(".postuser").click(viewuser);
-            $(".postquestion, .postgroup, .postuser").css('cursor', 'pointer');
-        }
-
-            </script>
-
-
+    
 
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>

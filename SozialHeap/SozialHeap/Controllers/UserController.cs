@@ -23,6 +23,12 @@ namespace Sozialheap.Controllers
             model.user = service.GetUserByUsername(id);
             if(model.user == null)
             {
+                if(User.Identity.IsAuthenticated)
+                {
+                    User currUser = service.GetUserById(User.Identity.GetUserId());
+                    model.notificationList = service.getUnreadPostsByUser(currUser);
+                    ViewBag.notifications = model.notificationList.Count();
+                }
                 ViewBag.Message = "Requested user does not exists";
                 return View("UserHelper");
             }
@@ -59,9 +65,9 @@ namespace Sozialheap.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditUser([Bind(Include = "userID, userName, fullName, description, photo")]User form)
+        public ActionResult EditUser([Bind(Include = "userID, fullName, description, photo")]User form)
         {
-            if (form.userID == null || form.userName == null || User.Identity.IsAuthenticated == false)
+            if (form.userID == null || User.Identity.IsAuthenticated == false)
             {
                 // Sensitive fields missing!
                 ViewBag.Message = "Your edit request was not sufficent!";
