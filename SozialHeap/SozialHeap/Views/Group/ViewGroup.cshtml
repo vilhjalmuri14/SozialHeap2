@@ -195,3 +195,7 @@
 <!-- Modal window for new posts -->
 
 @Html.Partial("_CreatePost")
+@if (ViewBag.isOwner == true)
+{
+    @Html.Partial("_EditGroup");
+}

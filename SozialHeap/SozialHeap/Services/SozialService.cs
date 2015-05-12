@@ -386,7 +386,7 @@ namespace Sozialheap.Services
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public List<SozialHeap.Models.ViewModels.SimpleUser> GetUsersByQuery(string query)
+        public List<SimpleUser> GetUsersByQuery(string query)
         {
             try
             {
@@ -690,9 +690,18 @@ namespace Sozialheap.Services
             {
                 try
                 {
-                    return (List<Post>)(from item in db2.Answers
-                                    where item.Post.userID == user.userID && item.seenByOwner == false
-                                    select item.Post).ToList();
+                    List<Post> all = (List<Post>)(from item in db2.Answers
+                                                  where item.Post.userID == user.userID && item.seenByOwner == false
+                                                  select item.Post).ToList();
+                    List<Post> res = new List<Post>();
+                    foreach(var item in all)
+                    {
+                        if(!res.Contains(item))
+                        {
+                            res.Add(item);
+                        }
+                    }
+                    return res;
                 }
                 catch(Exception ex)
                 {

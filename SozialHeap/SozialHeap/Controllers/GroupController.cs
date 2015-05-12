@@ -45,9 +45,9 @@ namespace Sozialheap.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult EditGroup([Bind(Include = "groupID, postID, title")]Group form)
+        public ActionResult EditGroup([Bind(Include = "groupID, description, photo")]Group form)
         {
-            if (form.groupID < 1 || form.groupName == null)
+            if (form.groupID < 1 || form.description == null)
             {
                 // Sensitive fields missing!
                 ViewBag.Message = "Your update request was missing sensitive data!";
@@ -111,6 +111,9 @@ namespace Sozialheap.Controllers
                     {
                         // Owner! can edit
                         ViewBag.isOwner = true;
+                        ViewBag.groupID = v.group.groupID;
+                        ViewBag.groupDescription = v.group.description;
+                        ViewBag.groupPhoto = v.group.photo;
                     }
                     v.following = service.isFollowingGroup(service.GetUserById(User.Identity.GetUserId()), v.group);
                     v.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
