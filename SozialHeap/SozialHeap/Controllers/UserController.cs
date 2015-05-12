@@ -39,9 +39,9 @@ namespace Sozialheap.Controllers
                 {
                     // Current user, display notifications!
                     ViewBag.isThisUser = true;
+                    ViewBag.userName = model.user.userName;
+                    ViewBag.userID = model.user.userID;
                     // mark all posts as read
-                    //service.AcknowledgeNotifications(currUser);
-
                 }
                 else
                 {
@@ -56,10 +56,28 @@ namespace Sozialheap.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult EditUser([Bind(Include = "userID, userName, fullName, description, photo")]User form)
+        {
+            if (form.userID == null || form.userName == null || User.Identity.IsAuthenticated == false)
+            {
+                // Sensitive fields missing!
+                ViewBag.Message = "Your edit request was not sufficent!";
+                return View("index");
+            }
+            if (form.userID != User.Identity.GetUserId())
+            {
+                ViewBag.Message = "You can only edit your own information !";
+                return View("Error");
+            }
+            service.EditUser(form);
+            return RedirectToAction("ViewUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User");
+            //return View("ViewUser/" + form.userName, "User");
+        }
+
         public ActionResult Feed()
         {
-            // TODO: create the view!!
-
+            
             UserView model = new UserView();
             model.groupList = service.GetAllGroups();
             if (User.Identity.IsAuthenticated)

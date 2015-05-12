@@ -41,23 +41,37 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <div class="button">
-                                
-                                @if (Model.following)
-                                {
-                                    <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
-                                        <span class="glyphicon glyphicon-ok"> </span> Following
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)">
-                                        <span class="glyphicon glyphicon-plus"></span> Follow
-                                    </a>
-                                }
+                            if (ViewBag.isThisUser == false)
+                            {
+                                <div class="button">
 
-                            </div>
-                         }
+                                    @if (Model.following)
+                                    {
+                                        <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
+                                            <span class="glyphicon glyphicon-ok"> </span> Following
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)">
+                                            <span class="glyphicon glyphicon-plus"></span> Follow
+                                        </a>
+                                    }
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="button">
+
+                                    <div class="col-sm-12">
+                                        <a href="#editUser" class="btn questionbutton" data-toggle="modal">Edit profile</a>
+                                    </div>  
+                                    
+                                </div>
+                            }
+
+                        }
                         </div>
                     <div class="buttonRightCol">
 
@@ -247,3 +261,4 @@
 </div>
 <!-- end following -->
 
+@Html.Partial("_EditUser");

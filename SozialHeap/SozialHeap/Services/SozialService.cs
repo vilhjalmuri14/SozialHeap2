@@ -281,11 +281,29 @@ namespace Sozialheap.Services
             {
                 Console.WriteLine(ex.Message.ToString());
             }
-
-
-            // TODO implement edit Post
         }
 
+        /// <summary>
+        /// Update the User to the provided one.
+        /// </summary>
+        /// <param name="u">User to update</param>
+        public void EditUser(User u)
+        {
+            try
+            {
+                User edit = GetUserById(u.userID);
+                edit.fullName = u.fullName;
+                edit.description = u.description;
+                edit.photo = u.photo;
+
+                db2.SaveChanges();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
 
         /// <summary>
         /// Returns single user by the provided id
