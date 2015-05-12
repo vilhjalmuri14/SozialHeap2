@@ -60,8 +60,6 @@ namespace Sozialheap.Services
         {
             try
             {
-
-
                 var group = (from item in db2.Groups
                              where item.groupID == id
                              select item).SingleOrDefault<Group>();
