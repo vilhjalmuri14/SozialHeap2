@@ -97,8 +97,11 @@ namespace Sozialheap.Services
             // testing update!
             try
             {
-                Group newGroup = GetGroupById(g.groupID);
-                newGroup = g;
+                Group actualGroup = GetGroupById(g.groupID);
+                actualGroup.groupName = g.groupName;
+                actualGroup.photo = g.photo;
+                actualGroup.description = g.description;
+
                 db2.SaveChanges();
                 return;
             }
