@@ -331,6 +331,7 @@
     <Content Include="Views\User\UserHelper.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Shared\_EditUser.cshtml" />
+    <Content Include="Views\Shared\_EditGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
