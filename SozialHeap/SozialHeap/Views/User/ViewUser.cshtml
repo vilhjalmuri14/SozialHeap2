@@ -4,8 +4,8 @@
 }
 
 <!-- group profile starts -->
-<div class="col-sm-6">
-    <div class="panel panel-primary user">
+<div class="col-sm-6" id="userBox">
+    <div class="panel panel-primary user" id="innerUserBox">
 
         <div class="panel-heading">
             <h3 id="panel-title" class="panel-title">
@@ -81,7 +81,7 @@
 
 @if (ViewBag.isThisUser == true)
 {
-    <div class="col-sm-6" style="float: right;">
+    <div class="col-sm-6" id="profileBox">
         <div class="panel panel-primary question">
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
@@ -90,15 +90,15 @@
 
                 </h3>
             </div>
-       
-        
+
+
             @if (Model.notificationList.Count() == 0)
             {
                 <div class="nofriends">
-                    No new answers.
+                    No notifications.
                 </div>
             }
-        
+
             @foreach (var item in Model.notificationList)
             {
                 <div class="panel-body">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
             }
-        
+
         </div>
     </div>
 }
@@ -124,7 +124,7 @@
 
 <!-- group profile ends -->
 <!-- Top Users starts -->
-<div class="col-sm-6" style="float: right;">
+<div class="col-sm-6" id="profileBox">
     <div class="panel panel-primary user">
 
         <div class="panel-heading">
@@ -140,72 +140,75 @@
                 <div class="nofriends">
                     @Model.user.userName has currently no followers.
                 </div>
-                
+
             }
-           @foreach (var item in Model.user.Users1.Take(5))
-{
+            @foreach (var item in Model.user.Users1.Take(5))
+            {
 
-    <div class="topitem postquestion">
-        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-            <span class="makedivlink makedivlink_small"></span>
-        </a>
-        <div class="imgholder">
-            <img src="~/images/anonymous_user.png" />
-        </div>
-        <div class="authorscore userScore">
-            <span class="badge">
-                <span class="glyphicon glyphicon-console">
-                </span> @item.score
-            </span>
-        </div>
-        <h4 class="userName">@item.userName</h4>    </div>
-}
+                <div class="topitem postquestion">
+                    <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                        <span class="makedivlink makedivlink_small"></span>
+                    </a>
+                    <div class="imgholder">
+                        <img src="~/images/anonymous_user.png" />
+                    </div>
+                    <div class="authorscore userScore">
+                        <span class="badge">
+                            <span class="glyphicon glyphicon-console">
+                            </span> @item.score
+                        </span>
+                    </div>
+                    <h4 class="userName">@item.userName</h4>
+                </div>
+            }
 
         </div>
     </div>
-    </div>
+</div>
     <!-- Top Users ends -->
 
     <!-- Top Question starts -->
-    <div class="col-sm-6" style="float: left;">
-        <div class="panel panel-primary question">
+    <div class="col-sm-6" id="profileBox">
+    <div class="panel panel-primary question">
 
-            <div class="panel-heading">
-                <h3 id="panel-title" class="panel-title">
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
 
-                    Newest Questions
+                Newest Questions
 
-                </h3>
-            </div>
-            @if (Model.postList.Count() == 0)
-            {
-                <div class="nofriends">
-                    @Model.user.userName has not posted any questions.
-                </div>
-            }
-            @foreach (var item in Model.postList)
-            {
-                <div class="panel-body">
-                    <div class="topitem postquestion">
-                        <div class="imgholder">
-                            <img src="~/images/anonymous_user.png" />
-                        </div>
-                        <div class="textholder">
-                            <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
-                            @item.body
-                        </div>
-                        <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
-                            <span class="makedivlink"></span>
-                        </a>
-                    </div>
-                </div>
-            }
+            </h3>
         </div>
+        @if (Model.postList.Count() == 0)
+        {
+            <div class="nofriends">
+                @Model.user.userName has not posted any questions.
+            </div>
+        }
+        @foreach (var item in Model.postList)
+        {
+            <div class="panel-body">
+                <div class="topitem postquestion">
+                    <div class="imgholder">
+                        <img src="~/images/anonymous_user.png" />
+                    </div>
+                    <div class="textholder">
+                        <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
+                        @item.body
+                    </div>
+                    <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                        <span class="makedivlink"></span>
+                    </a>
+                </div>
+            </div>
+        }
     </div>
+</div>
+
+
 
     <!-- Top Question ends -->
 <!--- group followin-->
-<div class="col-sm-6" >
+<div class="col-sm-6" id="profileBox">
 
     <div class="panel panel-primary group">
 
@@ -242,6 +245,5 @@
         </div>
     </div>
 </div>
-
 <!-- end following -->
 
