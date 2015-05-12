@@ -655,6 +655,14 @@ namespace Sozialheap.Services
             return new List<User>();
         }
 
-        
+        public List<string> getKeywords(string query)
+        {
+
+            using (var ctx = new SozialheapEntities())
+            {
+                var studentList = ctx.Database.SqlQuery<string>("SELECT word FROM Keywords WHERE word LIKE {@p1}", new SqlParameter("@p1",  query));
+            }
+            return new List<string>();
+        }
     }
 }
