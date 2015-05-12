@@ -29,10 +29,8 @@ $(function () {
         source: "/User/UserQuery/",
         minLength: 1,
         select: function (event, ui) {
-            var url = ui.item.userName;
-            if (url != '#') {
-                location.href = "/User/ViewUser/" + url;
-            }
+            var url = ui;
+            
         },
 
         html: true, // optional (jquery.ui.autocomplete.html.js required)

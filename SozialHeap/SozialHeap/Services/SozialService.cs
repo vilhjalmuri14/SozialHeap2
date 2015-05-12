@@ -657,11 +657,37 @@ namespace Sozialheap.Services
 
         public List<string> getKeywords(string query)
         {
-
-            using (var ctx = new SozialheapEntities())
+            if(query.Contains(' ') || query.Contains('-'))
             {
-                var studentList = ctx.Database.SqlQuery<string>("SELECT word FROM Keywords WHERE word LIKE {@p1}", new SqlParameter("@p1",  query));
+                // breaks if you have space or dash in the search string to prenvent bad input
+                return new List<string>();
             }
+            string connetionString = null;
+            SqlConnection cnn ;
+            connetionString = "Data Source=hrnem.ru.is;Initial Catalog=VERK2015_H43;User ID=VERK2015_H43_usr;Password=wildferret27";
+            cnn = new SqlConnection(connetionString);
+            string sql = "SELECT * FROM keywords WHERE word LIKE '"+query+"%'";
+            List<string> res = new List<string>();
+            try
+            {
+                cnn.Open();
+                SqlCommand command = new SqlCommand(sql, cnn);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    res.Add(dataReader.GetValue(0).ToString());
+//                    MessageBox.Show(dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + " - " + dataReader.GetValue(2));
+                }
+                dataReader.Close();
+                command.Dispose();
+                cnn.Close();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
             return new List<string>();
         }
     }

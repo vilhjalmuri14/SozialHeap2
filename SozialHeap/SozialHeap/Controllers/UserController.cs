@@ -78,7 +78,8 @@ namespace Sozialheap.Controllers
 
         public ActionResult UserQuery(string term)
         {
-            var users = service.GetUsersByQuery(term);
+            //var users = service.GetUsersByQuery(term);
+            var users = service.getKeywords(term);
 
             return Json(users, JsonRequestBehavior.AllowGet);
         }
