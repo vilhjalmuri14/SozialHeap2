@@ -687,12 +687,13 @@ height: 75px;
         }
         .showlower
         {
-           display: inline;
+            display:block;
             background: #000;
             color: #fff;
-            position: absolute;
-            top: 20px;
+            position: fixed !important;
             right: 20px;
+            top: 10px;
+            z-index: 9999;
         }
         .menuitem
         {
