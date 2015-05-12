@@ -366,6 +366,52 @@ height: 75px;
             
             
         }
+
+        .postTR.first
+        {
+            background: #466675;
+        }
+        .postTR.second
+        {
+            background: #4E7182;
+        }
+
+        .postTR:hover
+        {
+            background: #60A3C1;
+            color: #fff;
+        }
+
+        .postTR
+        {
+            color: #AEBBC1;
+        }
+
+        .userTR.first
+        {
+            background: #5461a8;
+            color: #fff;
+        }
+        .userTR.second
+        {
+            background: #9298B6;
+            color: #fff;
+        }
+         .userTR:hover
+        {
+            background: #252D5B;
+        }
+       
+        .searchTable tr.smalltitle
+        {
+
+            font-weight: bold;        
+        }
+
+        .searchTable tr
+         {
+            cursor: pointer;
+         }
         .user.btn,
         .user .panel-heading
         {
