@@ -17,6 +17,7 @@ $('#prefetch .typeahead').typeahead(null, {
 */
 
 $(function () {
+
     $(document).ready(function () {
         $('#queryString').keypress(function (e) {
             if (e.which == 13 && $('#queryString').val() != '') {
@@ -29,10 +30,13 @@ $(function () {
         minLength: 1,
         select: function (event, ui) {
             var url = ui;
+            
         },
-        html: true,
+
+        html: true, // optional (jquery.ui.autocomplete.html.js required)
+
+        // optional (if other layers overlap autocomplete list)
         open: function (event, ui) {
-            // just to make sure it stays on top :)
             $(".ui-autocomplete").css("z-index", 9999990000);
         }
     });
