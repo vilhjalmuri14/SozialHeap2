@@ -17,7 +17,7 @@ namespace Sozialheap.Controllers
 {
     public class QuestionController : Controller
     {
-        SozialService service = new SozialService();
+        SozialService service = new SozialService(null);
         
         [Authorize]
         [HttpPost]

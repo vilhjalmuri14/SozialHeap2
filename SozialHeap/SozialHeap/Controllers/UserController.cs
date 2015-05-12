@@ -14,7 +14,7 @@ namespace Sozialheap.Controllers
 {
     public class UserController : Controller
     {
-        SozialService service = new SozialService();
+        SozialService service = new SozialService(null);
 
         
         public ActionResult ViewUser(string id)

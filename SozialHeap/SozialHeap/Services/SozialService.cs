@@ -14,12 +14,18 @@ namespace Sozialheap.Services
 {
     public class SozialService
     {
-        // The database (our one, not the authentication one)
-        private SozialheapEntities db2;
-        public SozialService()
+        private readonly IAppDataContext db2;
+        public SozialService(IAppDataContext context)
         {
-             db2 = new SozialheapEntities();
+            db2 = context ?? new SozialheapEntities();
         }
+
+        // The database (our one, not the authentication one)
+        //private SozialheapEntities db2;
+      /*  public SozialService()
+        {
+            db2 = new SozialheapEntities();
+        }*/
         
         private bool checkNetwork()
         {
@@ -321,6 +327,8 @@ namespace Sozialheap.Services
             {
                 Console.WriteLine(ex.Message.ToString());
             }
+
+            return null;
         }
 
         public List<User> GetUsersByGroup(Group grp, int n = 5)
@@ -339,6 +347,8 @@ namespace Sozialheap.Services
             {
                 Console.WriteLine(ex.Message.ToString());
             }
+
+            return null;
         }
 
 

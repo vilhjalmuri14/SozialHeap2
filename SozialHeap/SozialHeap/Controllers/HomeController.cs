@@ -15,7 +15,7 @@ namespace SozialHeap.Controllers
 {
     public class HomeController : Controller
     {
-        SozialService service = new SozialService();
+        SozialService service = new SozialService(null);
 
         public ActionResult Index()
         {
