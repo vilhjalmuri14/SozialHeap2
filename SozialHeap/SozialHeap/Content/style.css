@@ -304,6 +304,13 @@ height: 75px;
         {
             border-color: #466675;
         }
+
+        .question.btn   
+        {
+            border-color: #466675;
+            background: #466675;
+            color: #fff;
+        }
         .questionbutton
         {
             border-color: #466675;
@@ -367,13 +374,30 @@ height: 75px;
             
         }
 
-        .postTR.first
+        .postTR.first 
         {
-            background: #466675;
+            border: 2px solid #466675;
         }
+
         .postTR.second
         {
-            background: #4E7182;
+            border: 2px solid #4e7182;
+        }
+        .postTR.first .holder
+        {
+            
+            background: #466675;
+        }
+        .postTR.second .holder
+        {            
+            
+            background: #4e7182; 
+        }
+
+        table .holder
+        {
+            max-width: 5px;
+            overflow: hidden;
         }
 
         .postTR:hover
@@ -666,4 +690,25 @@ height: 75px;
 {
     display: inline;
     margin-bottom: 0;
+}
+
+#searchresult .col-sm-3
+{
+    overflow: hidden;
+}
+
+#searchresult .col-sm-3 .textholder
+{
+    width: 240px;
+    overflow: hidden;
+}
+
+.searchhover
+{
+    display: none;
+}
+
+#searchresult
+{
+    margin-top: 2em;
 }

@@ -1,54 +1,150 @@
 ﻿@model SozialHeap.Models.ViewModels.SearchResults
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<button class="btn group" id="groupsearchbutton"><input type="checkbox" checked/> Groups</button>
+<button class="btn user" id="usersearchbutton"><input type="checkbox" checked /> Users </button>
+<button class="btn question" id="questionsearchbutton"><input type="checkbox" checked /> Questions</button>
 
-<h2>Search results</h2>
+<div id="searchresult" class="row">
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>Type</td>
-            <td>Name</td>
-            <td>Text</td>
-        </tr>
-    </thead>
+    @{int usersFound = 0;
+    int groupsFound = 0;
+    int questionsFound = 0;}
+    <div class="row groupfound">
+        <div class="col-sm-12">
+            <div class="panel panel-primary group">
 
-@foreach (var item in Model.groups)
-{
-    <tr>
-        <td>Group</td>
-        <td>
-            <a href="@Url.Action("/ViewGroup/" + item.groupName, "Group")">@item.groupName </a>
-        </td>
-        <td>@item.description</td>
 
-    </tr>
-}
+                <div class="panel-heading">
+                    <h3 id="panel-title" class="panel-title">
 
-@foreach (var item in Model.users) {
-    <tr>
-        <td>User</td>
-        <td>
-            <a href="@Url.Action("/ViewUser/" + item.userName, "User")">@item.userName </a>
-</td>
-        <td>@item.description</td>
-        
-    </tr>
-}
+                        Groups
 
-@foreach (var item in Model.Posts)
-{
-    <tr>
-        <td>Posts</td>
-        <td>
-            <a href="@Url.Action("/ViewQuestion/" + item.postID, "Question")">@item.name </a>
-            
-        </td>
-        <td>@item.body</td>
-    </tr>
-}
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @foreach (var item in Model.groups)
+                    {
+                        ++groupsFound;
 
-</table>
+                        <div class="col-sm-6">
+
+                            <div class="topitem postquestion">
+
+                                <div class="imgholder">
+                                    <a href="@Url.Action("/ViewGroup/" + item.groupName, "Group")">
+                                        <img src="/images/Group.png" />
+                                    </a>
+
+                                </div>
+                                <h4>@item.groupName</h4><br />
+                                <a href="@Url.Action("/ViewGroup/" + item.groupName, "Group")">
+                                    <span class="makedivlink makedivlink_small"></span>
+                                </a>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="end"></div>
+    <div class="row userfound">
+        <div class="col-sm-12">
+            <div class="panel panel-primary user">
+
+
+                <div class="panel-heading">
+                    <h3 id="panel-title" class="panel-title">
+
+                        Users
+
+                    </h3>
+                </div>
+                <div class="panel-body">
+
+
+                    @foreach (var item in Model.users)
+                    {
+                        ++usersFound;
+
+                        <div class="col-sm-6">
+
+                            <div class="topitem postquestion">
+
+                                <div class="imgholder">
+                                    <a href="@Url.Action("/ViewUser/" + item.userName, "User")">
+                                        <img src="/images/anonymous_user.png" />
+                                    </a>
+
+                                </div>
+                                <h4>@item.userName</h4><br />
+                                <a href="@Url.Action("/ViewUser/" + item.userName, "User")">
+                                    <span class="makedivlink makedivlink_small"></span>
+                                </a>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="end"></div>
+    <div class="row questionfound">
+        <div class="col-sm-12">
+            <div class="panel panel-primary question">
+
+
+                <div class="panel-heading">
+                    <h3 id="panel-title" class="panel-title">
+
+                        Questions
+
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @foreach (var item in Model.Posts)
+                    {
+                        ++questionsFound;
+
+                        <div class="col-sm-6">
+
+                            <div class="topitem postquestion">
+
+                                <div class="imgholder">
+                                    <a href="@Url.Action("/ViewQuestion/" + item.postID, "Question")">
+                                        <img src="/images/question.png" />
+                                    </a>
+
+                                </div>
+                                <h4>@item.name</h4><br />
+                                <a href="@Url.Action("/ViewQuestion/" + item.postID, "Question")">
+                                    <span class="makedivlink makedivlink_small"></span>
+                                </a>
+
+                            </div>
+                        </div>
+                    }
+
+                    <script>
+                        var usersFound = @usersFound;
+                        var groupsFound = @groupsFound;
+                        var questionsFound = @questionsFound;
+                    </script>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
