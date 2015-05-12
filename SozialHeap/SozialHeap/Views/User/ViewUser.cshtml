@@ -3,10 +3,9 @@
     ViewBag.Title = "ViewUser";
 }
 
-<!-- <d class="row"> -->
 <!-- group profile starts -->
-<div class="col-sm-6">
-    <div class="panel panel-primary user">
+<div class="col-sm-6" id="userBox">
+    <div class="panel panel-primary user" id="innerUserBox">
 
         <div class="panel-heading">
             <h3 id="panel-title" class="panel-title">
@@ -42,22 +41,36 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <div class="button">
-                                @if (Model.following)
-{
-    <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
-        <span class="glyphicon glyphicon-ok"> </span> Following
-    </a>
+                            if (ViewBag.isThisUser == false)
+                            {
+                                <div class="button">
 
-}
-                                else
-                                {
-                                    <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)">
-                                        <span class="glyphicon glyphicon-plus"></span> Follow
-                                    </a>
-                                }
+                                    @if (Model.following)
+                                    {
+                                        <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
+                                            <span class="glyphicon glyphicon-ok"> </span> Following
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)">
+                                            <span class="glyphicon glyphicon-plus"></span> Follow
+                                        </a>
+                                    }
 
-                            </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="button">
+
+                                    <div class="col-sm-12">
+                                        <a href="#editUser" class="btn questionbutton" data-toggle="modal">Edit profile</a>
+                                    </div>  
+                                    
+                                </div>
+                            }
+
                         }
                         </div>
                     <div class="buttonRightCol">
@@ -71,75 +84,36 @@
                     </div>
             </div>
         </div>
+        
         <div class="end"></div>
 
 
     </div>
 </div>
 
-<!-- group profile ends -->
-<!-- Top Users starts -->
-<div class="col-sm-6">
-    <div class="panel panel-primary user">
+<!-- Notifications list -->
 
-        <div class="panel-heading">
-            <h3 id="panel-title" class="panel-title">
-
-                Top Followers
-
-            </h3>
-        </div>
-        <div class="panel-body">
-            @if (Model.user.Users1.Take(5).Count() == 0)
-            {
-                <div class="nofriends">
-                    @Model.user.userName has currently no followers.
-                </div>
-                
-            }
-           @foreach (var item in Model.user.Users1.Take(5))
+@if (ViewBag.isThisUser == true)
 {
-
-    <div class="topitem postquestion">
-        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-            <span class="makedivlink makedivlink_small"></span>
-        </a>
-        <div class="imgholder">
-            <img src="~/images/anonymous_user.png" />
-        </div>
-        <div class="authorscore userScore">
-            <span class="badge">
-                <span class="glyphicon glyphicon-console">
-                </span> @item.score
-            </span>
-        </div>
-        <h4 class="userName">@item.userName</h4>    </div>
-}
-
-        </div>
-    </div>
-    </div>
-    <!-- Top Users ends -->
-
-    <!-- Top Question starts -->
-    <div class="col-sm-6" style="float: left;">
+    <div class="col-sm-6" id="profileBox">
         <div class="panel panel-primary question">
-
             <div class="panel-heading">
                 <h3 id="panel-title" class="panel-title">
 
-                    Newest Questions
+                    Notifications
 
                 </h3>
             </div>
-            @if (Model.postList.Count() == 0)
+
+
+            @if (Model.notificationList.Count() == 0)
             {
                 <div class="nofriends">
-                    @Model.user.userName has not posted any questions.
+                    No notifications.
                 </div>
-
             }
-            @foreach (var item in Model.postList)
+
+            @foreach (var item in Model.notificationList)
             {
                 <div class="panel-body">
                     <div class="topitem postquestion">
@@ -159,10 +133,96 @@
 
         </div>
     </div>
+}
+<!-- end notifications list-->
+
+<!-- group profile ends -->
+<!-- Top Users starts -->
+<div class="col-sm-6" id="profileBox">
+    <div class="panel panel-primary user">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Top Followers
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            @if (Model.user.Users1.Take(5).Count() == 0)
+            {
+                <div class="nofriends">
+                    @Model.user.userName has currently no followers.
+                </div>
+
+            }
+            @foreach (var item in Model.user.Users1.Take(5))
+            {
+
+                <div class="topitem postquestion">
+                    <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                        <span class="makedivlink makedivlink_small"></span>
+                    </a>
+                    <div class="imgholder">
+                        <img src="~/images/anonymous_user.png" />
+                    </div>
+                    <div class="authorscore userScore">
+                        <span class="badge">
+                            <span class="glyphicon glyphicon-console">
+                            </span> @item.score
+                        </span>
+                    </div>
+                    <h4 class="userName">@item.userName</h4>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+    <!-- Top Users ends -->
+
+    <!-- Top Question starts -->
+    <div class="col-sm-6" id="profileBox">
+    <div class="panel panel-primary question">
+
+        <div class="panel-heading">
+            <h3 id="panel-title" class="panel-title">
+
+                Newest Questions
+
+            </h3>
+        </div>
+        @if (Model.postList.Count() == 0)
+        {
+            <div class="nofriends">
+                @Model.user.userName has not posted any questions.
+            </div>
+        }
+        @foreach (var item in Model.postList)
+        {
+            <div class="panel-body">
+                <div class="topitem postquestion">
+                    <div class="imgholder">
+                        <img src="~/images/anonymous_user.png" />
+                    </div>
+                    <div class="textholder">
+                        <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
+                        @item.body
+                    </div>
+                    <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                        <span class="makedivlink"></span>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
 
     <!-- Top Question ends -->
 <!--- group followin-->
-<div class="col-sm-6" >
+<div class="col-sm-6" id="profileBox">
 
     <div class="panel panel-primary group">
 
@@ -199,6 +259,8 @@
         </div>
     </div>
 </div>
-
 <!-- end following -->
-
+@if (ViewBag.isThisUser == true)
+{
+    @Html.Partial("_EditUser");
+}

@@ -23,7 +23,9 @@
 
                 <div class="col-sm-3 headerExtra" id="headerSearch">
                     <div class="input-group hidelower">
-                        <input type="text" class="form-control" placeholder="Search for...">
+                   
+                        <input type="text" id="queryString" name="queryString" class="form-control" placeholder="Search for...">
+                        
                         <span class="input-group-btn">
                             <button class="btn btn-default glyphicon glyphicon-search searchbutton" type="button"></button>
                         </span>
@@ -72,6 +74,7 @@
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/modal.js")
+    
     @RenderSection("scripts", required: false)
 
 

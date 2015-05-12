@@ -45,5 +45,23 @@ namespace SozialHeap.Controllers
 
             return View();
         }
+        
+        
+        public ActionResult Search(string id)
+        {
+            if(id == null)
+            { 
+                return RedirectToAction("Index");
+            }
+            SearchResults model = new SearchResults();
+            model.Posts = service.findPostByString(id);
+            model.users = service.findUsersByString(id);
+            model.groups = service.findGroupsByString(id);
+            if(User.Identity.IsAuthenticated)
+            {
+                ViewBag.notifications = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId())).Count();
+            }
+            return View(model);
+        }
     }
 }

@@ -17,23 +17,25 @@ $('#prefetch .typeahead').typeahead(null, {
 */
 
 $(function () {
-
+    $(document).ready(function () {
+        $('#queryString').keypress(function (e) {
+            if (e.which == 13 && $('#queryString').val() != '') {
+                document.location = '/Home/Search/' + $("#queryString").val();
+            }
+        });
+    });
     $('#headerSearch .form-control').autocomplete({
         source: "/User/UserQuery/",
         minLength: 1,
         select: function (event, ui) {
-            var url = ui.item.userName;
-            if (url != '#') {
-                location.href = "/User/ViewUser/" + url;
-            }
+            var url = ui;
         },
-
-        html: true, // optional (jquery.ui.autocomplete.html.js required)
-
-        // optional (if other layers overlap autocomplete list)
+        html: true,
         open: function (event, ui) {
+            // just to make sure it stays on top :)
             $(".ui-autocomplete").css("z-index", 9999990000);
         }
     });
+    
 });
 

@@ -304,6 +304,13 @@ height: 75px;
         {
             border-color: #466675;
         }
+
+        .question.btn   
+        {
+            border-color: #466675;
+            background: #466675;
+            color: #fff;
+        }
         .questionbutton
         {
             border-color: #466675;
@@ -366,6 +373,69 @@ height: 75px;
             
             
         }
+
+        .postTR.first 
+        {
+            border: 2px solid #466675;
+        }
+
+        .postTR.second
+        {
+            border: 2px solid #4e7182;
+        }
+        .postTR.first .holder
+        {
+            
+            background: #466675;
+        }
+        .postTR.second .holder
+        {            
+            
+            background: #4e7182; 
+        }
+
+        table .holder
+        {
+            max-width: 5px;
+            overflow: hidden;
+        }
+
+        .postTR:hover
+        {
+            background: #60A3C1;
+            color: #fff;
+        }
+
+        .postTR
+        {
+            color: #AEBBC1;
+        }
+
+        .userTR.first
+        {
+            background: #5461a8;
+            color: #fff;
+        }
+        .userTR.second
+        {
+            background: #9298B6;
+            color: #fff;
+        }
+         .userTR:hover
+        {
+            background: #252D5B;
+        }
+       
+        .searchTable tr.smalltitle
+        {
+
+            font-weight: bold;        
+        }
+
+        .searchTable tr
+         {
+            cursor: pointer;
+         }
         .user.btn,
         .user .panel-heading
         {
@@ -620,4 +690,25 @@ height: 75px;
 {
     display: inline;
     margin-bottom: 0;
+}
+
+#searchresult .col-sm-3
+{
+    overflow: hidden;
+}
+
+#searchresult .col-sm-3 .textholder
+{
+    width: 240px;
+    overflow: hidden;
+}
+
+.searchhover
+{
+    display: none;
+}
+
+#searchresult
+{
+    margin-top: 2em;
 }

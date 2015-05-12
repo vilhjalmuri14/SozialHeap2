@@ -87,7 +87,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                
+                Console.WriteLine(ex.Message.ToString());
                 return;
             }
         }
@@ -159,29 +159,6 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
-        /// Returns posts by given userID.
-        /// </summary>
-        /// <returns>list of Posts</returns>
-        public List<Post> getPostbyId(string id)
-        {
-            try
-            {
-                List<Post> p = (from item in db2.Posts
-                                where item.userID == id
-                                orderby item.dateCreated descending
-                                select item).ToList();
-
-                return p;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-            }
-
-            return new List<Post>();
-        }
-
-        /// <summary>
         /// Returns post by given id.
         /// </summary>
         /// <param name="groupId">id of Post</param>
@@ -239,12 +216,58 @@ namespace Sozialheap.Services
         }
 
         /// <summary>
-        /// Delete post with the given id
+        /// Update the given answer
         /// </summary>
-        /// <param name="id">id of post to delete</param>
-        public void DeletePost(int id)
+        /// <param name="a">Answer to update</param>
+        public void EditAnswer(Answer a)
         {
-            // TODO: implement delete Post by id
+            try
+            {
+                Answer edit = GetSingleAnswerByAnswerId(a.answerID);
+                edit = a;
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Delete given post
+        /// </summary>
+        /// <param name="postToDelete">Post to delete</param>
+        public void DeletePost(Post postToDelete)
+        {
+            try 
+            { 
+                db2.Posts.Remove(postToDelete);
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        
+        }
+
+        /// <summary>
+        /// Delete Answer
+        /// </summary>
+        /// <param name="ansToDelete">Answer that should be removed</param>
+        public void DeleteAnswer(Answer ansToDelete)
+        {
+            try
+            {
+                db2.Answers.Remove(ansToDelete);
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -253,8 +276,39 @@ namespace Sozialheap.Services
         /// <param name="p">Post to update</param>
         public void EditPost(Post p)
         {
+            try
+            {
+                Post edit = getPost(p.postID);
+                edit = p;
+                db2.SaveChanges();
+                return;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
 
-            // TODO implement edit Post
+        /// <summary>
+        /// Update the User to the provided one.
+        /// </summary>
+        /// <param name="u">User to update</param>
+        public void EditUser(User u)
+        {
+            try
+            {
+                User edit = GetUserById(u.userID);
+                edit.fullName = u.fullName;
+                edit.description = u.description;
+                edit.photo = u.photo;
+
+                db2.SaveChanges();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -277,6 +331,28 @@ namespace Sozialheap.Services
                 Console.WriteLine(ex.Message.ToString());
             }
             return new User();
+        }
+
+        /// <summary>
+        /// Returns posts by given userID.
+        /// </summary>
+        /// <returns>list of Posts</returns>
+        public List<Post> getPostbyUserId(string id)
+        {
+            try
+            {
+                List<Post> p = (from item in db2.Posts
+                                where item.userID == id
+                                orderby item.dateCreated descending
+                                select item).ToList();
+
+                return p;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return null;
         }
 
         /// <summary>
@@ -328,7 +404,7 @@ namespace Sozialheap.Services
                 Console.WriteLine(ex.Message.ToString());
             }
 
-            return null;
+            return new List<SimpleUser>();
         }
 
         public List<User> GetUsersByGroup(Group grp, int n = 5)
@@ -348,7 +424,7 @@ namespace Sozialheap.Services
                 Console.WriteLine(ex.Message.ToString());
             }
 
-            return null;
+            return new List<User>();
         }
 
 
@@ -384,11 +460,11 @@ namespace Sozialheap.Services
         {
             try
             {
-            var answers = (from item in db2.Answers
-                         where item.postID == id
-                         orderby item.dateCreated descending
-                         select item).ToList();
-            return (List<Answer>)answers;
+                var answers = (from item in db2.Answers
+                             where item.postID == id
+                             orderby item.dateCreated descending
+                             select item).ToList();
+                return (List<Answer>)answers;
 
             }
             catch(Exception ex)
@@ -397,6 +473,22 @@ namespace Sozialheap.Services
             }
 
             return new List<Answer>();
+        }
+
+        public Answer GetSingleAnswerByAnswerId(int answerID)
+        {
+            try
+            {
+                Answer res = (from item in db2.Answers
+                              where item.answerID == answerID
+                              select item).SingleOrDefault();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return null;
         }
 
         /// <summary>
@@ -605,6 +697,114 @@ namespace Sozialheap.Services
                 }
             }
             return new List<Post>();
+        }
+
+        public void AcknowledgeNotifications(Post post)
+        {
+            try
+            {
+                foreach (var item in post.Answers)
+                {
+                    item.seenByOwner = true;
+                }
+                db2.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        public List<Post> findPostByString(string query)
+        {
+            List<Post> posts = (from item in db2.Posts
+                              where item.body.Contains(query) || item.name.Contains(query)
+                              select item).ToList();
+
+            List<Answer> answers = (from item in db2.Answers
+                                    where item.body.Contains(query) || item.title.Contains(query)
+                                    select item).ToList();
+
+            List<Post> final = new List<Post>();
+            final = posts;
+            
+            for (int i = 0; i < answers.Count; i++ )
+            {
+                if(!final.Contains(answers[i].Post))
+                {
+                    final.Add(answers[i].Post);
+                }
+            }
+
+            return final;
+        }
+
+        public List<User> findUsersByString(string query)
+        {
+            try
+            {
+                List<User> res = (from item in db2.Users
+                                  where item.userName.Contains(query) || item.description.Contains(query) || item.fullName.Contains(query)
+                                  select item).ToList();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new List<User>();
+        }
+
+        public List<Group> findGroupsByString(string query)
+        {
+            try
+            {
+                List<Group> res = (from item in db2.Groups
+                                   where item.description.Contains(query) || item.groupName.Contains(query)
+                                   select item).ToList();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return new List<Group>();
+        }
+
+        public List<string> getKeywords(string query)
+        {
+            if(query.Contains(' ') || query.Contains('-'))
+            {
+                // breaks if you have space or dash in the search string to prenvent bad input
+                return new List<string>();
+            }
+            string connetionString = null;
+            SqlConnection cnn ;
+            connetionString = "Data Source=hrnem.ru.is;Initial Catalog=VERK2015_H43;User ID=VERK2015_H43_usr;Password=wildferret27";
+            cnn = new SqlConnection(connetionString);
+            string sql = "SELECT * FROM keywords WHERE word LIKE '"+query+"%'";
+            List<string> res = new List<string>();
+            try
+            {
+                cnn.Open();
+                SqlCommand command = new SqlCommand(sql, cnn);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    res.Add(dataReader.GetValue(0).ToString());
+//                    MessageBox.Show(dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + " - " + dataReader.GetValue(2));
+                }
+                dataReader.Close();
+                command.Dispose();
+                cnn.Close();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new List<string>();
         }
     }
 }
