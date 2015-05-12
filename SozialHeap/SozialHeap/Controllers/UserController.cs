@@ -43,6 +43,10 @@ namespace Sozialheap.Controllers
                     //service.AcknowledgeNotifications(currUser);
 
                 }
+                else
+                {
+                    ViewBag.isThisUser = false;
+                }
                 ViewBag.isLoggedIn = true;
             }
             else
