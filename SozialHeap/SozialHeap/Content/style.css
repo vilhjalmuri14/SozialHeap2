@@ -2,6 +2,11 @@ a {
    outline: 0;
 }
 
+a:hover
+{
+    text-decoration: none;
+}
+
 body
 {
     /*  padding-bottom:80px;
@@ -590,6 +595,7 @@ height: 75px;
             border-width: 1px;
             border-color: #000 !important;
             background: #fff !important;
+            color: #000 !important;
         }
 
         .notfollowing:visited,
@@ -638,11 +644,19 @@ height: 75px;
             overflow: hidden;
         }
 
-        .likebutton, .unlikebutton
+        .coolpost
         {
             display: block !important;
-            width: 150px !important;
-            margin:0;
+            
+        }
+        .divinfo
+        {
+            overflow: hidden;
+        }
+
+        .info span
+        {
+            display:none;           
         }
 
         .buttonRightCol .btn {
