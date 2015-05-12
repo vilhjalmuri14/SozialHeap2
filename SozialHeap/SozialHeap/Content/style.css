@@ -675,6 +675,14 @@ height: 75px;
             display: none;
         }
 
+        .imgholder
+        {
+            display: none;
+        }
+        .postquestion
+        {
+            margin-left: 1em;
+        }
         .showlower
         {
            display: inline;
