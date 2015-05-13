@@ -1,4 +1,5 @@
-﻿using Sozialheap.Services;
+﻿using SozialHeap.Utils;
+using Sozialheap.Services;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
 
@@ -19,6 +20,8 @@ namespace SozialHeap.Controllers
 
         public ActionResult Index()
         {
+            Utils.Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Home/Index");
+
             FrontPageView model = new FrontPageView();
             model.Groups = service.GetAllGroups().Take(5).ToList();
             model.Users = service.GetAllUsers();
@@ -30,8 +33,8 @@ namespace SozialHeap.Controllers
                 model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
                 ViewBag.notifications = model.notificationList.Count();
                 User currUser = service.GetUserById(User.Identity.GetUserId());
-                model.recentFromUsers = service.getRecentByFollowingUsers(User.Identity.GetUserId());
-                model.recentGroups = service.getRecentFollowingGroups(User.Identity.GetUserId());
+                model.recentFromUsers = service.getRecentByFollowingUsers(User.Identity.GetUserId()).Take(5);
+                model.recentGroups = service.getRecentFollowingGroups(User.Identity.GetUserId()).Take(5);
             }
             else
             {
@@ -56,7 +59,11 @@ namespace SozialHeap.Controllers
             return View();
         }
         
-        
+        /// <summary>
+        /// Search feature
+        /// </summary>
+        /// <param name="id">search string</param>
+        /// <returns></returns>
         public ActionResult Search(string id)
         {
             if(id == null)

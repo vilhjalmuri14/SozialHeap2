@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SozialHeap.Models;
+using SozialHeap.Utils;
 
 namespace Sozialheap.Controllers
 {
@@ -18,6 +19,7 @@ namespace Sozialheap.Controllers
 
         public ActionResult ViewUser(string id)
         {
+            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewUser/"+id);
             UserView model = new UserView();
 
             model.user = service.GetUserByUsername(id);
@@ -99,7 +101,7 @@ namespace Sozialheap.Controllers
         public ActionResult Index()
         {
             UserView model = new UserView();
-
+            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Users/");
             model.userList = service.GetAllUsers();
             ViewBag.Site = "Index";
 
@@ -109,7 +111,7 @@ namespace Sozialheap.Controllers
         public ActionResult UserQuery(string term)
         {
             //var users = service.GetUsersByQuery(term);
-            var users = service.getKeywords(term);
+            var users = Utils.getKeywords(term);
 
             return Json(users, JsonRequestBehavior.AllowGet);
         }

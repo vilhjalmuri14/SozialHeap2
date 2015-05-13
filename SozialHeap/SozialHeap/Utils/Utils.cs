@@ -1,8 +1,13 @@
-﻿using System;
+﻿using SozialHeap.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Text;
 using System.Web;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SozialHeap.Utils
 {
@@ -97,6 +102,70 @@ namespace SozialHeap.Utils
                     sb.Append("just now");
                 }
                 return sb.ToString();
+            }
+        }
+
+        public static List<string> getKeywords(string query)
+        {
+            if (query.Contains(" ") || query.Contains("-"))
+            {
+                // breaks if you have space or dash in the search string to prenvent bad input
+                return new List<string>();
+            }
+            SqlConnection cnn;
+            cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            List<string> res = new List<string>();
+            try
+            {
+                cnn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM keywords WHERE word LIKE @query", cnn);
+                command.Parameters.Add(new SqlParameter("query", query+"%"));
+
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    res.Add(dataReader.GetValue(0).ToString());
+                }
+                dataReader.Close();
+                command.Dispose();
+                cnn.Close();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new List<string>();
+        }
+
+        /// <summary>
+        /// Logs action to the Syslog table for later inspection or statistics
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="ipAddr"></param>
+        /// <param name="action"></param>
+        public static void LogAction(string userID, string ipAddr, string action)
+        {
+            SqlConnection conn;
+            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            try
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("INSERT INTO Syslog(userName, viewed, ipAddress) VALUES(@User, @Action, @Ip)", conn))
+                {
+                    command.Parameters.Add(new SqlParameter("User", userID));
+                    command.Parameters.Add(new SqlParameter("Ip", ipAddr));
+                    command.Parameters.Add(new SqlParameter("Action", action));
+                    command.ExecuteNonQuery();
+                }
+                
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
             }
         }
     }
