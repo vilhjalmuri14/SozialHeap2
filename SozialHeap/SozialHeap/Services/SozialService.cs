@@ -728,12 +728,12 @@ namespace Sozialheap.Services
         public List<Post> findPostByString(string query)
         {
             List<Post> posts = (from item in db2.Posts
-                              where item.body.Contains(query) || item.name.Contains(query)
-                              select item).ToList();
+                                  where item.body.Contains(query) || item.name.Contains(query)
+                                  select item).ToList();
 
             List<Answer> answers = (from item in db2.Answers
-                                    where item.body.Contains(query) || item.title.Contains(query)
-                                    select item).ToList();
+                                  where item.body.Contains(query) || item.title.Contains(query)
+                                  select item).ToList();
 
             List<Post> final = new List<Post>();
             final = posts;
@@ -783,36 +783,37 @@ namespace Sozialheap.Services
 
         public IEnumerable<Post> getRecentByFollowingUsers(string userID)
         {
-
-
-
-            var posts = from user in db2.Users
-                        join post in db2.Posts on user.userID equals post.userID
-                        where user.Users.Select(x => x.userID).Contains(userID)
-                        select post;
-
-            /*
             try
             {
-                List<User> following = (from item in db2.Users
-                                    where item.Users.Contains(userID)
-                                    select item).ToList();
-
-                List<Post> res = (from item in db2.Posts
-                                      where following.Contains(item.User)
-                                      select item).ToList();
-                
-
-  //              var res = (from item in db2.Posts
-    //                       select item).toList();
-                return res;
+                var posts = from user in db2.Users
+                    join post in db2.Posts on user.userID equals post.userID
+                    where user.Users.Select(x => x.userID).Contains(userID)
+                    select post;
+                return posts;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
             }
-            */
-            return posts;
+
+            return null;
+        }
+
+        public IEnumerable<Group> getRecentFollowingGroups(string userID)
+        {
+            try
+            {
+                var groups = from g in db2.Groups
+                            where g.Users.Select(x => x.userID).Contains(userID)
+                            select g;
+                return groups;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return null;
         }
 
         public List<string> getKeywords(string query)

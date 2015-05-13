@@ -31,7 +31,7 @@ namespace SozialHeap.Controllers
                 ViewBag.notifications = model.notificationList.Count();
                 User currUser = service.GetUserById(User.Identity.GetUserId());
                 model.recentFromUsers = service.getRecentByFollowingUsers(User.Identity.GetUserId());
-                model.recentGroups = new List<Group>();
+                model.recentGroups = service.getRecentFollowingGroups(User.Identity.GetUserId());
             }
             else
             {
