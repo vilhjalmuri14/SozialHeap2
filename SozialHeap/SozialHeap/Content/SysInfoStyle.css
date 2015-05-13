@@ -1,0 +1,35 @@
+﻿.sysInfoBody
+{
+    padding: 15px !important;
+}
+
+.sysInfoBody th
+{
+    padding-right: 200px;
+}
+
+.sysInfoBody h4
+{
+    text-align: center;
+}
+
+.sysInfoBody table
+{
+    text-align: center;   
+}
+
+.sysInfoBody td
+{
+    padding: 0px 25px;
+}
+
+.sysInfoBody .email
+{
+    padding-bottom: 15px;
+
+}
+
+.sysInfoBody #middle
+{
+    text-align: center; 
+}
