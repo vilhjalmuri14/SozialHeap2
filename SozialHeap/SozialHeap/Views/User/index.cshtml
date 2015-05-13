@@ -28,7 +28,14 @@
                                     <span class="makedivlink makedivlink_small"></span>
                                 </a>
                                 <div class="imgholder">
-                                    <img src="~/images/anonymous_user.png" alt="User photo"/>
+                                    @if (item.photo != null)
+                                    {
+                                        <img src="@item.photo" alt="User photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/anonymous_user.png" alt="User photo"/>
+                                    }
                                 </div>
                                 <div class="authorscore userScore">
                                     <span class="badge">
@@ -51,7 +58,14 @@
                                     <span class="makedivlink makedivlink_small"></span>
                                 </a>
                                 <div class="imgholder">
-                                    <img src="~/images/anonymous_user.png" alt="User photo"/>
+                                    @if (item.photo != null)
+                                    {
+                                        <img src="@item.photo" alt="User photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/anonymous_user.png" alt="User photo" />
+                                    }
                                 </div>
                                 <div class="authorscore userScore">
                                     <span class="badge">
@@ -74,7 +88,14 @@
                                     <span class="makedivlink makedivlink_small"></span>
                                 </a>
                                 <div class="imgholder">
-                                    <img src="~/images/anonymous_user.png" alt="User photo"/>
+                                    @if (item.photo != null)
+                                    {
+                                        <img src="@item.photo" alt="User photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/anonymous_user.png" alt="User photo" />
+                                    }
                                 </div>
                                 <div class="authorscore userScore">
                                     <span class="badge">
