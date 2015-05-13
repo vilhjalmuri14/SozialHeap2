@@ -65,7 +65,15 @@
                             </a>
 
                             <div class="imgholder">
-                                <img src="~/images/Group.png" />
+                                @if(item.photo != null)
+                                {
+                                    <img src="@item.photo" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/Group.png" />    
+                                }
+                                
                             </div>
                             <div class="textholder">
                                 <h4>@Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")</h4><br />
@@ -138,7 +146,14 @@
                                 </a>
 
                                 <div class="imgholder">
-                                    <img src="~/images/Group.png" />
+                                    @if (item.photo != null)
+                                    {
+                                        <img src="@item.photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/Group.png" />
+                                    }
                                 </div>
                                 <div class="textholder">
                                     <h4>@Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")</h4><br />
@@ -170,7 +185,15 @@
                                 </a>
 
                                 <div class="imgholder">
-                                    <img src="~/images/Group.png" />
+                                    @if(item.photo != null)
+                                    {
+                                        <img src="@item.photo" alt="user photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/Group.png" alt="user photo" />
+                                    }
+                                    
                                 </div>
                                 <div class="authorscore userScore">
                                     <span class="badge">

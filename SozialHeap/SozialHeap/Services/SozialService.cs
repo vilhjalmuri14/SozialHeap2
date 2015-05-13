@@ -95,7 +95,6 @@ namespace Sozialheap.Services
             try
             {
                 Group actualGroup = GetGroupById(g.groupID);
-                actualGroup.groupName = g.groupName;
                 actualGroup.photo = g.photo;
                 actualGroup.description = g.description;
 
