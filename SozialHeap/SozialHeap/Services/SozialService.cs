@@ -2,9 +2,9 @@
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
-
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -728,12 +728,12 @@ namespace Sozialheap.Services
         public List<Post> findPostByString(string query)
         {
             List<Post> posts = (from item in db2.Posts
-                              where item.body.Contains(query) || item.name.Contains(query)
-                              select item).ToList();
+                                  where item.body.Contains(query) || item.name.Contains(query)
+                                  select item).ToList();
 
             List<Answer> answers = (from item in db2.Answers
-                                    where item.body.Contains(query) || item.title.Contains(query)
-                                    select item).ToList();
+                                  where item.body.Contains(query) || item.title.Contains(query)
+                                  select item).ToList();
 
             List<Post> final = new List<Post>();
             final = posts;
@@ -781,30 +781,39 @@ namespace Sozialheap.Services
             return new List<Group>();
         }
 
-        public List<Post> getRecentByFollowingUsers(string userID)
+        public IEnumerable<Post> getRecentByFollowingUsers(string userID)
         {
-            /*
             try
             {
-                List<User> following = (from item in db2.Users
-                                    where item.Users.Contains(userID)
-                                    select item).ToList();
-
-                List<Post> res = (from item in db2.Posts
-                                      where following.Contains(item.User)
-                                      select item).ToList();
-                
-
-  //              var res = (from item in db2.Posts
-    //                       select item).toList();
-                return res;
+                var posts = from user in db2.Users
+                    join post in db2.Posts on user.userID equals post.userID
+                    where user.Users.Select(x => x.userID).Contains(userID)
+                    select post;
+                return posts;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
             }
-            */
-            return new List<Post>();
+
+            return null;
+        }
+
+        public IEnumerable<Group> getRecentFollowingGroups(string userID)
+        {
+            try
+            {
+                var groups = from g in db2.Groups
+                            where g.Users.Select(x => x.userID).Contains(userID)
+                            select g;
+                return groups;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return null;
         }
 
         public List<string> getKeywords(string query)
@@ -814,10 +823,8 @@ namespace Sozialheap.Services
                 // breaks if you have space or dash in the search string to prenvent bad input
                 return new List<string>();
             }
-            string connetionString = null;
             SqlConnection cnn ;
-            connetionString = "Data Source=hrnem.ru.is;Initial Catalog=VERK2015_H43;User ID=VERK2015_H43_usr;Password=wildferret27";
-            cnn = new SqlConnection(connetionString);
+            cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             string sql = "SELECT * FROM keywords WHERE word LIKE '"+query+"%'";
             List<string> res = new List<string>();
             try

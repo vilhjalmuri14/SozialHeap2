@@ -159,5 +159,25 @@ namespace Sozialheap.Controllers
 
             return RedirectToAction("ViewGroup/" + id);
         }
+
+        public ActionResult ViewUsers(int? id)
+        {
+            if (!id.HasValue)
+            {
+                ViewBag.Message = "No id given on requested group.";
+                return View("Error");
+            }
+            else
+            {
+                var group = service.GetGroupById((int)id);
+                if (group == null)
+                {
+                    ViewBag.Message = "Invalid group request!";
+                    return View("Error");
+                }
+
+                return View(group);
+            }
+        }
     }
 }
