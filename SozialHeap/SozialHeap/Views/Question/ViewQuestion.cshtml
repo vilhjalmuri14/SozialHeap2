@@ -21,11 +21,11 @@
                 <div class="imgholder">
                     @if(Model.currentPost.User.photo != null)
                     {
-                        <img src="@Model.currentPost.User.photo" />
+                        <img src="@Model.currentPost.User.photo" alt="User photo"/>
                     }
                     else
                     { 
-                        <img src="~/images/anonymous_user.png" />
+                        <img src="~/images/anonymous_user.png" alt="User photo"/>
                     }
                 </div>
                 <div class="authorinfo">
@@ -109,11 +109,11 @@
                                 <div class="imgholder">
                                     @if(Model.answerList[i].User.photo != null)
                                     {
-                                        <img src="@Model.answerList[i].User.photo" />
+                                        <img src="@Model.answerList[i].User.photo" alt="User photo"/>
                                     }
                                     else
                                     {
-                                        <img src="~/images/anonymous_user.png" />
+                                        <img src="~/images/anonymous_user.png" alt="User photo"/>
                                     }
                                 </div>
                                 <div class="authorinfo">

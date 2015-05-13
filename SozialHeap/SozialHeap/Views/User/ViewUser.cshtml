@@ -22,11 +22,11 @@
                 <div class="imgholder">
                     @if (ViewBag.photo != null)
                     {
-                        <img src="@ViewBag.photo" alt="user photo" />
+                        <img src="@ViewBag.photo" alt="User photo" />
                     }
                     else
                     {
-                        <img src="~/images/anonymous_user.png" alt="user photo" />
+                        <img src="~/images/anonymous_user.png" alt="User photo" />
                     }
                     
                 </div>
@@ -124,7 +124,7 @@
                 <div class="panel-body">
                     <div class="topitem postquestion">
                         <div class="imgholder">
-                            <img src="~/images/anonymous_user.png" />
+                            <img src="~/images/anonymous_user.png" alt="User photo"/>
                         </div>
                         <div class="textholder">
                             <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
@@ -172,11 +172,11 @@
                     <div class="imgholder">
                         @if (item.photo != null)
                         {
-                            <img src="@item.photo" alt="user photo" />
+                            <img src="@item.photo" alt="User photo" />
                         }
                         else
                         {
-                            <img src="~/images/anonymous_user.png" alt="user photo" />
+                            <img src="~/images/anonymous_user.png" alt="User photo" />
                         }
                     </div>
                     <div class="authorscore userScore">
@@ -217,7 +217,7 @@
                 <div class="topitem postquestion">
                     <div class="imgholder">
                         
-                        <img src="~/images/question.png" />
+                        <img src="~/images/question.png" alt="Question photo"/>
                     </div>
                     <div class="textholder">
                         <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
@@ -265,11 +265,11 @@
                     <div class="imgholder">
                         @if(item.photo != null)
                         {
-                            <img src="@item.photo" alt="group icon" />
+                            <img src="@item.photo" alt="Group photo" />
                         }
                         else
                         {
-                            <img src="~/images/Group.png" alt="group icon" />
+                            <img src="~/images/Group.png" alt="Group photo" />
                         }
                     </div>
                     <h4>@item.groupName</h4>

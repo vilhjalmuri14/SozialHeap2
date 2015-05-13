@@ -28,7 +28,7 @@
                                 <span class="makedivlink"></span>
                             </a>
                             <div class="imgholder">
-                                <img src="~/images/question.png" />
+                                <img src="~/images/question.png" alt="Question photo"/>
                             </div>
                             <div class="textholder">
                                 <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted in </span>
@@ -67,11 +67,11 @@
                             <div class="imgholder">
                                 @if(item.photo != null)
                                 {
-                                    <img src="@item.photo" />
+                                    <img src="@item.photo" alt="Group photo"/>
                                 }
                                 else
                                 {
-                                    <img src="~/images/Group.png" />    
+                                    <img src="~/images/Group.png" alt="Group photo"/>    
                                 }
                                 
                             </div>
@@ -109,7 +109,7 @@
                                     <span class="makedivlink"></span>
                                 </a>
                                 <div class="imgholder">
-                                    <img src="~/images/question.png" />
+                                    <img src="~/images/question.png" alt="Question photo"/>
                                 </div>
                                 <div class="textholder">
                                     <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted in </span>
@@ -148,11 +148,11 @@
                                 <div class="imgholder">
                                     @if (item.photo != null)
                                     {
-                                        <img src="@item.photo" />
+                                        <img src="@item.photo" alt="Group photo"/>
                                     }
                                     else
                                     {
-                                        <img src="~/images/Group.png" />
+                                        <img src="~/images/Group.png" alt="Group photo"/>
                                     }
                                 </div>
                                 <div class="textholder">
@@ -187,11 +187,11 @@
                                 <div class="imgholder">
                                     @if(item.photo != null)
                                     {
-                                        <img src="@item.photo" alt="user photo" />
+                                        <img src="@item.photo" alt="User photo" />
                                     }
                                     else
                                     {
-                                        <img src="~/images/Group.png" alt="user photo" />
+                                        <img src="~/images/Group.png" alt="User photo" />
                                     }
                                     
                                 </div>

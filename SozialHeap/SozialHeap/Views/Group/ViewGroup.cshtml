@@ -25,11 +25,11 @@
                     <div class="imgholder">
                         @if(Model.group.photo != null)
                         {
-                            <img src="@Model.group.photo" />
+                            <img src="@Model.group.photo" alt="Group photo"/>
                         }
                         else
                         {
-                            <img src="~/images/Group.png" />
+                            <img src="~/images/Group.png" alt="Group photo"/>
                         }
                     </div>
                     <div class="authorinfo">
@@ -121,11 +121,11 @@
                                 <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
                                     @if (item.photo != null)
                                     {
-                                        <img src="@item.photo" alt="user icon" />
+                                        <img src="@item.photo" alt="User photo" />
                                     }
                                     else
                                     {
-                                        <img src="~/images/anonymous_user.png" />
+                                        <img src="~/images/anonymous_user.png" alt="User photo"/>
                                     }
                                     
                                 </a>
@@ -183,7 +183,7 @@
                         {
                             <div class="topitem postquestion">
                                 <div class="imgholder">
-                                    <img src="~/images/question.png" />
+                                    <img src="~/images/question.png" alt="Question photo"/>
                                 </div>
                                 <div class="textholder" style="overflow: hidden; height: 60px;">
                                     <h4>@item.name</h4> <span class="notimportant">posted in </span>
