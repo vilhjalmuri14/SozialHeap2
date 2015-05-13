@@ -2,9 +2,9 @@
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
-
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -781,8 +781,16 @@ namespace Sozialheap.Services
             return new List<Group>();
         }
 
-        public List<Post> getRecentByFollowingUsers(string userID)
+        public IEnumerable<Post> getRecentByFollowingUsers(string userID)
         {
+
+
+
+            var posts = from user in db2.Users
+                        join post in db2.Posts on user.userID equals post.userID
+                        where user.Users.Select(x => x.userID).Contains(userID)
+                        select post;
+
             /*
             try
             {
@@ -804,7 +812,7 @@ namespace Sozialheap.Services
                 Console.WriteLine(ex.Message.ToString());
             }
             */
-            return new List<Post>();
+            return posts;
         }
 
         public List<string> getKeywords(string query)
@@ -814,10 +822,8 @@ namespace Sozialheap.Services
                 // breaks if you have space or dash in the search string to prenvent bad input
                 return new List<string>();
             }
-            string connetionString = null;
             SqlConnection cnn ;
-            connetionString = "Data Source=hrnem.ru.is;Initial Catalog=VERK2015_H43;User ID=VERK2015_H43_usr;Password=wildferret27";
-            cnn = new SqlConnection(connetionString);
+            cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             string sql = "SELECT * FROM keywords WHERE word LIKE '"+query+"%'";
             List<string> res = new List<string>();
             try
