@@ -33,7 +33,7 @@ namespace Sozialheap.Controllers
             service.CreateGroup(form);
             if(form.groupID > 0)
             {
-                return View("~/Group/ViewGroup/" + form.groupID);
+                return RedirectToAction("ViewGroup/" + form.groupID, "Group", "");
 
             }
             else

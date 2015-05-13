@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -99,5 +101,39 @@ namespace SozialHeap.Utils
                 return sb.ToString();
             }
         }
+
+        public static List<string> getKeywords(string query)
+        {
+            if (query.Contains(' ') || query.Contains('-'))
+            {
+                // breaks if you have space or dash in the search string to prenvent bad input
+                return new List<string>();
+            }
+            SqlConnection cnn;
+            cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            string sql = "SELECT * FROM keywords WHERE word LIKE '" + query + "%'";
+            List<string> res = new List<string>();
+            try
+            {
+                cnn.Open();
+                SqlCommand command = new SqlCommand(sql, cnn);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    res.Add(dataReader.GetValue(0).ToString());
+                }
+                dataReader.Close();
+                command.Dispose();
+                cnn.Close();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return new List<string>();
+        }
+
     }
 }

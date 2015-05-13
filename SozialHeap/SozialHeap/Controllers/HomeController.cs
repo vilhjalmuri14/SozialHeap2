@@ -30,8 +30,8 @@ namespace SozialHeap.Controllers
                 model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
                 ViewBag.notifications = model.notificationList.Count();
                 User currUser = service.GetUserById(User.Identity.GetUserId());
-                model.recentFromUsers = service.getRecentByFollowingUsers(User.Identity.GetUserId());
-                model.recentGroups = service.getRecentFollowingGroups(User.Identity.GetUserId());
+                model.recentFromUsers = service.getRecentByFollowingUsers(User.Identity.GetUserId()).Take(5);
+                model.recentGroups = service.getRecentFollowingGroups(User.Identity.GetUserId()).Take(5);
             }
             else
             {
@@ -56,7 +56,11 @@ namespace SozialHeap.Controllers
             return View();
         }
         
-        
+        /// <summary>
+        /// Search feature
+        /// </summary>
+        /// <param name="id">search string</param>
+        /// <returns></returns>
         public ActionResult Search(string id)
         {
             if(id == null)
