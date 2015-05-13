@@ -20,7 +20,15 @@
 
             <div class="textholder post profile">
                 <div class="imgholder">
-                    <img src="~/images/anonymous_user.png" />
+                    @if (ViewBag.photo != null)
+                    {
+                        <img src="@ViewBag.photo" alt="user photo" />
+                    }
+                    else
+                    {
+                        <img src="~/images/anonymous_user.png" alt="user photo" />
+                    }
+                    
                 </div>
                 <div class="authorinfo">
                     <h4>@Model.user.userName</h4>
