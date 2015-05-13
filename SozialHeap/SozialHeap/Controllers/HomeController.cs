@@ -1,4 +1,5 @@
-﻿using Sozialheap.Services;
+﻿using SozialHeap.Utils;
+using Sozialheap.Services;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
 
@@ -19,6 +20,8 @@ namespace SozialHeap.Controllers
 
         public ActionResult Index()
         {
+            Utils.Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Home/Index");
+
             FrontPageView model = new FrontPageView();
             model.Groups = service.GetAllGroups().Take(5).ToList();
             model.Users = service.GetAllUsers();

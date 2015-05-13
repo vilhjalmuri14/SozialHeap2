@@ -96,10 +96,15 @@ namespace Sozialheap.Controllers
         {
             if (id != null)
             {
+                
                 PostView model = new PostView();
 
                 int new_id = id ?? default(int);
                 model.currentPost = service.getPost(new_id);
+
+                // insert statistics
+                Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewQuestion/" + new_id);
+
                 if (User.Identity.IsAuthenticated)
                 {
                     // set user information for logged in user

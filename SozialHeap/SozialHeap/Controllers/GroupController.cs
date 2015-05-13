@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SozialHeap.Utils;
 
 namespace Sozialheap.Controllers
 {
@@ -84,6 +85,7 @@ namespace Sozialheap.Controllers
 
         public ActionResult ViewGroup(int? id)
         {
+            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewGroup/"+(int)id);
             SingleGroupView v = new SingleGroupView();
             
             if(!id.HasValue)
@@ -125,6 +127,7 @@ namespace Sozialheap.Controllers
 
         public ActionResult Index()
         {
+            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Group");
             AllGroupView model = new AllGroupView();
             model.groupList = service.GetAllGroups();
             if (User.Identity.IsAuthenticated)

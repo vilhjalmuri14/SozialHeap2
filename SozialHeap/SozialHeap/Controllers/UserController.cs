@@ -19,6 +19,7 @@ namespace Sozialheap.Controllers
 
         public ActionResult ViewUser(string id)
         {
+            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewUser/"+id);
             UserView model = new UserView();
 
             model.user = service.GetUserByUsername(id);
@@ -100,7 +101,7 @@ namespace Sozialheap.Controllers
         public ActionResult Index()
         {
             UserView model = new UserView();
-
+            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Users/");
             model.userList = service.GetAllUsers();
             ViewBag.Site = "Index";
 
