@@ -33,9 +33,14 @@
                 <div class="authorinfo">
                     <h4>@Model.user.userName</h4>
                     <div class="authorscore">
-                        <span class="badge">
+                        <span class="badge" data-toggle="tooltip" data-placement="bottom" title="Score">
                             <span class="glyphicon glyphicon-console">
                             </span> @Model.user.score
+                        </span>
+                        
+                        <span class="badge" data-toggle="tooltip" data-placement="bottom" title="View count">
+                            <span class="glyphicon glyphicon-eye-open">
+                            </span> @Model.viewCount
                         </span>
                     </div>
                     <!-- author score ends -->
@@ -184,6 +189,7 @@
                             <span class="glyphicon glyphicon-console">
                             </span> @item.score
                         </span>
+                        
                     </div>
                     <h4 class="userName">@item.userName</h4>
                 </div>

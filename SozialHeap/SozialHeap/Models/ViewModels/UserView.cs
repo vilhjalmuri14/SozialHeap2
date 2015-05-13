@@ -17,5 +17,6 @@ namespace Sozialheap.Models.ViewModels
         public List<User> userList { get; set; }
         public List<Group> groupList { get; set; }
         public List<Answer> topRatedAnswer { get; set; }
+        public int viewCount { get; set; }
     }
 }

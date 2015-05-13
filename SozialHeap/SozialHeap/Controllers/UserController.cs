@@ -33,6 +33,7 @@ namespace Sozialheap.Controllers
 
             // Setup page return
             model.user = service.GetUserByUsername(id);
+            
             if(model.user == null)
             {
                 if(User.Identity.IsAuthenticated)
@@ -44,6 +45,7 @@ namespace Sozialheap.Controllers
                 ViewBag.Message = "Requested user does not exists";
                 return View("UserHelper");
             }
+            model.viewCount = Utils.getUserViews(id);
             model.user.Users1 = model.user.Users1.OrderByDescending(x => x.score).ToList();
             model.postList = service.getPostbyUserId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);

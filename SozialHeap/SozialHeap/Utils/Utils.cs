@@ -180,5 +180,27 @@ namespace SozialHeap.Utils
                 Console.WriteLine(ex.Message.ToString());
             }
         }
+
+        public static int getUserViews(string username)
+        {
+            username = "ViewUser/" + username;
+            SqlConnection cnn;
+            cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            List<string> res = new List<string>();
+            try
+            {
+                cnn.Open();
+                SqlCommand command = new SqlCommand("select count(viewed) FROM Syslog where viewed LIKE @user", cnn);
+                command.Parameters.Add(new SqlParameter("user", username));
+
+                return (int) command.ExecuteScalar();
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return 0;
+        }
     }
 }

@@ -17,6 +17,13 @@ $('#prefetch .typeahead').typeahead(null, {
 */
 
 $(function () {
+
+    // tooltips in UserView
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+
+
     $(document).ready(function () {
         $('#queryString').keypress(function (e) {
             if (e.which == 13 && $('#queryString').val() != '') {
