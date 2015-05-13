@@ -16,6 +16,7 @@ namespace SozialHeap.Tests.Services
         {
             var MockDb = new MockDatabase();
 
+            // adding 3 groups
             Group g1 = new Group
             {
                 groupID = 1,
@@ -40,6 +41,7 @@ namespace SozialHeap.Tests.Services
             };
             MockDb.Groups.Add(g3);
             
+            // adding posts
             Post p = new Post
             {
                 postID = 1,
