@@ -153,7 +153,7 @@ namespace SozialHeap.Utils
             try
             {
                 conn.Open();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Syslog(userID, viewed, ipAddress) VALUES(@User, @Action, @Ip)", conn))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Syslog(userName, viewed, ipAddress) VALUES(@User, @Action, @Ip)", conn))
                 {
                     command.Parameters.Add(new SqlParameter("User", userID));
                     command.Parameters.Add(new SqlParameter("Ip", ipAddr));
