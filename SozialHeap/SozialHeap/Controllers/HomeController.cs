@@ -39,8 +39,8 @@ namespace SozialHeap.Controllers
             else
             {
                 ViewBag.isLoggedIn = false;
-               // model.recentFromUsers = new List<Post>();
-               // model.recentGroups = new List<Group>();
+                model.recentFromUsers = new List<Post>();
+                model.recentGroups = new List<Group>();
             }
             return View(model);
         }
