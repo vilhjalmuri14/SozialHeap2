@@ -37,6 +37,7 @@ namespace Sozialheap.Controllers
             model.user.Users1 = model.user.Users1.OrderByDescending(x => x.score).ToList();
             model.postList = service.getPostbyUserId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
+            ViewBag.photo = model.user.photo;
             if (User.Identity.IsAuthenticated)
             {
                 User currUser = service.GetUserById(User.Identity.GetUserId());
@@ -50,7 +51,7 @@ namespace Sozialheap.Controllers
                     ViewBag.userID = model.user.userID;
                     ViewBag.fullName = model.user.fullName;
                     ViewBag.description = model.user.description;
-                    ViewBag.photo = model.user.photo;
+                    
                     // mark all posts as read
                 }
                 else

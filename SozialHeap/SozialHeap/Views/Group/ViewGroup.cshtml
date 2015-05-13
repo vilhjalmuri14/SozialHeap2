@@ -23,7 +23,14 @@
 
                 <div class="textholder post profile">
                     <div class="imgholder">
-                        <img src="~/images/Group.png" />
+                        @if(Model.group.photo != null)
+                        {
+                            <img src="@Model.group.photo" />
+                        }
+                        else
+                        {
+                            <img src="~/images/Group.png" />
+                        }
                     </div>
                     <div class="authorinfo">
                         <h4>Group owner: @Html.DisplayFor(modelItem => Model.group.User.userName)</h4>
@@ -112,7 +119,15 @@
                          </a>
                             <div class="imgholder">
                                 <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                    <img src="~/images/anonymous_user.png" />
+                                    @if (item.photo != null)
+                                    {
+                                        <img src="@item.photo" alt="user icon" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/anonymous_user.png" />
+                                    }
+                                    
                                 </a>
 
                             </div>

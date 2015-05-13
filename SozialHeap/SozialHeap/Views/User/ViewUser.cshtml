@@ -170,7 +170,14 @@
                         <span class="makedivlink makedivlink_small"></span>
                     </a>
                     <div class="imgholder">
-                        <img src="~/images/anonymous_user.png" />
+                        @if (item.photo != null)
+                        {
+                            <img src="@item.photo" alt="user photo" />
+                        }
+                        else
+                        {
+                            <img src="~/images/anonymous_user.png" alt="user photo" />
+                        }
                     </div>
                     <div class="authorscore userScore">
                         <span class="badge">
@@ -209,7 +216,8 @@
             <div class="panel-body">
                 <div class="topitem postquestion">
                     <div class="imgholder">
-                        <img src="~/images/anonymous_user.png" />
+                        
+                        <img src="~/images/question.png" />
                     </div>
                     <div class="textholder">
                         <h4>@item.name </h4> <span class="notimportant">posted in </span><a href="#">@item.Group.groupName </a><br />
@@ -255,7 +263,14 @@
                         <span class="makedivlink makedivlink_small"></span>
                     </a>
                     <div class="imgholder">
-                        <img src="~/images/Group.png" />
+                        @if(item.photo != null)
+                        {
+                            <img src="@item.photo" alt="group icon" />
+                        }
+                        else
+                        {
+                            <img src="~/images/Group.png" alt="group icon" />
+                        }
                     </div>
                     <h4>@item.groupName</h4>
                 </div>

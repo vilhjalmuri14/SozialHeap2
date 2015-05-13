@@ -19,7 +19,14 @@
 
             <div class="textholder post">
                 <div class="imgholder">
-                    <img src="~/images/anonymous_user.png" />
+                    @if(Model.currentPost.User.photo != null)
+                    {
+                        <img src="@Model.currentPost.User.photo" />
+                    }
+                    else
+                    { 
+                        <img src="~/images/anonymous_user.png" />
+                    }
                 </div>
                 <div class="authorinfo">
                     <h4>
@@ -100,7 +107,14 @@
 
                             <div class="textholder post">
                                 <div class="imgholder">
-                                    <img src="~/images/anonymous_user.png" />
+                                    @if(Model.answerList[i].User.photo != null)
+                                    {
+                                        <img src="@Model.answerList[i].User.photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/anonymous_user.png" />
+                                    }
                                 </div>
                                 <div class="authorinfo">
                                     <h4>

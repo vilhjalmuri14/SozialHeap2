@@ -85,7 +85,7 @@ namespace Sozialheap.Controllers
 
         public ActionResult ViewGroup(int? id)
         {
-            Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewGroup/"+(int)id);
+            
             SingleGroupView v = new SingleGroupView();
             
             if(!id.HasValue)
@@ -95,6 +95,7 @@ namespace Sozialheap.Controllers
             }
             else
             {
+                Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewGroup/" + (int)id);
                 v.group = service.GetGroupById((int)id);
                 if(v.group == null)
                 {

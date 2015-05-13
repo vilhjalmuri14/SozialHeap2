@@ -34,7 +34,15 @@
                         
                         <div class="imgholder">
                             <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
-                                <img src="~/images/Group.png" />
+                                @if (item.photo != null)
+                                {
+                                    <img src="@item.photo" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/Group.png" />
+                                }
+                                
                             </a>
 
                         </div>
