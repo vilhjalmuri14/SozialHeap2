@@ -26,7 +26,14 @@
                             <span class="makedivlink makedivlink_small"></span>
                         </a>
                         <div class="imgholder">
-                            <img src="~/images/anonymous_user.png" />
+                            @if (ViewBag.photo != null)
+                            {
+                                <img src="@ViewBag.photo" alt="user photo" />
+                            }
+                            else
+                            {
+                                <img src="~/images/anonymous_user.png" alt="user photo" />
+                            }
                         </div>
                         <div class="authorscore userScore">
                             <span class="badge">
