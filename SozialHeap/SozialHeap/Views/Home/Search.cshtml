@@ -36,7 +36,15 @@
 
                                 <div class="imgholder">
                                     <a href="@Url.Action("/ViewGroup/" + item.groupID, "Group")">
-                                        <img src="/images/Group.png" alt="Group photo"/>
+                                        @if(item.photo != null)
+                                        {
+                                            <img src="@item.photo" alt="Group photo"/>
+                                        }
+                                        else
+                                        {
+                                            <img src="/images/Group.png" alt="Group photo"/>
+                                        }
+                                        
                                     </a>
 
                                 </div>
@@ -78,7 +86,15 @@
 
                                 <div class="imgholder">
                                     <a href="@Url.Action("/ViewUser/" + item.userName, "User")">
-                                        <img src="/images/anonymous_user.png" alt="User photo"/>
+                                        @if(item.photo != null)
+                                        {
+                                            <img src="@item.photo" alt="User photo"/>
+                                        }
+                                        else
+                                        {
+                                            <img src="/images/anonymous_user.png" alt="User photo"/>
+                                        }
+                                        
                                     </a>
 
                                 </div>
