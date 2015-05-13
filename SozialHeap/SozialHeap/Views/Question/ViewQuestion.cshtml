@@ -30,7 +30,7 @@
                 </div>
                 <div class="authorinfo">
                     <h4>
-                        @Model.currentPost.User.userName
+                        @Html.ActionLink(Model.currentPost.User.userName, "ViewUser/"+Model.currentPost.User.userName, "User")
 
                         <!-- author score starts -->
                         <span class="notimportant">asked:</span>
@@ -118,7 +118,8 @@
                                 </div>
                                 <div class="authorinfo">
                                     <h4>
-                                        @Model.answerList[i].User.userName
+                                        @Html.ActionLink(Model.answerList[i].User.userName, "ViewUser/" + Model.answerList[i].User.userName, "User")
+                                        
                                         <!-- author score starts -->
                                         <span class="notimportant">answered:</span>
                                     </h4>

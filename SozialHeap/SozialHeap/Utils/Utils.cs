@@ -11,6 +11,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SozialHeap.Utils
 {
+    /// <summary>
+    /// Utils class is extra-features class for time calculation, getting search autocomplete list, and log view activity for statistics.
+    /// functions are static so we don't need an instance of the class.
+    /// </summary>
     public class Utils
     {
         /// <summary>
@@ -105,13 +109,20 @@ namespace SozialHeap.Utils
             }
         }
 
+        /// <summary>
+        /// Search data for given string
+        /// </summary>
+        /// <param name="query">query string</param>
+        /// <returns>List of strings which start with your input</returns>
         public static List<string> getKeywords(string query)
         {
             if (query.Contains(" ") || query.Contains("-"))
             {
                 // breaks if you have space or dash in the search string to prenvent bad input
+                // the space is because we only have words, then we can save the db-request
                 return new List<string>();
             }
+
             SqlConnection cnn;
             cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             List<string> res = new List<string>();
@@ -142,9 +153,9 @@ namespace SozialHeap.Utils
         /// <summary>
         /// Logs action to the Syslog table for later inspection or statistics
         /// </summary>
-        /// <param name="userID"></param>
-        /// <param name="ipAddr"></param>
-        /// <param name="action"></param>
+        /// <param name="userID">userID if user is logged in</param>
+        /// <param name="ipAddr">ip of user</param>
+        /// <param name="action">what is he visiting</param>
         public static void LogAction(string userID, string ipAddr, string action)
         {
             SqlConnection conn;
@@ -153,6 +164,7 @@ namespace SozialHeap.Utils
             try
             {
                 conn.Open();
+                // input the query and bind the parameters before execute...
                 using (SqlCommand command = new SqlCommand("INSERT INTO Syslog(userName, viewed, ipAddress) VALUES(@User, @Action, @Ip)", conn))
                 {
                     command.Parameters.Add(new SqlParameter("User", userID));

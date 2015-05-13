@@ -15,13 +15,23 @@ namespace Sozialheap.Controllers
 {
     public class UserController : Controller
     {
+        // create instance of the Service class
         SozialService service = new SozialService(null);
 
+        /// <summary>
+        /// View specific user by the users username
+        /// </summary>
+        /// <param name="id">username of given user</param>
+        /// <returns>shows you the user</returns>
         public ActionResult ViewUser(string id)
         {
+            // start by logging the view
             Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewUser/"+id);
+            
+            // initialize Model
             UserView model = new UserView();
 
+            // Setup page return
             model.user = service.GetUserByUsername(id);
             if(model.user == null)
             {
@@ -40,6 +50,7 @@ namespace Sozialheap.Controllers
             ViewBag.photo = model.user.photo;
             if (User.Identity.IsAuthenticated)
             {
+                // user is logged in, fetch more info
                 User currUser = service.GetUserById(User.Identity.GetUserId());
                 model.notificationList = service.getUnreadPostsByUser(currUser);
                 ViewBag.notifications = model.notificationList.Count();
@@ -52,7 +63,6 @@ namespace Sozialheap.Controllers
                     ViewBag.fullName = model.user.fullName;
                     ViewBag.description = model.user.description;
                     
-                    // mark all posts as read
                 }
                 else
                 {
@@ -67,6 +77,11 @@ namespace Sozialheap.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Edit user by form
+        /// </summary>
+        /// <param name="form">form filled User</param>
+        /// <returns>Goes to User page</returns>
         [HttpPost]
         public ActionResult EditUser([Bind(Include = "userID, fullName, description, photo")]User form)
         {
@@ -78,14 +93,14 @@ namespace Sozialheap.Controllers
             }
             if (form.userID != User.Identity.GetUserId())
             {
+                // User can only change himself!
                 ViewBag.Message = "You can only edit your own information !";
                 return View("Error");
             }
             service.EditUser(form);
             return RedirectToAction("ViewUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User");
-            //return View("ViewUser/" + form.userName, "User");
         }
-
+        /*
         public ActionResult Feed()
         {
             
@@ -98,7 +113,7 @@ namespace Sozialheap.Controllers
             }
             return View(model);
         }
-
+        */
         public ActionResult Index()
         {
             UserView model = new UserView();

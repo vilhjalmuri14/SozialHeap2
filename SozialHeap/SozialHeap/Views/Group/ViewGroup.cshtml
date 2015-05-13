@@ -186,8 +186,9 @@
                                     <img src="~/images/question.png" alt="Question photo"/>
                                 </div>
                                 <div class="textholder" style="overflow: hidden; height: 60px;">
-                                    <h4>@item.name</h4> <span class="notimportant">posted in </span>
-                                    @Model.group.groupName<br />
+                                    <h4>@item.name</h4> <span class="notimportant">posted by </span>
+                                    @Html.ActionLink(item.User.userName, "ViewUser/" + item.User.userName, "User")
+                                    <br />
                                    
                                     @item.body
                                 </div>
