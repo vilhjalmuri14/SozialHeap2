@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SozialHeap.Models;
+using SozialHeap.Utils;
 
 namespace Sozialheap.Controllers
 {
@@ -16,7 +17,6 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService(null);
 
-        
         public ActionResult ViewUser(string id)
         {
             UserView model = new UserView();
@@ -110,7 +110,7 @@ namespace Sozialheap.Controllers
         public ActionResult UserQuery(string term)
         {
             //var users = service.GetUsersByQuery(term);
-            var users = service.getKeywords(term);
+            var users = Utils.getKeywords(term);
 
             return Json(users, JsonRequestBehavior.AllowGet);
         }

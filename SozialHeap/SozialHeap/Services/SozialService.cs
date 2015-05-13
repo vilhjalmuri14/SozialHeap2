@@ -2,10 +2,9 @@
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
-
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,8 +59,6 @@ namespace Sozialheap.Services
         {
             try
             {
-
-
                 var group = (from item in db2.Groups
                              where item.groupID == id
                              select item).SingleOrDefault<Group>();
@@ -730,12 +727,12 @@ namespace Sozialheap.Services
         public List<Post> findPostByString(string query)
         {
             List<Post> posts = (from item in db2.Posts
-                              where item.body.Contains(query) || item.name.Contains(query)
-                              select item).ToList();
+                                  where item.body.Contains(query) || item.name.Contains(query)
+                                  select item).ToList();
 
             List<Answer> answers = (from item in db2.Answers
-                                    where item.body.Contains(query) || item.title.Contains(query)
-                                    select item).ToList();
+                                  where item.body.Contains(query) || item.title.Contains(query)
+                                  select item).ToList();
 
             List<Post> final = new List<Post>();
             final = posts;
@@ -783,40 +780,40 @@ namespace Sozialheap.Services
             return new List<Group>();
         }
 
-        public List<string> getKeywords(string query)
+        public IEnumerable<Post> getRecentByFollowingUsers(string userID)
         {
-            if(query.Contains(' ') || query.Contains('-'))
-            {
-                // breaks if you have space or dash in the search string to prenvent bad input
-                return new List<string>();
-            }
-            string connetionString = null;
-            SqlConnection cnn ;
-            connetionString = "Data Source=hrnem.ru.is;Initial Catalog=VERK2015_H43;User ID=VERK2015_H43_usr;Password=wildferret27";
-            cnn = new SqlConnection(connetionString);
-            string sql = "SELECT * FROM keywords WHERE word LIKE '"+query+"%'";
-            List<string> res = new List<string>();
             try
             {
-                cnn.Open();
-                SqlCommand command = new SqlCommand(sql, cnn);
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    res.Add(dataReader.GetValue(0).ToString());
-//                    MessageBox.Show(dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + " - " + dataReader.GetValue(2));
-                }
-                dataReader.Close();
-                command.Dispose();
-                cnn.Close();
-                return res;
+                var posts = from user in db2.Users
+                    join post in db2.Posts on user.userID equals post.userID
+                    where user.Users.Select(x => x.userID).Contains(userID)
+                    select post;
+                return posts;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
+            return null;
+        }
+
+        public IEnumerable<Group> getRecentFollowingGroups(string userID)
+        {
+            try
+            {
+                var groups = from g in db2.Groups
+                            where g.Users.Select(x => x.userID).Contains(userID)
+                            select g;
+                return groups;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
             }
 
-            return new List<string>();
+            return null;
         }
+
     }
 }

@@ -33,7 +33,7 @@ namespace Sozialheap.Controllers
             service.CreateGroup(form);
             if(form.groupID > 0)
             {
-                return View("~/Group/ViewGroup/" + form.groupID);
+                return RedirectToAction("ViewGroup/" + form.groupID, "Group", "");
 
             }
             else
@@ -158,6 +158,26 @@ namespace Sozialheap.Controllers
             service.StopFollowingGroup(currentUser, group);
 
             return RedirectToAction("ViewGroup/" + id);
+        }
+
+        public ActionResult ViewUsers(int? id)
+        {
+            if (!id.HasValue)
+            {
+                ViewBag.Message = "No id given on requested group.";
+                return View("Error");
+            }
+            else
+            {
+                var group = service.GetGroupById((int)id);
+                if (group == null)
+                {
+                    ViewBag.Message = "Invalid group request!";
+                    return View("Error");
+                }
+
+                return View(group);
+            }
         }
     }
 }

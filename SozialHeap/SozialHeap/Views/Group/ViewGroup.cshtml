@@ -69,7 +69,7 @@
                         <div  class="buttonRightCol">
 
                             <div class="buttons">
-                                <button class="btn btn-default">Followers <span class="badge">@Html.DisplayFor(modelItem => Model.group.Users.Count) </span></button>
+                                <a class="btn btn-default" href="@Url.Action("ViewUsers/" + Model.group.groupID)">Followers <span class="badge"> @Html.DisplayFor(modelItem => Model.group.Users.Count)</span></a>
                             </div>
                         </div>
                     </div>
