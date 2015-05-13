@@ -41,15 +41,73 @@ namespace SozialHeap.Tests.Services
             };
             MockDb.Groups.Add(g3);
             
-            // adding posts
+            // adding 2 posts
             Post p = new Post
             {
                 postID = 1,
                 groupID = 2,
+                userID = "1234",
                 name = "C++ problem",
                 body = "how to make not in c++?"
             };
             MockDb.Posts.Add(p);
+
+            Post p1 = new Post
+            {
+                postID = 2,
+                groupID = 2,
+                userID = "1234",
+                scoreCounter = 0,
+                name = "C++ not working!!",
+                body = "Help my compiler is broken."
+            };
+            MockDb.Posts.Add(p1);
+
+            // Adding 3 users
+            User u = new User
+            {
+                userID = "1234",
+                userName = "John",
+                score = 0,
+                description = "full time farmer."
+            };
+            MockDb.Users.Add(u);
+
+            User u1 = new User
+            {
+                userID = "4321",
+                userName = "Tomas",
+                description = "I love programming."
+            };
+            MockDb.Users.Add(u1);
+
+            User u2 = new User
+            {
+                userID = "6789",
+                userName = "Tom",
+                description = "The programmer."
+            };
+            MockDb.Users.Add(u2);
+
+            // adding 2 answers
+            Answer a = new Answer
+            {
+                answerID = 1,
+                postID = 2,
+                title = "Try this one.",
+                body = "Have you tryed the GCC compiler."
+            };
+            MockDb.Answers.Add(a);
+
+            Answer a1 = new Answer
+            {
+                answerID = 2,
+                postID = 2,
+                title = "Try this.",
+                body = "Have you tryed using a hammer."
+            };
+            MockDb.Answers.Add(a1);
+
 
             _service = new Sozialheap.Services.SozialService(MockDb);
         }
@@ -141,12 +199,17 @@ namespace SozialHeap.Tests.Services
             var service = _service;
 
             // Act:
-            var group = service.GetGroupById(2);
-            group.description = "professional.";
-            var result = service.GetGroupById(2);
+            Group g = new Group
+            {
+                groupID = 3,
+                groupName = "javascript",
+                description = "Programming"
+            };
+            service.EditGroup(g);
+            var result = service.GetGroupById(3);
 
             // Assert:
-            Assert.AreEqual("professional.", group.description);
+            Assert.AreEqual("javascript", result.groupName);
         }
 
         [TestMethod]
@@ -160,6 +223,84 @@ namespace SozialHeap.Tests.Services
 
             // Assert:
             Assert.AreEqual(2, result.groupID);
+        }
+
+        [TestMethod]
+        public void TestGetPostByUserId()
+        {
+            // Arrenge:
+            var service = _service;
+
+            // Act:
+            var result = service.getPostbyUserId("1234");
+         
+            // Assert:
+            Assert.AreEqual(2, result.Count);
+        }
+
+        [TestMethod]
+        public void TestGetUserByUsernameEmma()
+        {
+            // Arrenge:
+            var service = _service;
+
+            // Act:
+            var result = service.GetUserByUsername("Tom");
+
+            // Assert:
+            Assert.AreEqual("6789", result.userID);
+        }
+
+        [TestMethod]
+        public void TestGetUserByUsernameJohn()
+        {
+            // Arrenge:
+            var service = _service;
+
+            // Act:
+            var result = service.GetUserByUsername("John");
+
+            // Assert:
+            Assert.AreEqual("1234", result.userID);
+        }
+
+        [TestMethod]
+        public void TestGetAllUsers()
+        {
+            // Arrenge:
+            var service = _service;
+
+            // Act:
+            var result = service.GetAllUsers();
+
+            // Assert:
+            Assert.AreEqual(3, result.Count);
+        }
+
+        [TestMethod]
+        public void TestGetAnswerById()
+        {
+            // Arrenge:
+            var service = _service;
+
+            // Act:
+            var result = service.GetAnswerById(2);
+
+            // Assert:
+            Assert.AreEqual(2, result.Count);
+        }
+
+        [TestMethod]
+        public void TestGetAnswerById1()
+        {
+            // Arrenge:
+            var service = _service;
+
+            // Act:
+            var result = service.GetAnswerById(1);
+
+            // Assert:
+            Assert.AreEqual(0, result.Count);
         }
     }
 }

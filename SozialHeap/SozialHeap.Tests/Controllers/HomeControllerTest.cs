@@ -12,6 +12,7 @@ namespace SozialHeap.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        /*
         [TestMethod]
         public void Index()
         {
@@ -23,7 +24,7 @@ namespace SozialHeap.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-        }
+        }*/
 
         [TestMethod]
         public void About()
