@@ -685,17 +685,8 @@ height: 75px;
         {
             margin-left: 1em;
         }
-        .showlower
-        {
-            display:block;
-            background: #000;
-            color: #fff;
-            position: fixed !important;
-            right: 20px;
-            top: 10px;
-            z-index: 9999;
-        }
-        .menuitem
+        
+         .menuitem
         {
             width:100%;
             margin-bottom: 2em;
@@ -706,6 +697,50 @@ height: 75px;
             width: 90%;
         }
 
+        .btn
+        {
+            display: block;
+            width: 100% !important;
+        }
+        .btn.hidelower
+        {
+            display: none;
+        }
+        .buttons, .button
+        {
+            display: block;
+            width: 100%;
+        }
+        .button
+        {
+            margin-left: 0 !important;
+        }
+        .buttonLeftCol, .buttonRightCol
+        {
+            float: none;
+            margin-left: ;
+            min-width: 100%;
+            display: block;
+            margin-left: 20px;
+        }
+
+        .buttonRightCol .btn
+        {
+            padding: 6px 12px;
+            margin-left: 26px;
+            vertical-align: middle;
+        }
+        .showlower
+        {
+            display:block;
+            background: #000;
+            color: #fff;
+            position: fixed !important;
+            right: 20px;
+            top: 10px;
+            z-index: 9999;
+            width: 50px !important;
+        }
 }
 
 .userName
