@@ -39,7 +39,7 @@ namespace SozialHeap.Tests.Services
                 description = "Programming"
             };
             MockDb.Groups.Add(g3);
-            /*
+            
             Post p = new Post
             {
                 postID = 1,
@@ -47,7 +47,7 @@ namespace SozialHeap.Tests.Services
                 name = "C++ problem",
                 body = "how to make not in c++?"
             };
-            MockDb.Posts.Add(p); */
+            MockDb.Posts.Add(p);
 
             _service = new Sozialheap.Services.SozialService(MockDb);
         }

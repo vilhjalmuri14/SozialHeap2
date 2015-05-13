@@ -24,8 +24,14 @@ namespace Sozialheap.Test
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
             this.C__MigrationHistory = new InMemoryDbSet<C__MigrationHistory>();
             this.Answers = new InMemoryDbSet<Answer>();
-
+            this.AspNetRoles = new InMemoryDbSet<AspNetRole>();
+            this.AspNetUserClaims = new InMemoryDbSet<AspNetUserClaim>();
+            this.AspNetUserLogins = new InMemoryDbSet<AspNetUserLogin>();
+            this.AspNetUsers = new InMemoryDbSet<AspNetUser>();
             this.Groups = new InMemoryDbSet<Group>();
+            this.PostCategories = new InMemoryDbSet<PostCategory>();
+            this.Posts = new InMemoryDbSet<Post>();
+            this.Users = new InMemoryDbSet<User>();
         }
 
         // Ég bætti þessu við
