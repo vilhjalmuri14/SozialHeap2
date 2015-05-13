@@ -1,6 +1,8 @@
 ﻿.sysInfoBody
 {
-    padding: 15px !important;
+    padding-bottom: 15px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
 }
 
 .sysInfoBody th
