@@ -31,9 +31,9 @@
                                 <img src="~/images/question.png" alt="Question photo"/>
                             </div>
                             <div class="textholder">
-                                <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted in </span>
-                                <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
-                                    <span class="brutallink">@item.Group.groupName</span>
+                                <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted by </span>
+                                <a href="@Url.Action("ViewUser/" + @item.User.userName, "User")">
+                                    <span class="brutallink">@item.User.userName</span>
                                 </a><br />
                                 @item.body
                             </div>
@@ -60,14 +60,12 @@
                 {
                     <div class="panel-body">
                         <div class="topitem postquestion" id="topquestion1">
-                            <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
-                                <span class="makedivlink"></span>
-                            </a>
+                            
 
                             <div class="imgholder">
-                                @if(item.photo != null)
+                                @if(item.Group.photo != null)
                                 {
-                                    <img src="@item.photo" alt="Group photo"/>
+                                    <img src="@item.Group.photo" alt="Group photo"/>
                                 }
                                 else
                                 {
@@ -76,8 +74,12 @@
                                 
                             </div>
                             <div class="textholder">
-                                <h4>@Html.ActionLink(item.groupName, "ViewGroup/" + item.groupID, "Group")</h4><br />
-                                @item.description
+                                <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4>
+                                <span class="notimportant">posted in </span>
+                                <a href="@Url.Action("ViewGroup/" + @item.groupID, "Group")">
+                                    <span class="brutallink">@item.Group.groupName</span>
+                                </a><br />
+                                @item.body
                             </div>
                         </div>
 

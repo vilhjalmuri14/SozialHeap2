@@ -810,14 +810,19 @@ namespace Sozialheap.Services
         /// </summary>
         /// <param name="userID"></param>
         /// <returns>List of groups</returns>
-        public IEnumerable<Group> getRecentFollowingGroups(string userID)
+        public IEnumerable<Post> getRecentFollowingGroups(string userID)
         {
             try
             {
                 var groups = from g in db2.Groups
                             where g.Users.Select(x => x.userID).Contains(userID)
                             select g;
-                return groups;
+                var posts = from p in db2.Posts
+                            where groups.Contains(p.Group)
+                            orderby p.dateCreated descending
+                            select p;
+
+                return posts;
             }
             catch (Exception ex)
             {

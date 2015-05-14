@@ -10,7 +10,7 @@ namespace SozialHeap.Models.ViewModels
     public class FrontPageView
     {
         public List<Group> Groups { get; set; }
-        public IEnumerable<Group> recentGroups { get; set; }
+        public IEnumerable<Post> recentGroups { get; set; }
         public List<User> Users { get; set; }
         public IEnumerable<Post> recentFromUsers { get; set; }
         public List<Post> Posts { get; set; }
