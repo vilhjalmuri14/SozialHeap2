@@ -342,7 +342,7 @@ namespace Sozialheap.Services
                 List<Post> p = (from item in db2.Posts
                                 where item.userID == id
                                 orderby item.dateCreated descending
-                                select item).ToList();
+                                select item).Take(5).ToList();
 
                 return p;
             }
