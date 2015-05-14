@@ -20,14 +20,33 @@
                             <textarea class="form-control" rows="4" name="body" id="AnswerBody"></textarea>
                         </div>
                     </div>
+                    <p id="alertMessage" style="color:red"></p>
                 </form>
                 <div class="clearfix"></div>
             </div><!-- /modal-body -->
             <div class="clearfix"></div>
             <div class="modal-footer">
-                <a class="btn btn-primary" data-dismiss="modal" href="javascript:void()" onclick="document.getElementById('answer').submit();">Post answer</a>
+                <a class="btn btn-primary" href="javascript:void()" onclick="CheckCreateAnswer();">Post answer</a>
                 <a class="btn btn-default" data-dismiss="modal">Cancel</a>
             </div>
         </div>
     </div><!--/.modal content-->
 </div><!--/.modal-dialog-->
+
+<script>
+    // javascript to check if the boxes or empty.
+    function CheckCreateAnswer() {
+        var AnswerTitle = $("#AnswerTitle").val();
+        var AnswerBody = $("#AnswerBody").val();
+
+        //document.getElementById('answer').submit();
+        if (AnswerBody == "" || AnswerTitle == "") {
+            $("#alertMessage").html("Please fill in all the boxes.");
+        }
+        else {
+            $('#alertMessage').html("");
+            $('#answer').submit();
+            $('#createAnswer').modal('toggle');
+        }
+    };
+</script>
