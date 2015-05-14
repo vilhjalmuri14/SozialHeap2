@@ -144,7 +144,7 @@ namespace SozialHeap.Utils
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                LogError(ex.Message.ToString());
             }
 
             return new List<string>();
@@ -167,6 +167,7 @@ namespace SozialHeap.Utils
                 // input the query and bind the parameters before execute...
                 using (SqlCommand command = new SqlCommand("INSERT INTO Syslog(userName, viewed, ipAddress) VALUES(@User, @Action, @Ip)", conn))
                 {
+                    // params binding
                     command.Parameters.Add(new SqlParameter("User", userID));
                     command.Parameters.Add(new SqlParameter("Ip", ipAddr));
                     command.Parameters.Add(new SqlParameter("Action", action));
@@ -177,7 +178,7 @@ namespace SozialHeap.Utils
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                LogError(ex.Message.ToString());
             }
         }
 
@@ -194,13 +195,37 @@ namespace SozialHeap.Utils
                 command.Parameters.Add(new SqlParameter("user", username));
 
                 return (int) command.ExecuteScalar();
-                
+            }
+            catch (Exception ex)
+            {
+                LogError(ex.Message.ToString());
+            }
+            return 0;
+        }
+
+        public static void LogError(string message, string userName = "")
+        {
+            SqlConnection conn;
+            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            try
+            {
+                conn.Open();
+                // input the query and bind the parameters before execute...
+                using (SqlCommand command = new SqlCommand("INSERT INTO ErrorLog(message, userName) VALUES(@Message, @User)", conn))
+                {
+                    // params binding
+                    command.Parameters.Add(new SqlParameter("Message", message));
+                    command.Parameters.Add(new SqlParameter("User", userName));
+                    command.ExecuteNonQuery();
+                }
+
+                conn.Close();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
             }
-            return 0;
         }
     }
 }

@@ -2,6 +2,8 @@
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
+using SozialHeap.Utils;
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,17 +21,6 @@ namespace Sozialheap.Services
             db2 = context ?? new SozialheapEntities();
         }
 
-        // The database (our one, not the authentication one)
-        //private SozialheapEntities db2;
-      /*  public SozialService()
-        {
-            db2 = new SozialheapEntities();
-        }*/
-        
-        private bool checkNetwork()
-        {
-            return true;
-        }
         /// <summary>
         /// Function returns list of all groups from the database
         /// </summary>
@@ -45,7 +36,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<Group>();
         }
@@ -66,7 +57,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new Group();
         }
@@ -84,11 +75,15 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
                 return;
             }
         }
 
+        /// <summary>
+        /// Edit the given group, only changes photo and description!
+        /// </summary>
+        /// <param name="g">group with changes</param>
         public void EditGroup(Group g)
         {
             // testing update!
@@ -103,7 +98,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -134,7 +129,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<Post>();
         }
@@ -151,7 +146,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<Post>();
@@ -175,7 +170,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new Post();
@@ -196,10 +191,14 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
+        /// <summary>
+        /// Create/Insert Answer
+        /// </summary>
+        /// <param name="a">Answer to insert</param>
         public void CreateAnswer(Answer a)
         {
             try
@@ -210,7 +209,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -229,7 +228,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -247,7 +246,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         
         }
@@ -265,7 +264,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -284,7 +283,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -306,7 +305,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -327,7 +326,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new User();
         }
@@ -343,13 +342,13 @@ namespace Sozialheap.Services
                 List<Post> p = (from item in db2.Posts
                                 where item.userID == id
                                 orderby item.dateCreated descending
-                                select item).ToList();
+                                select item).Take(5).ToList();
 
                 return p;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return null;
         }
@@ -371,56 +370,32 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new User();
         }
 
         /// <summary>
-        /// Returns a list of Users that starts with the given query string
+        /// Get List of users by group
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="grp">group</param>
+        /// <param name="n">max number of users to return</param>
         /// <returns></returns>
-        public List<SimpleUser> GetUsersByQuery(string query)
-        {
-            try
-            {
-                List<User> users = (from item in db2.Users
-                                    where item.userName.StartsWith(query)
-                                    orderby item.score descending
-                                    select item).ToList();
-                List<SozialHeap.Models.ViewModels.SimpleUser> su = new List<SozialHeap.Models.ViewModels.SimpleUser>();
-
-                foreach (var item in users)
-                {
-                    su.Add(new SimpleUser(item.userName, item.userName));
-                }
-                return su;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-            }
-
-            return new List<SimpleUser>();
-        }
-
         public List<User> GetUsersByGroup(Group grp, int n = 5)
         {
-            // TODO IMPLEMENT !
             try
             {
                 List<User> users = (from item in db2.Users
                                     where item.Groups.Contains(grp)
                                     orderby item.score descending
-                                    select item).ToList();
+                                    select item).Take(n).ToList();
 
                 return new List<User>();
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<User>();
@@ -443,7 +418,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             
             return new List<User>();
@@ -468,12 +443,17 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<Answer>();
         }
 
+        /// <summary>
+        /// Get single answer (for edit answer)
+        /// </summary>
+        /// <param name="answerID">id of the disired answer</param>
+        /// <returns>Answer</returns>
         public Answer GetSingleAnswerByAnswerId(int answerID)
         {
             try
@@ -485,7 +465,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return null;
         }
@@ -507,7 +487,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
         }
@@ -527,7 +507,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -546,7 +526,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return false;
@@ -567,7 +547,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -585,7 +565,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -603,7 +583,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return false;
@@ -628,7 +608,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -651,7 +631,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -670,7 +650,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return false;
         }
@@ -684,6 +664,7 @@ namespace Sozialheap.Services
         {
             if (user != null)
             {
+                // user is provided
                 try
                 {
                     List<Post> all = (List<Post>)(from item in db2.Answers
@@ -692,6 +673,7 @@ namespace Sozialheap.Services
                     List<Post> res = new List<Post>();
                     foreach(var item in all)
                     {
+                        // iterate to remove duplicates (we want only one item per Post)!
                         if(!res.Contains(item))
                         {
                             res.Add(item);
@@ -701,12 +683,16 @@ namespace Sozialheap.Services
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine(ex.Message.ToString());
+                    Utils.LogError(ex.Message.ToString());
                 }
             }
             return new List<Post>();
         }
 
+        /// <summary>
+        /// Acknowledge the unseen posts
+        /// </summary>
+        /// <param name="post">Post to mark owner seen</param>
         public void AcknowledgeNotifications(Post post)
         {
             try
@@ -719,10 +705,15 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
+        /// <summary>
+        /// Find all Posts that contain the query string
+        /// </summary>
+        /// <param name="query">string with keyword(s)</param>
+        /// <returns>List of Posts (results)</returns>
         public List<Post> findPostByString(string query)
         {
             List<Post> posts = (from item in db2.Posts
@@ -738,6 +729,7 @@ namespace Sozialheap.Services
             
             for (int i = 0; i < answers.Count; i++ )
             {
+                // Iterate to insert each post only once! (no duplicates)
                 if(!final.Contains(answers[i].Post))
                 {
                     final.Add(answers[i].Post);
@@ -747,6 +739,11 @@ namespace Sozialheap.Services
             return final;
         }
 
+        /// <summary>
+        /// Find users by given querystring
+        /// </summary>
+        /// <param name="query">query string</param>
+        /// <returns>List of users containing the query string</returns>
         public List<User> findUsersByString(string query)
         {
             try
@@ -758,11 +755,16 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<User>();
         }
 
+        /// <summary>
+        /// Find groups by query string, searches name and description
+        /// </summary>
+        /// <param name="query">query string</param>
+        /// <returns>List of all groups found</returns>
         public List<Group> findGroupsByString(string query)
         {
             try
@@ -774,11 +776,16 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<Group>();
         }
 
+        /// <summary>
+        /// Fetch the newest posts from users a given userID is folllowing
+        /// </summary>
+        /// <param name="userID">userID of the user who wants to find newest posts form the users he follows</param>
+        /// <returns>List of posts in descenting order</returns>
         public IEnumerable<Post> getRecentByFollowingUsers(string userID)
         {
             try
@@ -786,29 +793,40 @@ namespace Sozialheap.Services
                 var posts = from user in db2.Users
                     join post in db2.Posts on user.userID equals post.userID
                     where user.Users.Select(x => x.userID).Contains(userID)
+                    orderby post.dateCreated descending
                     select post;
                 return posts;
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return null;
         }
 
-        public IEnumerable<Group> getRecentFollowingGroups(string userID)
+        /// <summary>
+        /// Fetch the newest groups a given userID follows
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns>List of groups</returns>
+        public IEnumerable<Post> getRecentFollowingGroups(string userID)
         {
             try
             {
                 var groups = from g in db2.Groups
                             where g.Users.Select(x => x.userID).Contains(userID)
                             select g;
-                return groups;
+                var posts = from p in db2.Posts
+                            where groups.Contains(p.Group)
+                            orderby p.dateCreated descending
+                            select p;
+
+                return posts;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return null;
