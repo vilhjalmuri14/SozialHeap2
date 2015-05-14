@@ -140,6 +140,19 @@ namespace Sozialheap.Controllers
             }
             return RedirectToAction("ViewUser/" + userToFollow.userName);
         }
+        
+        [Authorize]
+        public ActionResult StartFollowingAjax(string id)
+        {
+            SozialHeap.Models.User userToFollow = service.GetUserByUsername(id);
+            SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
+            if (currentUser != userToFollow)
+            {
+                service.StartFollowingUser(currentUser, userToFollow);
+                return Content("followed", "text/plain");
+            }
+            return Content("can't follow self", "text/plain");
+        }
 
         /// <summary>
         /// Webservice to stop following user
@@ -156,6 +169,18 @@ namespace Sozialheap.Controllers
                 service.StopFollowingUser(currentUser, userToStopFollow);
             }
             return RedirectToAction("ViewUser/" + userToStopFollow.userName);
+        }
+        [Authorize]
+        public ActionResult StopFollowingAjax(string id)
+        {
+            SozialHeap.Models.User userToStopFollow = service.GetUserByUsername(id);
+            SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
+            if (userToStopFollow != currentUser)
+            {
+                service.StopFollowingUser(currentUser, userToStopFollow);
+                return Content("unfollowed", "text/plain");
+            }
+            return Content("cant unfollow self", "text/plain");
         }
 
         /// <summary>
