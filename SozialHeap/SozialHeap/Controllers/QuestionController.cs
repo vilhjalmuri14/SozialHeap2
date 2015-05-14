@@ -95,6 +95,19 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewQuestion/" + id);
         }
 
+        [Authorize]
+        public ActionResult LikePostAjax(int id)
+        {
+            Post post = service.getPost(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            if (post != null && currentUser != null)
+            {
+                service.LikePost(currentUser, post);
+                return Content(post.Users.Count().ToString(), "text/plain");
+            }
+            return Content("can't like", "text/plain");
+   }
+
         /// <summary>
         /// Webservice to unlike post
         /// </summary>
@@ -112,6 +125,19 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewQuestion/" + id);
         }
 
+        [Authorize]
+        public ActionResult UnLikePostAjax(int id)
+        {
+            Post post = service.getPost(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            if (post != null && currentUser != null)
+            {
+                service.UnLikePost(currentUser, post);
+                return Content(post.Users.Count().ToString(), "text/plain");
+            }
+            return Content("can't unlike", "text/plain");
+        }
+
         /// <summary>
         /// View question by desired questionID
         /// </summary>
@@ -126,7 +152,7 @@ namespace Sozialheap.Controllers
 
                 int new_id = id ?? default(int);
                 model.currentPost = service.getPost(new_id);
-
+                
                 // insert statistics
                 Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "ViewQuestion/" + new_id);
 

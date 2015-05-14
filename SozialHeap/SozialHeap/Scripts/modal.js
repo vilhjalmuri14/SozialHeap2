@@ -59,7 +59,23 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 /* Javascript for adding hover and changing text on like and follow buttons */
-$(function () {
+function createUnlikeButton(element,id, score)
+{
+    var newelem =  '<a href="/Question/UnLikePost/' + id + '" onclick="unlike(\'' + id + '\', this); return false;">';
+    var newelem = newelem + '<button class="btn unlikebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Liked! (' + score + ')</button> </a>';
+    $(element).replaceWith(newelem);
+    startUnlike();
+}
+
+function createLikeButton(element,id, score)
+{
+    var newelem =  '<a href="/Question/LikePost/' + id + '" onclick="like(\'' + id + '\', this); return false;">';
+    var newelem = newelem + '<button class="btn likebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Like ('+score+')</button> </a>';
+    $(element).replaceWith(newelem);
+}
+
+function startUnlike()
+{
     $(".unlikebutton").mouseenter(
         function () {
             $(this).find('span').removeClass("glyphicon-thumbs-up");
@@ -72,6 +88,11 @@ $(function () {
            $(this).find('span').addClass("glyphicon-thumbs-up");
            $(this).html($(this).html().replace("Unlike", "Liked!"));
        });
+}
+
+$(function () {
+    startUnlike();
+
 
     $(".followed").mouseenter(
           function ()

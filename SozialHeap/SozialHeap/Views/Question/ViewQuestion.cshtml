@@ -58,18 +58,40 @@
                             </div>
                         }
                         <div class="coolpost rightbutton">
-
+                            <script>
+                                function like(id, elem)
+                                {
+                                    $.get("/Question/LikePostAjax/"+id, function (data, status) {
+                                        var re = /^([0-9])+$/g;
+                                        if (re.test(data))
+                                        {
+                                            createUnlikeButton(elem, id, data);                                                                                        
+                                        }
+                                    });
+                                    return false;
+                                }
+                                function unlike(id, elem)
+                                {
+                                    $.get("/Question/UnLikePostAjax/" + id, function (data, status) {
+                                        var re = /^([0-9])+$/g;
+                                        if (re.test(data)) {
+                                            createLikeButton(elem, id, data);
+                                        }
+                                    });
+                                    return false;
+                                }
+                            </script>
                             @if (User.Identity.IsAuthenticated)
                             {
                                 if (Model.LikedPost)
                                 {
-                                    <a href="@Url.Action("UnLikePost/" + Model.currentPost.postID)">
+                                    <a href="@Url.Action("UnLikePost/" + Model.currentPost.postID)" onclick="unlike('@Model.currentPost.postID', this); return false;">
                                         <button class="btn unlikebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Liked! (@Model.currentPost.scoreCounter)</button>
 </a>
                                 }
                                 else
                                 {
-                                    <a href="@Url.Action("LikePost/" + Model.currentPost.postID)">
+                                    <a href="@Url.Action("LikePost/" + Model.currentPost.postID)" onclick="like('@Model.currentPost.postID', this); return false;">
                                         <button class="btn likebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Like (@Model.currentPost.scoreCounter)</button>
                                     </a>
                                 }
