@@ -33,9 +33,9 @@ namespace Sozialheap.Controllers
 
             // Setup page return
             model.user = service.GetUserByUsername(id);
-            
             if(model.user == null)
             {
+                // no user, return error
                 if(User.Identity.IsAuthenticated)
                 {
                     User currUser = service.GetUserById(User.Identity.GetUserId());
@@ -50,6 +50,7 @@ namespace Sozialheap.Controllers
             model.postList = service.getPostbyUserId(model.user.userID);
             model.following = service.isFollowingUser(service.GetUserById(User.Identity.GetUserId()), model.user);
             ViewBag.photo = model.user.photo;
+            
             if (User.Identity.IsAuthenticated)
             {
                 // user is logged in, fetch more info
@@ -80,7 +81,7 @@ namespace Sozialheap.Controllers
         }
 
         /// <summary>
-        /// Edit user by form
+        /// Edit user, only possible by the user itself
         /// </summary>
         /// <param name="form">form filled User</param>
         /// <returns>Goes to User page</returns>
@@ -102,31 +103,32 @@ namespace Sozialheap.Controllers
             service.EditUser(form);
             return RedirectToAction("ViewUser/" + @System.Web.HttpContext.Current.User.Identity.Name, "User");
         }
-        /*
-        public ActionResult Feed()
-        {
-            
-            UserView model = new UserView();
-            model.groupList = service.GetAllGroups();
-            if (User.Identity.IsAuthenticated)
-            {
-                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
-                ViewBag.notifications = model.notificationList.Count();
-            }
-            return View(model);
-        }
-        */
+
+        /// <summary>
+        /// Get the list of all users
+        /// </summary>
+        /// <returns>Listview of all users</returns>
         public ActionResult Index()
         {
             UserView model = new UserView();
             Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Users/");
             model.userList = service.GetAllUsers();
+            if(User.Identity.IsAuthenticated == true)
+            {
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
+            
             ViewBag.Site = "Index";
 
             return View(model);
         }
 
-
+        /// <summary>
+        /// Webservice to connect to another user
+        /// </summary>
+        /// <param name="id">userID of the user to follow</param>
+        /// <returns>view the user</returns>
         [Authorize]
         public ActionResult StartFollowing(string id)
         {
@@ -139,6 +141,11 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewUser/" + userToFollow.userName);
         }
 
+        /// <summary>
+        /// Webservice to stop following user
+        /// </summary>
+        /// <param name="id">userID of the user to stop follow</param>
+        /// <returns>view of the user</returns>
         [Authorize]
         public ActionResult StopFollowing(string id)
         {
@@ -151,20 +158,42 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewUser/" + userToStopFollow.userName);
         }
 
+        /// <summary>
+        /// Returns view with list of all users that the given user follows
+        /// </summary>
+        /// <param name="id">userID of user to see who he is following</param>
+        /// <returns>view with list of all users that the given user follows</returns>
         public ActionResult ShowFollowing(string id)
         {
             UserView model = new UserView();
             model.user = service.GetUserByUsername(id);
             ViewBag.Site = "Following";
 
+            if (User.Identity.IsAuthenticated == true)
+            {
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
+
             return View("index", model);
         }
 
+        /// <summary>
+        /// Returns view with list of all users that follow the given user
+        /// </summary>
+        /// <param name="id">userID of the user to see followers</param>
+        /// <returns>view with list of all users that follow the given user</returns>
         public ActionResult ShowFollowers(string id)
         {
             UserView model = new UserView();
             model.user = service.GetUserByUsername(id);
             ViewBag.Site = "Followers";
+
+            if (User.Identity.IsAuthenticated == true)
+            {
+                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
+                ViewBag.notifications = model.notificationList.Count();
+            }
 
             return View("index", model);
         }

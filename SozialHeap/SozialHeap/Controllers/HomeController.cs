@@ -18,10 +18,16 @@ namespace SozialHeap.Controllers
     {
         SozialService service = new SozialService(null);
 
+        /// <summary>
+        /// First view of page
+        /// </summary>
+        /// <returns>Index view</returns>
         public ActionResult Index()
         {
+            // start by logging the visit (statistcs)
             Utils.Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Home/Index");
 
+            // create the model from ViewModel and fetch data
             FrontPageView model = new FrontPageView();
             model.Groups = service.GetAllGroups().Take(5).ToList();
             model.Users = service.GetAllUsers();
@@ -29,6 +35,7 @@ namespace SozialHeap.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
+                // user logged int
                 ViewBag.isLoggedIn = true;
                 model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
                 ViewBag.notifications = model.notificationList.Count();
@@ -38,6 +45,7 @@ namespace SozialHeap.Controllers
             }
             else
             {
+                // user not logged in
                 ViewBag.isLoggedIn = false;
                 model.recentFromUsers = new List<Post>();
                 model.recentGroups = new List<Group>();
@@ -68,10 +76,14 @@ namespace SozialHeap.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// Search feature, accessible from all pages of the system.
+        /// </summary>
+        /// <param name="term">search string</param>
+        /// <returns></returns>
         public ActionResult FindTopic(string term)
         {
-            //var users = service.GetUsersByQuery(term);
+            //get the wordlist
             var users = Utils.Utils.getKeywords(term);
 
             return Json(users, JsonRequestBehavior.AllowGet);

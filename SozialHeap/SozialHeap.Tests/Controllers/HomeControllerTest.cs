@@ -24,8 +24,7 @@ namespace SozialHeap.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-        }*/
-
+        }
         [TestMethod]
         public void About()
         {
@@ -50,6 +49,7 @@ namespace SozialHeap.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-        }
+        }*/
+
     }
 }

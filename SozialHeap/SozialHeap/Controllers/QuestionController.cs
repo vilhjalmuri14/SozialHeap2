@@ -52,12 +52,12 @@ namespace Sozialheap.Controllers
         {
             if (form.postID < 1 || form.title == null || form.body == null)
             {
+                // input is not valid, return errormessage
                 ViewBag.Message = "You cannot create Answer without a title or body!";
                 return View("QuestionHelper");
             }
 
             // We have valid input, lets insert
-            
             form.scoreCounter = 0;
             form.seenByOwner = false;
             form.userID = User.Identity.GetUserId();

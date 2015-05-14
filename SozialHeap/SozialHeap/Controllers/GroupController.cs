@@ -18,6 +18,11 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService(null);
 
+        /// <summary>
+        /// Create a new group
+        /// </summary>
+        /// <param name="form">form with group information</param>
+        /// <returns>view the group, or helper if it fails</returns>
         [Authorize]
         [HttpPost]
         public ActionResult CreateGroup([Bind(Include = "groupName, description")]Group form)
@@ -31,11 +36,13 @@ namespace Sozialheap.Controllers
             form.userID = User.Identity.GetUserId();
             form.dateCreated = DateTime.Now;
             
+            // creation
             service.CreateGroup(form);
+            
+            // check if it worked, if groupID is less then 1 then it failed.
             if(form.groupID > 0)
             {
                 return RedirectToAction("ViewGroup/" + form.groupID, "Group", "");
-
             }
             else
             {
@@ -44,6 +51,11 @@ namespace Sozialheap.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit a given group
+        /// </summary>
+        /// <param name="form">form filled group information</param>
+        /// <returns>view the group or errormessage</returns>
         [Authorize]
         [HttpPost]
         public ActionResult EditGroup([Bind(Include = "groupID, description, photo")]Group form)
@@ -62,27 +74,18 @@ namespace Sozialheap.Controllers
                 return View("Error");
             }
 
+            // update
             service.EditGroup(form);
 
             return RedirectToAction("ViewGroup/" + form.groupID, "Group");
             
         }
 
-        public ActionResult GetGroup(int? id)
-        {
-            int new_id = id ?? default(int);
-            SingleGroupView model = new SingleGroupView();
-
-            model.group = service.GetGroupById(new_id);
-            if (User.Identity.IsAuthenticated)
-            {
-                model.notificationList = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId()));
-                ViewBag.notifications = model.notificationList.Count();
-            }
-        
-            return View(model);
-        }
-
+        /// <summary>
+        /// Get view of the given group
+        /// </summary>
+        /// <param name="id">groupID you want to view</param>
+        /// <returns>view of requested group</returns>
         public ActionResult ViewGroup(int? id)
         {
             
@@ -90,6 +93,7 @@ namespace Sozialheap.Controllers
             
             if(!id.HasValue)
             {
+                // no id provided
                 ViewBag.Message = "No id given on requested group.";
                 return View("Error");
             }
@@ -103,7 +107,7 @@ namespace Sozialheap.Controllers
                     return View("Error");
                 }
                 ViewBag.groupID = (int)id;
-                v.notifications = 01;
+                
                 v.notificationList = null;
                 v.group.Users = v.group.Users.OrderByDescending(x=>x.score).ToList();
                 v.postList = service.getPosts((int)id);
@@ -178,6 +182,10 @@ namespace Sozialheap.Controllers
                 {
                     ViewBag.Message = "Invalid group request!";
                     return View("Error");
+                }
+                if (User.Identity.IsAuthenticated == true)
+                {
+                    ViewBag.notifications = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId())).Count();
                 }
 
                 return View(group);
