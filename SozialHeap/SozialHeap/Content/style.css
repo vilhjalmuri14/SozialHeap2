@@ -1,767 +1,560 @@
-img
-{
-    width: 54px;
-    height: auto;
+img {
+	height:auto;
+	width:54px;
 }
 
 a {
-   outline: 0;
+	outline:0;
 }
 
-a:hover
-{
-    text-decoration: none;
+a:hover {
+	text-decoration:none;
 }
 
-body
-{
-    /*  padding-bottom:80px;
-    margin-bottom: 80px;  */
-    height: 100%;
-    width: 100%;
-    margin: 0;
+body {
+	height:100%;
+	margin:0;
+	width:100%;
 }
 
-form
-{
-    display: inline;
+form {
+	display:inline;
 }
 
-.hidden
-{
-    visibility: hidden;
+.hidden {
+	visibility:hidden;
 }
 
-.notimportant
-{
-    color: #ccc;
+.notimportant {
+	color:#ccc;
 }
 
-.end
-{
-  clear: both;
+.end {
+	clear:both;
 }
 
-/* make links */
-.postquestion, 
-.postgroup,
-.postuser
-{
-    cursor: pointer;
+.postquestion,.postgroup,.postuser {
+	cursor:pointer;
 }
 
-
-/* main starts*/ 
-
-#main
-{
-  margin-top: 2em;
+#main {
+	margin-top:2em;
 }
 
-#main .panel-body
-{
-  padding: 0;
+#main .panel-body {
+	padding:0;
 }
 
-
-/* post start */
-.post
-{
-  padding-right: 60px; 
-  padding-left: 30px; 
-  padding-bottom: 30px; 
-  padding-top: 10px;
-  border-bottom-width: 1px; 
-  border-bottom-color: #ccc;    
-  border-bottom-style: solid; 
-  margin-bottom: 2em;
+.post {
+	border-bottom-color:#ccc;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	margin-bottom:2em;
+	padding:10px 60px 30px 30px;
 }
 
-.post .imgholder
-{
-  float: left;
+.post .imgholder {
+	float:left;
 }
 
-.post .authorinfo
-{
-  float:left; 
-  margin-left: 1em;
+.post .authorinfo {
+	float:left;
+	margin-left:1em;
 }
 
-.post .authorscore
-{
-  position: relative; 
-  top: -5px; 
+.post .authorscore {
+	position:relative;
+	top:-5px;
 }
 
-.post .authorscore .badge
-{
-  font-size: 14px;
+.post .authorscore .badge {
+	font-size:14px;
 }
 
-.post .postinfo
-{
-  float: right; 
-  margin-top:55px; 
-  margin-bottom: 20px;
+.post .postinfo {
+	float:right;
+	margin-bottom:20px;
+	margin-top:55px;
 }
 
-
-/* post footer starts */
-.post .postfooter .leftbutton
-{
-  float: left; 
-  margin-top: 2em;
+.post .postfooter .leftbutton {
+	float:left;
+	margin-top:2em;
 }
 
-.post .postfooter .rightbutton
-{
-  float: right; 
-  margin-top: 2em;
-}
-.post .postfooter .coolpost span
-{
-  font-size: 14px;
-}
-.post .endfooter
-{
-  height: 2em; 
-  margin-bottom: 2em;
+.post .postfooter .rightbutton {
+	float:right;
+	margin-top:2em;
 }
 
-/* post footer ends */
-
-/* post responses start */
-.responses
-{
-  padding-left: 15px; 
-  padding-bottom: 15px;
-} 
-/* post responses end */ 
-/* top item start */
-.topitem
-{
-padding-top: 10px;
-padding-bottom: 10px; 
-margin: 0;
-border-bottom-width: 1px; 
-border-bottom-color: #ccc;    
-border-bottom-style: solid; 
-height: 75px;
-position: relative;
+.post .postfooter .coolpost span {
+	font-size:14px;
 }
 
-.topitem:hover
-{
-  background-color: #ddd;
+.post .endfooter {
+	height:2em;
+	margin-bottom:2em;
 }
 
-.topitem .imgholder
-{
-  width: 64px; 
-  overflow: hidden; 
-  height: auto; 
-  float: left; 
-  margin-right: 2em;
-  padding-left: 10px;
+.responses {
+	padding-bottom:15px;
+	padding-left:15px;
 }
 
-.topitem .imgholder img
-{
-  width: 54px; 
-  height: auto;
+.topitem {
+	border-bottom-color:#ccc;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	height:75px;
+	margin:0;
+	padding-bottom:10px;
+	padding-top:10px;
+	position:relative;
 }
 
-.topitem .textholder
-{
-  margin-left: 1em;
-  padding-right: 10px;
-  height: 60px;
-  overflow: hidden;
-}
-.topitem .textholder h4
-{
-  margin-bottom: 0; 
-  display: inline;
-}
-.topitem .textholder span
-{
-  /* color: #ccc; */
+.topitem:hover {
+	background-color:#ddd;
 }
 
-/* main ends */ 
-
-/* header starts */ 
-
-.title{
-  font-family: 'lineal_simples_stregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  margin: 0;
-  /* margin-left: 2em; */ 
+.topitem .imgholder {
+	float:left;
+	height:auto;
+	margin-right:2em;
+	overflow:hidden;
+	padding-left:10px;
+	width:64px;
 }
 
-#headerButtons a,
-#headerButtons a:visited,
-#headerButtons a:active,
-#headerButtons a:link
-{
-    color: #000;
+.topitem .imgholder img {
+	height:auto;
+	width:54px;
 }
 
-/* TODO: MAKE TITLE HOVER SEXY */
-.title a,
-.title a:visited,
-.title a:active,
-.title a:link,
-.title a:hover
-{
-    color: #000;
-    text-decoration: none;
+.topitem .textholder {
+	height:60px;
+	margin-left:1em;
+	overflow:hidden;
+	padding-right:10px;
 }
 
-
-#headerButtons, #headerSearch
-{
-  text-align:right;
+.topitem .textholder h4 {
+	display:inline;
+	margin-bottom:0;
 }
 
-.headerExtra
-{
-	top: 5px;
-	margin-bottom: 1em;
-} 
-
-.headerExtra .glyphicon
-{
-	margin-top: 0;
-	position: static;
+.title {
+	font-family:lineal_simples_stregular, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	margin:0;
 }
 
-.searchbutton
-{
-	height: 34px;
+#headerButtons a,#headerButtons a:visited,#headerButtons a:active,#headerButtons a:link {
+	color:#000;
 }
 
-/* header ends */
-
-/* footer starts */
-footer
-{
-    display: none;
- }
-/* profile start */
-.profile
-{
-  border-bottom-width: 0; 
+.title a,.title a:visited,.title a:active,.title a:link,.title a:hover {
+	color:#000;
+	text-decoration:none;
 }
 
-.profile .authorinfo 
-{
+#headerButtons,#headerSearch {
+	text-align:right;
 }
 
-.profile .buttons
-{
-  float: right; 
-  margin-right: 2em; 
-}
-.profile .description
-{
-  float: left; 
-  margin-left: 1em;
-  margin-top: 20px; 
-  margin-bottom: 20px;
-  max-width: 420px;
-  
-}
-.profile .button
-{
-  float: left; 
-  margin-left: 10px; 
-  margin-bottom: 20px; 
+.headerExtra {
+	margin-bottom:1em;
+	top:5px;
 }
 
-/* profile end */
-
-.userthumb
-{
-width: 94px; 
-  overflow: hidden; 
-  height: auto; 
-  float: left; 
-  margin-right: 2em;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-height: 75px;
+.headerExtra .glyphicon {
+	margin-top:0;
+	position:static;
 }
 
-
-.userthumb img
-{
-  width: 54px; 
-  height: auto;
+.searchbutton {
+	height:34px;
 }
 
-/*  search start */
-        /* search ends*/
-        /* colors */
-
-
-        .errormsg
-        {
-            border-color: red;
-        }
-
-        .errormsg .panel-heading
-        {
-            border-color: red;
-            background: red;
-        }
-        .question   
-        {
-            border-color: #466675;
-        }
-        .questionbutton
-        {
-            border-color: #466675;
-            background: #466675;
-            margin-bottom: 20px;
-            color: #fff;
-            float: right;
-        }
-        .question .panel-heading
-        {
-            background: #466675;
-            border-color: #466675;
-        
-        }
-        .answer
-        {
-            border-color: #6A8D9D;
-        }
-        .answer .panel-heading
-        {
-            background: #6A8D9D;
-            border-color: #6A8D9D;
-
-        }
-
-        .group
-        {
-            border-color: #4E7182;
-        }
-
-        .group .badge
-        {
-            background: #4e7182;
-        }
-
-        
-        .group .panel-heading,
-        .group.btn
-        {
-            background: #4E7182;
-            border-color: #4E7182;
-        }
-        .groupbutton
-        {
-            border-color: #4E7182;
-            background: #4E7182;
-            margin-bottom: 20px;
-            color: #fff;
-            float: right;
-        }
-
-        .group.btn:hover
-        {
-            background: #7CB3CE;
-            border-color: #7CB3CE;
-        }
-        .user 
-        {
-            border-color: #5461a8;
-            
-            
-        }
-
-        .postTR.first
-        {
-            background: #466675;
-        }
-        .postTR.second
-        {
-            background: #4E7182;
-        }
-
-        .postTR:hover
-        {
-            background: #60A3C1;
-            color: #fff;
-        }
-
-        .postTR
-        {
-            color: #AEBBC1;
-        }
-
-        .userTR.first
-        {
-            background: #5461a8;
-            color: #fff;
-        }
-        .userTR.second
-        {
-            background: #9298B6;
-            color: #fff;
-        }
-         .userTR:hover
-        {
-            background: #252D5B;
-        }
-       
-        .searchTable tr.smalltitle
-        {
-
-            font-weight: bold;        
-        }
-
-        .searchTable tr
-         {
-            cursor: pointer;
-         }
-        .user.btn,
-        .user .panel-heading
-        {
-            background: #5461A8;
-            border-color: #5461a8;
-
-        }
-        .user.btn,
-        .group.btn
-        {
-            color: #fff;
-        }
-
-        .user .badge, .user.badge
-        {
-            background: #93A2F4;
-        }
-        .user.btn:hover
-        {
-            background: #7a8df4;
-            border-color: #7a8df4;
-        }
-
-        .panel-heading
-        {
-            
-        }
-
-        .backtitle
-        {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-        .panel-title
-        {
-            font-family: 'lineal_simples_stregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #e5f7ff;
-            text-align: right;
-            font-size: 12px;
-        }
-
-        .modal-title
-        {
-            font-family: 'lineal_simples_stregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            
-        }
-
-        /* Question starts */
-        .questionbox
-        {
-            width:100%; 
-            margin-right: 30px; 
-            margin-left: 30px;  
-            margin-top: -2em;
-            
-        }
-        .questionbox .info
-        {
-            float: left;  
-            display: inline; 
-            height: 20px;
-        }
-        .questionbox .cool
-        {
-            float: right; 
-            display: inline; 
-            height:20px; 
-            margin-right: 80px;
-        }
-
-        .makedivlink
-        {
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            top: 0; 
-            left: 0; 
-            z-index: 1;
-        }
-        
-        .makedivlink
-        {
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            top: 0; 
-            left: 0; 
-            z-index: 1;
-        }
-
-        .brutallink
-        {
-            position: relative; 
-            color: #000;
-            z-index: 2;
-        }
-
-        /* nofriends class*/
-        .nofriends
-        {
-            margin: 20px 20px;
-        }
-        
-        /* login logout class*/
-        #buttonLogOut
-        {
-            background: #1B2D35;
-            color: #fff;
-        }
-
-        #buttonRegister
-        {
-            background: #fff;
-            color: #000;
-            border-color: #ccc;
-        }
-
-        #buttonLogIn
-        {
-            background: #fff;
-            color: #000;
-            border-color: #ccc;
-        }
-
-
-
-        /* following // not following */
-
-        .followed, 
-        {
-            margin-bottom: 0; 
-            
-        }
-
-
-        .user.followed, .unlikebutton
-        {
-            background: #93a2f4;  
-            border-color: #93a2f4;
-        }
-
-        .remove, .unlikebutton:hover
-        {
-            background: #ec971f !important;
-            border-color: #ec971f !important;
-            color: #fff;
-        }
-
-        .user.add, .likebutton:hover
-        {
-            background: #93a2f4 !important;
-            border-color: #93a2f4 !important;
-            color: #fff;
-        }
-
-        .group.add
-        {
-            background: #4e7182 !important;
-            border-color: #4E7182 !important;
-        }
-
-        .add:visited,
-        .add:active,
-        .add:link
-
-        {
-            color: #fff;
-        }
-
-        .notfollowing, .likebutton
-        {
-            border-width: 1px;
-            border-color: #000 !important;
-            background: #fff !important;
-            color: #000 !important;
-        }
-
-        .notfollowing:visited,
-        .notfollowing:active,
-        .notfollowing:link
-        .likebutton:visited,
-        .likebutton:active,
-        .likebutton:link
-        .unlikebutton:visited,
-        .unlikebutton:active,
-        .unlikebutton:link
-        
-
-        {
-            color: #000;
-        }
-
-        /* columns*/
-        
-        .buttonLeftCol
-        {
-            float: left; 
-            margin-left: 20px;
-        }
-        .buttonRightCol
-        {
-            float: right; 
-            display: inline;
-        }
-        .showlower
-        {
-            display: none;
-        }
-        @media screen and (max-width: 640px) {
-         .buttonLeftCol
-         {
-            margin-left: 20px;
-          
-        }
-        .buttonRightCol,  {
-            margin-top: 20px;
-            margin-left: 20px;
-            float: left;
-            clear: left;            
-            width: 150px;
-            overflow: hidden;
-        }
-
-        .coolpost
-        {
-            display: block !important;
-            
-        }
-        .divinfo
-        {
-            overflow: hidden;
-        }
-
-        .info span
-        {
-            display:none;           
-        }
-
-        .buttonRightCol .btn {
-            float: left;
-            clear: left;
-            margin-top: 20px;
-            
-        }
-         .buttonRightCol .btn:first-of-type,  {
-            float: left;
-            clear: left;
-            margin-top: 0;
-            
-        }
-
-        .hidelower
-        {
-            display: none;
-        }
-
-        .imgholder
-        {
-            display: none;
-        }
-        .postquestion
-        {
-            margin-left: 1em;
-        }
-        
-         .menuitem
-        {
-            width:100%;
-            margin-bottom: 2em;
-            
-        }
-        #queryString
-        {
-            width: 90%;
-        }
-
-        .btn
-        {
-            display: block;
-            width: 100% !important;
-        }
-        .btn.hidelower
-        {
-            display: none;
-        }
-        .buttons, .button
-        {
-            display: block;
-            width: 100%;
-        }
-        .button
-        {
-            margin-left: 0 !important;
-        }
-        .buttonLeftCol, .buttonRightCol
-        {
-            float: none;
-            margin-left: ;
-            min-width: 100%;
-            display: block;
-            margin-left: 20px;
-        }
-
-        .buttonRightCol .btn
-        {
-            padding: 6px 12px;
-            margin-left: 26px;
-            vertical-align: middle;
-        }
-        .showlower
-        {
-            display:block;
-            background: #000;
-            color: #fff;
-            position: fixed !important;
-            right: 20px;
-            top: 10px;
-            z-index: 9999;
-            width: 50px !important;
-        }
+footer {
+	display:none;
 }
 
-.userName
-{
-    display: inline !important;
-    margin: 0 !important;
+.profile {
+	border-bottom-width:0;
 }
 
-.userScore
-{
-    display: inline;
-    margin-bottom: 0;
+.profile .buttons {
+	float:right;
+	margin-right:2em;
 }
 
-#innerUserBox
-{
-    margin-bottom: -7px;
+.profile .description {
+	float:left;
+	margin-bottom:20px;
+	margin-left:1em;
+	margin-top:20px;
+	max-width:420px;
+}
+
+.profile .button {
+	float:left;
+	margin-bottom:20px;
+	margin-left:10px;
+}
+
+.userthumb {
+	float:left;
+	height:75px;
+	margin-bottom:10px;
+	margin-right:2em;
+	margin-top:10px;
+	overflow:hidden;
+	padding-left:10px;
+	width:94px;
+}
+
+.userthumb img {
+	height:auto;
+	width:54px;
+}
+
+.errormsg {
+	border-color:red;
+}
+
+.errormsg .panel-heading {
+	background:red;
+	border-color:red;
+}
+
+.question {
+	border-color:#466675;
+}
+
+.questionbutton {
+	background:#466675;
+	border-color:#466675;
+	color:#fff;
+	float:right;
+	margin-bottom:20px;
+}
+
+.question .panel-heading {
+	background:#466675;
+	border-color:#466675;
+}
+
+.answer {
+	border-color:#6A8D9D;
+}
+
+.answer .panel-heading {
+	background:#6A8D9D;
+	border-color:#6A8D9D;
+}
+
+.group {
+	border-color:#4E7182;
+}
+
+.group .badge {
+	background:#4e7182;
+}
+
+.group .panel-heading,.group.btn {
+	background:#4E7182;
+	border-color:#4E7182;
+}
+
+.groupbutton {
+	background:#4E7182;
+	border-color:#4E7182;
+	color:#fff;
+	float:right;
+	margin-bottom:20px;
+}
+
+.group.btn:hover {
+	background:#7CB3CE;
+	border-color:#7CB3CE;
+}
+
+.user {
+	border-color:#5461a8;
+}
+
+.user.btn,.user .panel-heading {
+	background:#5461A8;
+	border-color:#5461a8;
+}
+
+.user.btn,.group.btn {
+	color:#fff;
+}
+
+.user .badge,.user.badge {
+	background:#93A2F4;
+}
+
+.user.btn:hover {
+	background:#7a8df4;
+	border-color:#7a8df4;
+}
+
+.backtitle {
+	font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.panel-title {
+	color:#e5f7ff;
+	font-family:lineal_simples_stregular, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size:12px;
+	text-align:right;
+}
+
+.modal-title {
+	font-family:lineal_simples_stregular, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.questionbox {
+	margin-left:30px;
+	margin-right:30px;
+	margin-top:-2em;
+	width:100%;
+}
+
+.questionbox .info {
+	display:inline;
+	float:left;
+	height:20px;
+}
+
+.questionbox .cool {
+	display:inline;
+	float:right;
+	height:20px;
+	margin-right:80px;
+}
+
+.makedivlink {
+	height:100%;
+	left:0;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index:1;
+}
+
+.brutallink {
+	color:#000;
+	position:relative;
+	z-index:2;
+}
+
+.nofriends {
+	margin:20px;
+}
+
+#buttonLogOut {
+	background:#1B2D35;
+	color:#fff;
+}
+
+#buttonRegister {
+	background:#fff;
+	border-color:#ccc;
+	color:#000;
+}
+
+#buttonLogIn {
+	background:#fff;
+	border-color:#ccc;
+	color:#000;
+}
+
+.followed, {
+	margin-bottom:0;
+}
+
+.user.followed,.unlikebutton {
+	background:#93a2f4;
+	border-color:#93a2f4;
+}
+
+.remove,.unlikebutton:hover {
+	background:#ec971f!important;
+	border-color:#ec971f!important;
+	color:#fff;
+}
+
+.user.add,.likebutton:hover {
+	background:#93a2f4!important;
+	border-color:#93a2f4!important;
+	color:#fff;
+}
+
+.group.add {
+	background:#4e7182!important;
+	border-color:#4E7182!important;
+}
+
+.add:visited,.add:active,.add:link {
+	color:#fff;
+}
+
+.notfollowing,.likebutton {
+	background:#fff!important;
+	border-color:#000!important;
+	border-width:1px;
+	color:#000!important;
+}
+
+.notfollowing:visited,.notfollowing:active,.notfollowing:link
+.likebutton:visited,.likebutton:active,.likebutton:link
+.unlikebutton:visited,.unlikebutton:active,.unlikebutton:link {
+	color:#000;
+}
+
+.buttonLeftCol {
+	float:left;
+	margin-left:20px;
+}
+
+.buttonRightCol {
+	display:inline;
+	float:right;
+}
+
+.showlower {
+	display:none;
+}
+
+.userName {
+	display:inline!important;
+	margin:0!important;
+}
+
+.userScore {
+	display:inline;
+	margin-bottom:0;
+}
+
+#innerUserBox {
+	margin-bottom:-7px;
+}
+
+@media screen and max-width 640px {
+	.buttonLeftCol
+	{
+		margin-left:20px;
+	}
+	
+	.buttonRightCol,
+	{
+		clear:left;
+		float:left;
+		margin-left:20px;
+		margin-top:20px;
+		overflow:hidden;
+		width:150px;
+	}
+	
+	.coolpost
+	{
+		display:block!important;
+	}
+	
+	.divinfo
+	{
+		overflow:hidden;
+	}
+	
+	.info span
+	{
+		display:none;
+	}
+	
+	.buttonRightCol .btn
+	{
+		clear:left;
+		float:left;
+		margin-left:26px;
+		margin-top:20px;
+		padding:6px 12px;
+		vertical-align:middle;
+	}
+	
+	.buttonRightCol .btn:first-of-type,
+	{
+		clear:left;
+		float:left;
+		margin-top:0;
+	}
+	
+	.hidelower
+	{
+		display:none;
+	}
+	
+	.imgholder
+	{
+		display:none;
+	}
+	
+	.postquestion
+	{
+		margin-left:1em;
+	}
+	
+	.menuitem
+	{
+		margin-bottom:2em;
+		width:100%;
+	}
+	
+	#queryString
+	{
+		width:90%;
+	}
+	
+	.btn
+	{
+		display:block;
+		width:100%!important;
+	}
+	
+	.btn.hidelower
+	{
+		display:none;
+	}
+	
+	.buttons,.button
+	{
+		display:block;
+		width:100%;
+	}
+	
+	.button
+	{
+		margin-left:0!important;
+	}
+	
+	.buttonLeftCol,.buttonRightCol
+	{
+		display:block;
+		float:none;
+		margin-left:20px;
+		min-width:100%;
+	}
+	
+	.showlower
+	{
+		background:#000;
+		color:#fff;
+		display:block;
+		position:fixed!important;
+		right:20px;
+		top:10px;
+		width:50px!important;
+		z-index:9999;
+	}
 }

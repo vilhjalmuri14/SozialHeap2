@@ -58,7 +58,7 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey;
 
-
+/* Javascript for adding hover and changing text on like and follow buttons */
 $(function () {
     $(".unlikebutton").mouseenter(
         function () {
@@ -107,6 +107,7 @@ $(function () {
     });
 });
 
+/* Javascript to filter search client-side */ 
 $(function () {
     if ($("#searchresult").length != 0) {
 
@@ -171,6 +172,7 @@ $(function () {
     }
 });
 
+/* Simple script for mobile menu */ 
 function closemenu() {
     $(".hidelower").each(function () {
         $(this).removeClass('menuitem');
