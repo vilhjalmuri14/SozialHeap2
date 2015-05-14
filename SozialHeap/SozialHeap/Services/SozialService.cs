@@ -2,6 +2,8 @@
 using Sozialheap.Models.ViewModels;
 using SozialHeap.Models;
 using SozialHeap.Models.ViewModels;
+using SozialHeap.Utils;
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,17 +21,6 @@ namespace Sozialheap.Services
             db2 = context ?? new SozialheapEntities();
         }
 
-        // The database (our one, not the authentication one)
-        //private SozialheapEntities db2;
-      /*  public SozialService()
-        {
-            db2 = new SozialheapEntities();
-        }*/
-        
-        private bool checkNetwork()
-        {
-            return true;
-        }
         /// <summary>
         /// Function returns list of all groups from the database
         /// </summary>
@@ -45,7 +36,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<Group>();
         }
@@ -66,7 +57,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new Group();
         }
@@ -84,7 +75,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
                 return;
             }
         }
@@ -103,7 +94,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -134,7 +125,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<Post>();
         }
@@ -151,7 +142,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<Post>();
@@ -175,7 +166,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new Post();
@@ -196,7 +187,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -210,7 +201,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -229,7 +220,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -247,7 +238,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         
         }
@@ -265,7 +256,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -284,7 +275,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -306,7 +297,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -327,7 +318,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new User();
         }
@@ -349,7 +340,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return null;
         }
@@ -371,7 +362,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new User();
@@ -400,7 +391,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<SimpleUser>();
@@ -420,7 +411,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<User>();
@@ -443,7 +434,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             
             return new List<User>();
@@ -468,7 +459,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return new List<Answer>();
@@ -485,7 +476,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return null;
         }
@@ -507,7 +498,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
         }
@@ -527,7 +518,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -546,7 +537,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return false;
@@ -567,7 +558,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -585,7 +576,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -603,7 +594,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return false;
@@ -628,7 +619,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -651,7 +642,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -670,7 +661,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return false;
         }
@@ -701,7 +692,7 @@ namespace Sozialheap.Services
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine(ex.Message.ToString());
+                    Utils.LogError(ex.Message.ToString());
                 }
             }
             return new List<Post>();
@@ -719,7 +710,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
         }
 
@@ -758,7 +749,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<User>();
         }
@@ -774,7 +765,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
             return new List<Group>();
         }
@@ -791,7 +782,7 @@ namespace Sozialheap.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return null;
@@ -808,7 +799,7 @@ namespace Sozialheap.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message.ToString());
+                Utils.LogError(ex.Message.ToString());
             }
 
             return null;
