@@ -10,23 +10,41 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="groupName" type="text" value="">
+                            <input class="form-control" id="nameBox" name="groupName" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="4" name="description"></textarea>
+                            <textarea class="form-control" id="descriptionBox" rows="4" name="description"></textarea>
                         </div>
                     </div>
+                    <p id="alertMessage" style="color:red"></p>
                 </form>
                 <div class="clearfix"></div>
             </div><!-- /modal-body -->
             <div class="clearfix"></div>
             <div class="modal-footer">
-                <a class="btn btn-primary" data-dismiss="modal" href="javascript:void()" onclick="document.getElementById('groupForm').submit();">Create group</a>
+                <a class="btn btn-primary" href="javascript:void()" onclick="CheckCreateGroup();">Create group</a>
                 <a class="btn btn-default" data-dismiss="modal">Cancel</a>
             </div>
         </div>
     </div><!--/.modal content-->
 </div><!--/.modal-dialog-->
+
+<script>
+    // javascript to check if the boxes or empty.
+    function CheckCreateGroup() {
+        var nameBox = $("#nameBox").val();
+        var descriptionBox = $("#descriptionBox").val();
+
+        if (nameBox == "" || descriptionBox == "" || nameBox == null || descriptionBox == null) {
+            $("#alertMessage").html("Please fill in all the boxes.");
+        }
+        else {
+            $("#alertMessage").html("");
+            $('#groupForm').submit();
+            $('#createGroup').modal('toggle');
+        }
+    };
+</script>
