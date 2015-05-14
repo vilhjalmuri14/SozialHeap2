@@ -1,6 +1,6 @@
 ﻿@model Sozialheap.Models.ViewModels.PostView
 @{
-    ViewBag.Title = "ViewQuestion";
+    ViewBag.Title = Model.currentPost.name+" - "+Model.currentPost.Group.groupName;
 }
 
 <!-- Question starts -->
@@ -11,7 +11,7 @@
         <div class="panel-heading question">
             <h3 id="panel-title" class="panel-title">
 
-                @Model.currentPost.name
+                @Model.currentPost.name - @Model.currentPost.Group.groupName
 
             </h3>
         </div>
