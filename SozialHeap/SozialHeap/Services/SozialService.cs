@@ -368,34 +368,6 @@ namespace Sozialheap.Services
             return new User();
         }
 
-        /// <summary>
-        /// Returns a list of Users that starts with the given query string
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        public List<SimpleUser> GetUsersByQuery(string query)
-        {
-            try
-            {
-                List<User> users = (from item in db2.Users
-                                    where item.userName.StartsWith(query)
-                                    orderby item.score descending
-                                    select item).ToList();
-                List<SozialHeap.Models.ViewModels.SimpleUser> su = new List<SozialHeap.Models.ViewModels.SimpleUser>();
-
-                foreach (var item in users)
-                {
-                    su.Add(new SimpleUser(item.userName, item.userName));
-                }
-                return su;
-            }
-            catch(Exception ex)
-            {
-                Utils.LogError(ex.Message.ToString());
-            }
-
-            return new List<SimpleUser>();
-        }
 
         public List<User> GetUsersByGroup(Group grp, int n = 5)
         {

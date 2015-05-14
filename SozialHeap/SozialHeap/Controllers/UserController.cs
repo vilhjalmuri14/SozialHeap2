@@ -126,13 +126,6 @@ namespace Sozialheap.Controllers
             return View(model);
         }
 
-        public ActionResult UserQuery(string term)
-        {
-            //var users = service.GetUsersByQuery(term);
-            var users = Utils.getKeywords(term);
-
-            return Json(users, JsonRequestBehavior.AllowGet);
-        }
 
         [Authorize]
         public ActionResult StartFollowing(string id)

@@ -45,19 +45,6 @@ namespace SozialHeap.Controllers
             return View(model);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         
         /// <summary>
         /// Search feature
@@ -79,6 +66,15 @@ namespace SozialHeap.Controllers
                 ViewBag.notifications = service.getUnreadPostsByUser(service.GetUserById(User.Identity.GetUserId())).Count();
             }
             return View(model);
+        }
+
+
+        public ActionResult FindTopic(string term)
+        {
+            //var users = service.GetUsersByQuery(term);
+            var users = Utils.Utils.getKeywords(term);
+
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
     }
 }

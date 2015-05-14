@@ -32,7 +32,7 @@ $(function () {
         });
     });
     $('#headerSearch .form-control').autocomplete({
-        source: "/User/UserQuery/",
+        source: "/Home/FindTopic/",
         minLength: 1,
         select: function (event, ui) {
             var url = ui;
