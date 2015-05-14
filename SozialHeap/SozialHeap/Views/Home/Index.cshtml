@@ -28,7 +28,14 @@
                                 <span class="makedivlink"></span>
                             </a>
                             <div class="imgholder">
-                                <img src="~/images/question.png" alt="Question photo"/>
+                                @if (item.User.photo != null)
+                                {
+                                    <img src="@item.User.photo" alt="Group photo" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/anonymous_user.png" alt="Group photo" />
+                                }
                             </div>
                             <div class="textholder">
                                 <h4>@Html.ActionLink(item.name, "ViewQuestion/" + item.postID, "Question")</h4> <span class="notimportant">posted by </span>
@@ -99,7 +106,7 @@
                     <div class="panel-heading">
                         <h3 id="panel-title" class="panel-title">
 
-                            Top Questions
+                            Newest Questions
 
                         </h3>
                     </div>

@@ -10,13 +10,13 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
                         <div class="col-sm-9">
-                            <input class="form-control" name="groupName" type="text" value="">
+                            <input class="form-control" name="groupName" id="nameBox" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="4" name="description"></textarea>
+                            <textarea class="form-control" rows="4" name="description" id="descriptionBox"></textarea>
                         </div>
                     </div>
                     <p id="alertMessage" style="color:red"></p>
@@ -25,7 +25,11 @@
             </div><!-- /modal-body -->
             <div class="clearfix"></div>
             <div class="modal-footer">
+<<<<<<< HEAD
                 <a class="btn btn-primary" onclick="CheckCreateGroup();">Create group</a>
+=======
+                <a class="btn btn-primary" href="#" onclick="CheckCreateGroup();">Create group</a>
+>>>>>>> 98034763c229a9019717705f96772b8001cc3cda
                 <a class="btn btn-default" data-dismiss="modal">Cancel</a>
             </div>
         </div>
@@ -35,10 +39,7 @@
 <script>
     // javascript to check if the boxes or empty.
     function CheckCreateGroup() {
-        var nameBox = $("#nameBox").val();
-        var descriptionBox = $("#descriptionBox").val();
-
-        if (nameBox == "" || descriptionBox == "" || nameBox == null || descriptionBox == null) {
+        if (($("#nameBox").val() === '' ) || ($("#descriptionBox").val() === '')) {
             $("#alertMessage").html("Please fill in all the boxes.");
         }
         else {
