@@ -148,6 +148,10 @@ namespace Sozialheap.Controllers
             SozialHeap.Models.User currentUser = service.GetUserById(User.Identity.GetUserId());
             if (currentUser != userToFollow)
             {
+                if (userToFollow.Users1.Contains(currentUser))
+                {
+                    // user aldready followed
+                }
                 service.StartFollowingUser(currentUser, userToFollow);
                 return Content("followed", "text/plain");
             }

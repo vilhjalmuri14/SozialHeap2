@@ -100,8 +100,9 @@ namespace Sozialheap.Controllers
         {
             Post post = service.getPost(id);
             User currentUser = service.GetUserById(User.Identity.GetUserId());
-            if (post != null && currentUser != null)
+            if (post != null && currentUser != null && post.Users.Contains(currentUser) == false)
             {
+                
                 service.LikePost(currentUser, post);
                 return Content(post.Users.Count().ToString(), "text/plain");
             }
@@ -130,7 +131,7 @@ namespace Sozialheap.Controllers
         {
             Post post = service.getPost(id);
             User currentUser = service.GetUserById(User.Identity.GetUserId());
-            if (post != null && currentUser != null)
+            if (post != null && currentUser != null && post.Users.Contains(currentUser) == true)
             {
                 service.UnLikePost(currentUser, post);
                 return Content(post.Users.Count().ToString(), "text/plain");
