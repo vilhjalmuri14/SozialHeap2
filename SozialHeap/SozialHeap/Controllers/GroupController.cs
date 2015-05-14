@@ -130,6 +130,10 @@ namespace Sozialheap.Controllers
             }
         }
 
+        /// <summary>
+        /// Get list of all groups
+        /// </summary>
+        /// <returns>List view of all groups</returns>
         public ActionResult Index()
         {
             Utils.LogAction(User.Identity.GetUserName(), Request.UserHostAddress, "Group");
@@ -144,6 +148,11 @@ namespace Sozialheap.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Webservice to start follow Group
+        /// </summary>
+        /// <param name="id">groupID of the Group you want to follow</param>
+        /// <returns>view of the Group</returns>
         [Authorize]
         public ActionResult StartFollowing(int id)
         {
@@ -158,6 +167,11 @@ namespace Sozialheap.Controllers
             return View("GroupHelper");
         }
 
+        /// <summary>
+        /// Webservice to stop follow Group
+        /// </summary>
+        /// <param name="id">groupID to stop follow</param>
+        /// <returns>view of the group</returns>
         [Authorize]
         public ActionResult StopFollowing(int id)
         {
@@ -168,6 +182,11 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewGroup/" + id);
         }
 
+        /// <summary>
+        /// Get view of particular user
+        /// </summary>
+        /// <param name="id">id of desired user</param>
+        /// <returns>view of the user</returns>
         public ActionResult ViewUsers(int? id)
         {
             if (!id.HasValue)

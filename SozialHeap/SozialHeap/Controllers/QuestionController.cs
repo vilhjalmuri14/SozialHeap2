@@ -19,6 +19,11 @@ namespace Sozialheap.Controllers
     {
         SozialService service = new SozialService(null);
         
+        /// <summary>
+        /// Webservice to create a question
+        /// </summary>
+        /// <param name="form">form of Post</param>
+        /// <returns>view of the Group that holds the Question/Post</returns>
         [Authorize]
         [HttpPost]
         [ValidateInput(false)]
@@ -33,9 +38,9 @@ namespace Sozialheap.Controllers
 
             // We have valid input, lets insert
             form.scoreCounter = 0;
-//            form.PostCategory = 1;
+            // form.PostCategory = 1;
             form.dateCreated = DateTime.Now;
-           // ApplicationUser u = User.Identity.
+            // ApplicationUser u = User.Identity.
             form.userID = User.Identity.GetUserId();
             form.viewCount = 0;
 
@@ -44,6 +49,11 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewGroup/"+form.groupID, "Group", "");
         }
 
+        /// <summary>
+        /// Webservice to create Answer
+        /// </summary>
+        /// <param name="form">Answer object from form</param>
+        /// <returns>view of question</returns>
         [Authorize]
         [HttpPost]
         [ValidateInput(false)]
@@ -67,6 +77,11 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewQuestion/"+form.postID, "Question", form.postID);
         }
 
+        /// <summary>
+        /// Webservice to like post
+        /// </summary>
+        /// <param name="id">id of post</param>
+        /// <returns>view post/question</returns>
         [Authorize]
         public ActionResult LikePost(int id)
         {
@@ -80,6 +95,11 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewQuestion/" + id);
         }
 
+        /// <summary>
+        /// Webservice to unlike post
+        /// </summary>
+        /// <param name="id">postID to unlike</param>
+        /// <returns>view of post/question</returns>
         [Authorize]
         public ActionResult UnLikePost(int id)
         {
@@ -92,6 +112,11 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewQuestion/" + id);
         }
 
+        /// <summary>
+        /// View question by desired questionID
+        /// </summary>
+        /// <param name="id">questionID</param>
+        /// <returns>view of the question</returns>
         public ActionResult ViewQuestion(int? id)
         {
             if (id != null)
@@ -119,7 +144,7 @@ namespace Sozialheap.Controllers
                 }
                 if (model.currentPost != null)
                 {
-                    // 
+                    // post found
                     model.answerList = service.GetAnswerById(model.currentPost.postID);
                     ViewBag.postID = (int)id;
                     ViewBag.timeSince = Utils.TimeSince(model.currentPost.dateCreated);
@@ -130,15 +155,12 @@ namespace Sozialheap.Controllers
                     }
                     return View(model);
                 }
+                ViewBag.Message = "Question not found";
                 return View("Error");
             }
             ViewBag.Message = "You must select a valid question.";
             return View("Error");
         }
 
-        public static string FormatTime(DateTime? date)
-        {
-            return Utils.TimeSince(date);
-        }
     }
 }

@@ -80,7 +80,7 @@ namespace SozialHeap.Controllers
         /// Search feature, accessible from all pages of the system.
         /// </summary>
         /// <param name="term">search string</param>
-        /// <returns></returns>
+        /// <returns>JSON list of all words found</returns>
         public ActionResult FindTopic(string term)
         {
             //get the wordlist
