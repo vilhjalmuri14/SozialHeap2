@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Post a question</h4>
             </div><!--/.modal-header-->
             <div class="modal-body">
-                <form role="form" action="~/Question/CreateQuestion/" method="POST" class="form-horizontal" id="post">
+                <form role="form" action="~/Question/CreateQuestion/" method="POST" class="form-horizontal" id="postQuestion">
                     <input type="hidden" name="groupID" value="@ViewBag.groupID" />
                     <input type="hidden" name="categoryID" value="1" />
                     <div class="form-group">
@@ -22,14 +22,30 @@
                             <textarea class="form-control" id="PostBody" rows="4" name="body"></textarea>
                         </div>
                     </div>
+                    <p id="alertMessage" style="color:red"></p>
                 </form>
             <div class="clearfix"></div>
             </div><!-- /modal-body -->
             <div class="clearfix"></div>
             <div class="modal-footer">
-                <a class="btn btn-primary" data-dismiss="modal" href="javascript:void()" onclick="document.getElementById('post').submit();">Post question</a>
+                <a class="btn btn-primary" href="javascript:void()" onclick="CheckCreatePost();">Post question</a>
                 <a class="btn btn-default" data-dismiss="modal">Cancel</a>
             </div>
         </div>
     </div><!--/.modal content-->
 </div><!--/.modal-dialog-->
+
+<script>
+    // javascript to check if the boxes or empty.
+    function CheckCreatePost() {
+        if (($("#PostName").val() === '') || ($("#PostBody").val() === '')) {
+            $("#alertMessage").html("Please fill in all the boxes.");
+        }
+        else {
+            //document.getElementById('post').submit();
+            $("#alertMessage").html("");
+            $('#postQuestion').submit();
+            $('#createPost').modal('toggle');
+        }
+    }
+</script>
