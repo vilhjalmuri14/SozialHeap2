@@ -58,6 +58,30 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey;
 
+/* like unlike ajax */
+
+                               function like(id, elem)
+                               {
+                                   $.get("/Question/LikePostAjax/"+id, function (data, status) {
+                                       var re = /^([0-9])+$/g;
+                                       if (re.test(data))
+                                       {
+                                           createUnlikeButton(elem, id, data);                                                                                        
+                                       }
+                                   });
+                                   return false;
+                               }
+function unlike(id, elem)
+{
+    $.get("/Question/UnLikePostAjax/" + id, function (data, status) {
+        var re = /^([0-9])+$/g;
+        if (re.test(data)) {
+            createLikeButton(elem, id, data);
+        }
+    });
+    return false;
+}
+
 /* Javascript for adding hover and changing text on like and follow buttons */
 function createUnlikeButton(element,id, score)
 {
