@@ -161,7 +161,7 @@
 
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="topfollowers">
                 @if (Model.group.Users.Count() == 0)
                 {
                     <div class="nofriends">
@@ -174,34 +174,35 @@
                     <div class="topitem postquestion">
                         <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
                             <span class="makedivlink makedivlink_small"></span>
-                         </a>
-                            <div class="imgholder">
-                                <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                    @if (item.photo != null)
-                                    {
-                                        <img src="@item.photo" alt="User photo" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/images/anonymous_user.png" alt="User photo"/>
-                                    }
-                                    
-                                </a>
-
-                            </div>
+                        </a>
+                        <div class="imgholder">
                             <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                <div class="authorscore userScore">
-                                    <span class="badge">
-                                        <span class="glyphicon glyphicon-console">
-                                        </span> @item.score
-                                    </span>
-                                </div>
-                                <h4 class="userName">@item.userName</h4><br />
+                                @if (item.photo != null)
+                                {
+                                    <img src="@item.photo" alt="User photo" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/anonymous_user.png" alt="User photo" />
+                                }
+
                             </a>
-</div>
+
+                        </div>
+                        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                            <div class="authorscore userScore">
+                                <span class="badge">
+                                    <span class="glyphicon glyphicon-console">
+                                    </span> @item.score
+                                </span>
+                            </div>
+                            <h4 class="userName">@item.userName</h4><br />
+                        </a>
+                    </div>
                 }
 
             </div>
+
         </div>
         <!-- Top Users ends -->
     </div>
