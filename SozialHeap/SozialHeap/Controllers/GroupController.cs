@@ -114,6 +114,9 @@ namespace Sozialheap.Controllers
                 //v.group.Users = service.GetUsersByGroup(v.group);
                 if (User.Identity.IsAuthenticated)
                 {
+                    User currentUser = service.GetUserById(User.Identity.GetUserId());
+                    v.currentUser = currentUser;
+
                     if(v.group.userID == User.Identity.GetUserId())
                     {
                         // Owner! can edit
@@ -160,11 +163,27 @@ namespace Sozialheap.Controllers
             if(group != null)
             {
                 User currentUser = service.GetUserById(User.Identity.GetUserId());
+
                 service.StartFollowingGroup(currentUser, group);
 
                 return RedirectToAction("ViewGroup/" + id);
             }
             return View("GroupHelper");
+        }
+        [Authorize]
+        public ActionResult StartFollowingAjax(int id)
+        {
+            Group group = service.GetGroupById(id);
+            if (group != null)
+            {
+                User currentUser = service.GetUserById(User.Identity.GetUserId());
+                service.StartFollowingGroup(currentUser, group);
+
+                return Content("followed", "text/plain");
+
+            }
+            return Content("can't follow", "text/plain");
+
         }
 
         /// <summary>
@@ -182,6 +201,15 @@ namespace Sozialheap.Controllers
             return RedirectToAction("ViewGroup/" + id);
         }
 
+        [Authorize]
+        public ActionResult StopFollowingAjax(int id)
+        {
+            Group group = service.GetGroupById(id);
+            User currentUser = service.GetUserById(User.Identity.GetUserId());
+            service.StopFollowingGroup(currentUser, group);
+            return Content("unfollowed", "text/plain");
+
+        }
         /// <summary>
         /// Get view of particular user
         /// </summary>

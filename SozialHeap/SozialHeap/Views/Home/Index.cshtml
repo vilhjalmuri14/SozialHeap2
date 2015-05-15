@@ -16,7 +16,7 @@
                 <div class="panel-heading">
                     <h3 id="panel-title" class="panel-title">
 
-                        Recent from following users
+                        Recent from followed users
 
                     </h3>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="panel-heading">
                     <h3 id="panel-title" class="panel-title">
 
-                        Recent from following groups
+                        Recent from followed groups
 
                     </h3>
                 </div>
@@ -67,8 +67,9 @@
                 {
                     <div class="panel-body">
                         <div class="topitem postquestion" id="topquestion1">
-                            
-
+                            <a href="@Url.Action("ViewQuestion/" + @item.postID, "Question")">
+                                <span class="makedivlink"></span>
+                            </a>
                             <div class="imgholder">
                                 @if(item.Group.photo != null)
                                 {
@@ -106,7 +107,7 @@
                     <div class="panel-heading">
                         <h3 id="panel-title" class="panel-title">
 
-                            Newest Questions
+                            Recent questions
 
                         </h3>
                     </div>
@@ -142,7 +143,7 @@
                     <div class="panel-heading">
                         <h3 id="panel-title" class="panel-title">
 
-                            Top groups
+                            Recent groups
 
                         </h3>
                     </div>
@@ -181,7 +182,7 @@
                     <div class="panel-heading">
                         <h3 id="panel-title" class="panel-title">
 
-                            Top Users
+                            Top users
 
                         </h3>
                     </div>

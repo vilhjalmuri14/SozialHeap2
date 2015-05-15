@@ -182,9 +182,9 @@ namespace SozialHeap.Utils
             }
         }
 
-        public static int getUserViews(string username)
+        public static int getUserViews(string userName)
         {
-            username = "ViewUser/" + username;
+            userName = "ViewUser/" + userName;
             SqlConnection cnn;
             cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             List<string> res = new List<string>();
@@ -192,7 +192,7 @@ namespace SozialHeap.Utils
             {
                 cnn.Open();
                 SqlCommand command = new SqlCommand("select count(viewed) FROM Syslog where viewed LIKE @user", cnn);
-                command.Parameters.Add(new SqlParameter("user", username));
+                command.Parameters.Add(new SqlParameter("user", userName));
 
                 return (int) command.ExecuteScalar();
             }

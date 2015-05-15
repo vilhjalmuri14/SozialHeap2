@@ -75,6 +75,26 @@
                                                 $(this).children('a[href="'+name+'"]').parent().remove();
                                             });
                                         }
+                                        
+
+                                        function addUserToTopFollowers() {
+                                            var currentscore = @Model.currentUser.score;
+                                            var name = '@Model.currentUser.userName';
+                                            var hasbeen = false;
+                                            $("#topfollowers .topitem").each(function (index) {
+                                                var userscore = parseInt($(this).find("span.badge").text());
+                                                if (currentscore >= userscore && hasbeen == false)
+                                                {
+                                                    $text = '<div class="topitem postquestion"><a href="/User/ViewUser/'+name+'"> <span class="makedivlink makedivlink_small"></span></a><div class="imgholder"><img src="@Model.currentUser.photo" alt="User photo" /></div><div class="authorscore userScore">    <span class="badge"><span class="glyphicon glyphicon-console"> </span> '+currentscore+' </span> </div><h4 class="userName">'+name+'</div>';
+                                                    $(this).before($text);
+                                                    hasbeen = true;
+                                                }
+                                            });
+                                            while ($("#topfollowers .topitem").length > 5)
+                                            {
+                                                $("#topfollowers .topitem").last().remove();
+                                            }
+                                        }
 
                                         function stopfollow(id, elem)
                                         {
@@ -98,6 +118,8 @@
                                                     $(elem).closest('.panel-primary.user').find('.followercount').text(follow);
                                                     $(elem).replaceWith('<a class="btn user followed" style="width: 100px;" href="/User/StopFollowing/' + id + '" onclick="stopfollow(\'' + id + '\',this); return false;"><span class="glyphicon glyphicon-ok"></span> Following</a>')
                                                     startFollowed();
+                                                    addUserToTopFollowers();
+
                                                 }
                                             });
                                         }
@@ -204,7 +226,7 @@
 
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="topfollowers">
             @if (Model.user.Users1.Take(5).Count() == 0)
             {
                 <div class="nofriends">

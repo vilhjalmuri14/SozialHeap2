@@ -30,7 +30,7 @@
                 </div>
                 <div class="authorinfo">
                     <h4>
-                        @Html.ActionLink(Model.currentPost.User.userName, "ViewUser/"+Model.currentPost.User.userName, "User")
+                        @Html.ActionLink(Model.currentPost.User.userName, "ViewUser/"+Model.currentPost.User.userName, "User", null, new {id = "postauthor" })
 
                         <!-- author score starts -->
                         <span class="notimportant">asked:</span>
@@ -63,13 +63,13 @@
                                 if (Model.LikedPost)
                                 {
                                     <a href="@Url.Action("UnLikePost/" + Model.currentPost.postID)" onclick="unlike('@Model.currentPost.postID', this); return false;">
-                                        <button class="btn unlikebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Liked! (@Model.currentPost.scoreCounter)</button>
+                                        <button class="btn unlikebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Liked! (@Model.currentPost.Users.Count)</button>
                                     </a>
                                 }
                                 else
                                 {
                                     <a href="@Url.Action("LikePost/" + Model.currentPost.postID)" onclick="like('@Model.currentPost.postID', this); return false;">
-                                        <button class="btn likebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Like (@Model.currentPost.scoreCounter)</button>
+                                        <button class="btn likebutton"> <span class="glyphicon glyphicon-thumbs-up"></span> Like (@Model.currentPost.Users.Count)</button>
                                     </a>
                                 }
                             }

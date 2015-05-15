@@ -57,6 +57,8 @@ namespace Sozialheap.Controllers
                 User currUser = service.GetUserById(User.Identity.GetUserId());
                 model.notificationList = service.getUnreadPostsByUser(currUser);
                 ViewBag.notifications = model.notificationList.Count();
+                model.currentUser = currUser;
+                
                 if(model.user == currUser)
                 {
                     // Current user, display notifications!

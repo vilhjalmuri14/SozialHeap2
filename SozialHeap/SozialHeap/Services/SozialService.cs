@@ -30,6 +30,7 @@ namespace Sozialheap.Services
             try
             {
                 var groups = (from item in db2.Groups
+                              orderby item.dateCreated descending
                               select item).ToList();
                 return groups;
 

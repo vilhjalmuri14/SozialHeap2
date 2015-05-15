@@ -50,6 +50,64 @@
                         <div class="buttonLeftCol">
                             @if (User.Identity.IsAuthenticated)
                             {
+                                 <script>
+                                        function removeUserFromTopFollowers()
+                                        {
+                                            var name = '/User/ViewUser/' + '@System.Web.HttpContext.Current.User.Identity.Name';
+                                            $(".panel-body .topitem").each(function (index) {
+                                                $(this).children('a[href="'+name+'"]').parent().remove();
+                                            });
+                                        }
+                                        
+
+                                        function addUserToTopFollowers() {
+                                            var currentscore = @Model.currentUser.score;
+                                            var name = '@Model.currentUser.userName';
+                                            var hasbeen = false;
+                                            $("#topfollowers .topitem").each(function (index) {
+                                                var userscore = parseInt($(this).find("span.badge").text());
+                                                if (currentscore >= userscore && hasbeen == false)
+                                                {
+                                                    $text = '<div class="topitem postquestion"><a href="/User/ViewUser/'+name+'"> <span class="makedivlink makedivlink_small"></span></a><div class="imgholder"><img src="@Model.currentUser.photo" alt="User photo" /></div><div class="authorscore userScore">    <span class="badge"><span class="glyphicon glyphicon-console"> </span> '+currentscore+' </span> </div><h4 class="userName">'+name+'</div>';
+                                                    $(this).before($text);
+                                                    hasbeen = true;
+                                                }
+                                            });
+                                            while ($("#topfollowers .topitem").length > 5)
+                                            {
+                                                $("#topfollowers .topitem").last().remove();
+                                            }
+                                        }
+
+                                        function stopfollow(id, elem)
+                                        {
+                                            $.get("/Group/StopFollowingAjax/" + id, function (data, status) {
+                                                if (data === "unfollowed") {
+                                                    var follow = parseInt($(elem).closest('.panel-primary.group').find('.followercount').text()) - 1;
+                                                    $(elem).closest('.panel-primary.group').find('.followercount').text(follow);
+                                                    $(elem).replaceWith('<a class="btn user notfollowing" style="width: 100px;" href="/Group/StartFollowing/'+id+'" onclick="follow(\''+id+'\',this); return false;"><span class="glyphicon glyphicon-plus"></span> Follow</a>')
+                                                    startNotFollowed();
+                                                    removeUserFromTopFollowers();
+
+                                                }
+                                            });
+                                        }
+                                        function follow(id, elem)
+                                        {
+                                            $.get("/Group/StartFollowingAjax/" + id, function (data, status) {
+
+                                                if (data === "followed") {
+                                                    var follow = parseInt($(elem).closest('.panel-primary.group').find('.followercount').text()) + 1;
+                                                    $(elem).closest('.panel-primary.group').find('.followercount').text(follow);
+                                                    $(elem).replaceWith('<a class="btn user followed" style="width: 100px;" href="/Group/StopFollowing/' + id + '" onclick="stopfollow(\'' + id + '\',this); return false;"><span class="glyphicon glyphicon-ok"></span> Following</a>')
+                                                    startFollowed();
+                                                    addUserToTopFollowers();
+
+                                                }
+                                            });
+                                        }
+
+                                    </script>
                                 if (ViewBag.isOwner == true)
                                 {
                                     <a href="#editGroup" class="btn btn-default" data-toggle="modal">Edit group</a>
@@ -58,13 +116,13 @@
                                 {
                                     if (Model.following)
                                     {
-                                        <a class="btn group followed" style="width: 100px;"  href="@Url.Action("StopFollowing/"+Model.group.groupID)">
+                                        <a class="btn group followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.group.groupID)" onclick="stopfollow('@Model.group.groupID',this); return false;">
                                             <span class="glyphicon glyphicon-ok"> </span> Following
                                         </a>
                                     }
                                     else
                                     {
-                                        <a class="btn group notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.group.groupID)" >
+                                        <a class="btn group notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.group.groupID)" onclick="follow('@Model.group.groupID',this); return false;">
                                             <span class="glyphicon glyphicon-plus"></span> Follow
                                         </a>
 
@@ -76,7 +134,7 @@
                         <div  class="buttonRightCol">
 
                             <div class="buttons">
-                                <a class="btn btn-default" href="@Url.Action("ViewUsers/" + Model.group.groupID)">Followers <span class="badge"> @Html.DisplayFor(modelItem => Model.group.Users.Count)</span></a>
+                                <a class="btn btn-default" href="@Url.Action("ViewUsers/" + Model.group.groupID)" >Followers <span class="badge"> @Html.DisplayFor(modelItem => Model.group.Users.Count)</span></a>
                             </div>
                         </div>
                     </div>
@@ -103,7 +161,7 @@
 
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="topfollowers">
                 @if (Model.group.Users.Count() == 0)
                 {
                     <div class="nofriends">
@@ -116,34 +174,35 @@
                     <div class="topitem postquestion">
                         <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
                             <span class="makedivlink makedivlink_small"></span>
-                         </a>
-                            <div class="imgholder">
-                                <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                    @if (item.photo != null)
-                                    {
-                                        <img src="@item.photo" alt="User photo" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/images/anonymous_user.png" alt="User photo"/>
-                                    }
-                                    
-                                </a>
-
-                            </div>
+                        </a>
+                        <div class="imgholder">
                             <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
-                                <div class="authorscore userScore">
-                                    <span class="badge">
-                                        <span class="glyphicon glyphicon-console">
-                                        </span> @item.score
-                                    </span>
-                                </div>
-                                <h4 class="userName">@item.userName</h4><br />
+                                @if (item.photo != null)
+                                {
+                                    <img src="@item.photo" alt="User photo" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/anonymous_user.png" alt="User photo" />
+                                }
+
                             </a>
-</div>
+
+                        </div>
+                        <a href="@Url.Action("ViewUser/" + @item.userName, "User")">
+                            <div class="authorscore userScore">
+                                <span class="badge">
+                                    <span class="glyphicon glyphicon-console">
+                                    </span> @item.score
+                                </span>
+                            </div>
+                            <h4 class="userName">@item.userName</h4><br />
+                        </a>
+                    </div>
                 }
 
             </div>
+
         </div>
         <!-- Top Users ends -->
     </div>
