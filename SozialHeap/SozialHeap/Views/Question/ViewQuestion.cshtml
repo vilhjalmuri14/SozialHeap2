@@ -58,29 +58,6 @@
                             </div>
                         }
                         <div class="coolpost rightbutton">
-                            <script>
-                                function like(id, elem)
-                                {
-                                    $.get("/Question/LikePostAjax/"+id, function (data, status) {
-                                        var re = /^([0-9])+$/g;
-                                        if (re.test(data))
-                                        {
-                                            createUnlikeButton(elem, id, data);                                                                                        
-                                        }
-                                    });
-                                    return false;
-                                }
-                                function unlike(id, elem)
-                                {
-                                    $.get("/Question/UnLikePostAjax/" + id, function (data, status) {
-                                        var re = /^([0-9])+$/g;
-                                        if (re.test(data)) {
-                                            createLikeButton(elem, id, data);
-                                        }
-                                    });
-                                    return false;
-                                }
-                            </script>
                             @if (User.Identity.IsAuthenticated)
                             {
                                 if (Model.LikedPost)

@@ -67,16 +67,37 @@
                             if (ViewBag.isThisUser == false)
                             {
                                 <div class="button">
+                                    <script>
+                                        function stopfollow(id, elem)
+                                        {
+                                            $.get("/User/StopFollowingAjax/" + id, function (data, status) {
+                                                if (data === "unfollowed") {
+                                                    $(elem).replaceWith('<a class="btn user notfollowing" style="width: 100px;" href="/User/StartFollowing/'+id+'" onclick="follow(\''+id+'\',this); return false;"><span class="glyphicon glyphicon-plus"></span> Follow</a>')
+                                                    startNotFollowed();
+                                                }
+                                            });
+                                        }
+                                        function follow(id, elem)
+                                        {
+                                            $.get("/User/StartFollowingAjax/" + id, function (data, status) {
 
+                                                if (data === "followed") {
+                                                    $(elem).replaceWith('<a class="btn user followed" style="width: 100px;" href="/User/StopFollowing/' + id + '" onclick="stopfollow(\'' + id + '\',this); return false;"><span class="glyphicon glyphicon-ok"></span> Following</a>')
+                                                    startFollowed();
+                                                }
+                                            });
+                                        }
+
+                                    </script>
                                     @if (Model.following)
-                                    {
-                                        <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)">
-                                            <span class="glyphicon glyphicon-ok"> </span> Following
-                                        </a>
-                                    }
+{
+    <a class="btn user followed" style="width: 100px;" href="@Url.Action("StopFollowing/"+Model.user.userName)" onclick="stopfollow('@Model.user.userName',this); return false;">
+        <span class="glyphicon glyphicon-ok"> </span> Following
+    </a>
+}
                                     else
                                     {
-                                        <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)">
+                                        <a class="btn user notfollowing" style="width: 100px;" href="@Url.Action("StartFollowing/"+Model.user.userName)" onclick="follow('@Model.user.userName',this); return false;">
                                             <span class="glyphicon glyphicon-plus"></span> Follow
                                         </a>
                                     }
