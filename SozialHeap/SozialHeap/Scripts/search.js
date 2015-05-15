@@ -7,10 +7,14 @@ $(function () {
     })
 
 
+    function startsearch()
+    {
+        document.location = '/Home/Search/' + $("#queryString").val();
+    }
     $(document).ready(function () {
         $('#queryString').keypress(function (e) {
             if (e.which == 13 && $('#queryString').val() != '') {
-                document.location = '/Home/Search/' + $("#queryString").val();
+                startsearch();
             }
         });
     });

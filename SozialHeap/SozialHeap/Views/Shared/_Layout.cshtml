@@ -27,7 +27,7 @@
                         <input type="text" id="queryString" name="queryString" class="form-control" placeholder="Search for...">
                         
                         <span class="input-group-btn">
-                            <button class="btn btn-default glyphicon glyphicon-search searchbutton" type="button"></button>
+                            <button class="btn btn-default glyphicon glyphicon-search searchbutton" onClick="document.location = '/Home/Search/' + $('#queryString').val();" type="button"></button>
                         </span>
                     </div>
                 </div>
