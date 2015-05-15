@@ -793,7 +793,7 @@ namespace Sozialheap.Services
             {
                 var posts = from user in db2.Users
                     join post in db2.Posts on user.userID equals post.userID
-                    where user.Users.Select(x => x.userID).Contains(userID)
+                    where user.Users1.Select(x => x.userID).Contains(userID)
                     orderby post.dateCreated descending
                     select post;
                 return posts;
