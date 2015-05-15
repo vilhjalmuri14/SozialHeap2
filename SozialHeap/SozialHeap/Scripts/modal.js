@@ -258,3 +258,23 @@ $(function () {
             $('<button class="btn menuitem" id="closemobilemenu" onClick="javascript:closemenu()">Close</div>').insertAfter("#main");
         });
 });
+
+$(window).resize(function () {
+    if ($(window).width() > 640)
+    {
+        $(".hidelower").each(function () {
+            $(this).removeClass('menuitem');
+            $(this).show();
+        });
+        $("#closemobilemenu").remove();
+        $("#mobilemenu").show();
+        $("#main").show();
+        $(".showlower").hide();
+    }
+    else
+    {
+        $(".showlower").show();
+    }
+    
+    
+});

@@ -442,7 +442,7 @@ footer {
 	margin-bottom:-7px;
 }
 
-@media screen and max-width 640px {
+@media screen and (max-width: 640px) {
 	.buttonLeftCol
 	{
 		margin-left:20px;
