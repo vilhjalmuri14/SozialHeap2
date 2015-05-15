@@ -59,24 +59,35 @@ function stopRKey(evt) {
 document.onkeypress = stopRKey;
 
 /* like unlike ajax */
-
+function updatescore(addscore)
+{
+    var url = $("#postauthor").attr("href");
+    // alert($("#postauthor").parents('.authorinfo').find(".authorscore").text());
+    $('.authorinfo h4 a[href = "' + url + '"]').each(function (index) {
+        var score = parseInt($(this).parents('.authorinfo').find(".authorscore").text()) + addscore;
+        $(this).parents('.authorinfo').find(".authorscore").html('<span class="badge user"> <span class="glyphicon glyphicon-console"> </span> '+score+'</span>');
+    });
+}
                                function like(id, elem)
                                {
                                    $.get("/Question/LikePostAjax/"+id, function (data, status) {
                                        var re = /^([0-9])+$/g;
                                        if (re.test(data))
                                        {
-                                           createUnlikeButton(elem, id, data);                                                                                        
+                                           createUnlikeButton(elem, id, data);
+                                           updatescore(5);
                                        }
                                    });
                                    return false;
                                }
+                              
 function unlike(id, elem)
 {
     $.get("/Question/UnLikePostAjax/" + id, function (data, status) {
         var re = /^([0-9])+$/g;
         if (re.test(data)) {
             createLikeButton(elem, id, data);
+            updatescore(-5);
         }
     });
     return false;

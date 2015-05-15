@@ -30,7 +30,7 @@
                 </div>
                 <div class="authorinfo">
                     <h4>
-                        @Html.ActionLink(Model.currentPost.User.userName, "ViewUser/"+Model.currentPost.User.userName, "User")
+                        @Html.ActionLink(Model.currentPost.User.userName, "ViewUser/"+Model.currentPost.User.userName, "User", null, new {id = "postauthor" })
 
                         <!-- author score starts -->
                         <span class="notimportant">asked:</span>
