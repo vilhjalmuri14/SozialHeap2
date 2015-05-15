@@ -89,42 +89,6 @@
         </div>
     </div>
 
-    <script>
-        $(function () {
-
-            $('#loginmodal').on('shown.bs.modal', function () {
-                $('#UserName').value = "";
-                $('#UserName').focus();
-            });
-
-            $('#registermodal').on('shown.bs.modal', function () {
-                $('#RegisterUserName').value = "";
-                $('#RegisterConfirmPassword').value = "";
-                $('#RegisterPassword').value = "";
-                $('#RegisterUserName').focus();
-            });
-        });
-
-        function stopRKey(evt) {
-            var evt = (evt) ? evt : ((event) ? event : null);
-            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
-            if ((evt.keyCode == 13) && (node.type == "text") && (node.id == "UserName")) {
-                $('#Password').focus();
-                return false;
-            }
-            else if ((evt.keyCode == 13) && (node.type == "text") && (node.id == "RegisterUserName")) {
-                $('#RegisterPassword').focus();
-                return false;
-            }
-            else if ((evt.keyCode == 13) && (node.type == "password") && (node.id == "RegisterPassword")) {
-                $('#RegisterConfirmPassword').focus();
-                return false;
-            }
-        }
-
-        document.onkeypress = stopRKey;
-
-    </script>
 
     <!-- login modal ends-->
     <!-- login modal starts -->
@@ -150,7 +114,7 @@
                         </div>
                         <div class="form-group">
                             <label for="ConfirmPassword" class="control-label">Confirm password</label>
-                            <input type="password" class="form-control" id="RegisterConfirmPassword" name="Password">
+                            <input type="password" class="form-control" id="RegisterConfirmPassword" name="ConfirmPassword">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Log in</button>
