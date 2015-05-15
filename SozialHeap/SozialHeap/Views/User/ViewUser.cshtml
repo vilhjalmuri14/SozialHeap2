@@ -68,12 +68,24 @@
                             {
                                 <div class="button">
                                     <script>
+                                        function removeUserFromTopFollowers()
+                                        {
+                                            var name = '/User/ViewUser/' + '@System.Web.HttpContext.Current.User.Identity.Name';
+                                            $(".panel-body .topitem").each(function (index) {
+                                                $(this).children('a[href="'+name+'"]').parent().remove();
+                                            });
+                                        }
+
                                         function stopfollow(id, elem)
                                         {
                                             $.get("/User/StopFollowingAjax/" + id, function (data, status) {
                                                 if (data === "unfollowed") {
+                                                    var follow = parseInt($(elem).closest('.panel-primary.user').find('.followercount').text()) - 1;
+                                                    $(elem).closest('.panel-primary.user').find('.followercount').text(follow);
                                                     $(elem).replaceWith('<a class="btn user notfollowing" style="width: 100px;" href="/User/StartFollowing/'+id+'" onclick="follow(\''+id+'\',this); return false;"><span class="glyphicon glyphicon-plus"></span> Follow</a>')
                                                     startNotFollowed();
+                                                    removeUserFromTopFollowers();
+
                                                 }
                                             });
                                         }
@@ -82,6 +94,8 @@
                                             $.get("/User/StartFollowingAjax/" + id, function (data, status) {
 
                                                 if (data === "followed") {
+                                                    var follow = parseInt($(elem).closest('.panel-primary.user').find('.followercount').text()) + 1;
+                                                    $(elem).closest('.panel-primary.user').find('.followercount').text(follow);
                                                     $(elem).replaceWith('<a class="btn user followed" style="width: 100px;" href="/User/StopFollowing/' + id + '" onclick="stopfollow(\'' + id + '\',this); return false;"><span class="glyphicon glyphicon-ok"></span> Following</a>')
                                                     startFollowed();
                                                 }
@@ -116,10 +130,10 @@
                         }
                         </div>
                     <div class="buttonRightCol">
-
+                        
                         <div class="buttons">
-                            <a class="btn btn-default" href="@Url.Action("ShowFollowers/" + Model.user.userName)">Followers <span class="badge"> @Model.user.Users1.Count </span></a>
-                            <a class="btn btn-default" href="@Url.Action("ShowFollowing/" + Model.user.userName)">Following <span class="badge"> @Model.user.Users.Count </span></a>
+                            <a class="btn btn-default" href="@Url.Action("ShowFollowers/" + Model.user.userName)">Followers <span class="badge followercount"> @Model.user.Users1.Count </span></a>
+                            <a class="btn btn-default" href="@Url.Action("ShowFollowing/" + Model.user.userName)">Following <span class="badge followingcount"> @Model.user.Users.Count </span></a>
                         </div>
 
                         </div>
