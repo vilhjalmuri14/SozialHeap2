@@ -274,6 +274,7 @@ $(window).resize(function () {
     else
     {
         $(".showlower").show();
+        $(".hidelower").hide();
     }
     
     
